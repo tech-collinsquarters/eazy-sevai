@@ -29,7 +29,7 @@ export default function RootLayout({
         {/* Razorpay Script - Load globally */}
         <Script
           src="https://checkout.razorpay.com/v1/checkout.js"
-          strategy="lazyOnload"
+          strategy="beforeInteractive"
         />
       </body>
     </html>

@@ -26,10 +26,17 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
   const mandatoryDocs = getMandatoryDocuments(service.slug);
   const optionalDocs = getOptionalDocuments(service.slug);
 
+  // Check if service has sub-services
+  const hasSubServices = service.hasSubServices && service.subServices && service.subServices.length > 0;
+
+  const [serviceSubType, setServiceSubType] = useState<string>('');
   const [uploadedFiles, setUploadedFiles] = useState<Record<string, UploadedFile>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<string>('');
+  
+  // Dynamic documents based on sub-service selection
+  const [displayedDocuments, setDisplayedDocuments] = useState<string[]>(service.requiredDocuments || []);
   
   // Form data state
   const [formData, setFormData] = useState({
@@ -42,6 +49,26 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  // Handle sub-service selection and update documents
+  const handleSubServiceChange = (value: string) => {
+    setServiceSubType(value);
+    
+    if (hasSubServices) {
+      const selectedSubService = service.subServices!.find(sub => sub.value === value);
+      
+      if (selectedSubService) {
+        // Merge base documents with additional documents from sub-service
+        const baseDocuments = service.requiredDocuments || [];
+        const additionalDocs = selectedSubService.additionalDocs || [];
+        const allDocs = [...new Set([...baseDocuments, ...additionalDocs])];
+        setDisplayedDocuments(allDocs);
+      } else {
+        // Reset to base documents
+        setDisplayedDocuments(service.requiredDocuments || []);
+      }
+    }
   };
 
   const handleFileUpload = (documentName: string, doc: RequiredDocument, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -151,7 +178,6 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
         if (data.success) {
           uploadedUrls[documentName] = data.data.url;
           
-          // Update the uploaded file with Cloudinary info
           setUploadedFiles(prev => ({
             ...prev,
             [documentName]: {
@@ -234,8 +260,9 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
         applicationId,
         orderId,
         serviceSlug: service.slug,
-        serviceId: service.id,
+        serviceId: service.slug,
         serviceName: service.name,
+        serviceSubType: serviceSubType, // This will show in Zendesk
         paymentId,
         userData: {
           name: formData.fullName,
@@ -245,9 +272,9 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
         },
         formData: {
           ...formData,
-          ...uploadedUrls, // Include uploaded document URLs
+          serviceSubType: serviceSubType,
+          ...uploadedUrls,
         },
-        // Service feasibility flags for N8N workflow
         serviceFeasibility: {
           isFullyOnline: service.isFullyOnline || false,
           requiresPhysicalPresence: service.requiresPhysicalPresence || false,
@@ -255,14 +282,12 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
           isStatutoryFeeVariable: service.isStatutoryFeeVariable || false,
           operationalComplexity: service.operationalComplexity || 'medium',
         },
-        // Pricing breakdown for N8N workflow
         pricing: {
           statutoryFee: service.statutoryFee || 0,
           professionalFee: service.professionalFee || 0,
           gst: service.gst || 0,
           totalPayable: service.totalPayable || 0,
         },
-        // Timestamp
         timestamp: new Date().toISOString(),
       }),
     });
@@ -276,6 +301,12 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check if service sub-type is selected (if needed)
+    if (hasSubServices && !serviceSubType) {
+      alert('Please select a service type');
+      return;
+    }
 
     // Check if all mandatory documents are uploaded
     const missingDocs = mandatoryDocs.filter(doc => !uploadedFiles[doc.name]);
@@ -295,23 +326,19 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
     setUploadProgress('Starting submission...');
 
     try {
-      // Step 1: Generate IDs
       const applicationId = generateApplicationId();
       const leadId = generateLeadId();
       
       console.log('Generated IDs:', { applicationId, leadId });
 
-      // Step 2: Upload files to Cloudinary
       setUploadProgress('Uploading documents...');
       const uploadedUrls = await uploadFilesToCloudinary(applicationId, leadId);
       console.log('Files uploaded:', uploadedUrls);
 
-      // Step 3: Create payment order
       setUploadProgress('Creating payment order...');
       const paymentOrder = await createPaymentOrder(applicationId);
       console.log('Payment order created:', paymentOrder);
 
-      // Step 4: Open Razorpay checkout
       setUploadProgress('Opening payment gateway...');
       
       const options = {
@@ -327,19 +354,17 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
           contact: formData.mobile,
         },
         theme: {
-          color: '#0d9488', // Teal color to match your design
+          color: '#0066b3',
         },
         handler: async function (response: any) {
           try {
             setUploadProgress('Verifying payment...');
             
-            // Verify payment
             const verified = await verifyPayment(response);
             
             if (verified) {
               setUploadProgress('Submitting application...');
               
-              // Submit to N8N
               await submitApplicationToN8N(
                 applicationId,
                 paymentOrder.orderId,
@@ -347,7 +372,6 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
                 uploadedUrls
               );
 
-              // Redirect to success page
               router.push(`/thank-you?applicationId=${applicationId}&orderId=${paymentOrder.orderId}`);
             } else {
               alert('Payment verification failed. Please contact support at service@vysegroup.com');
@@ -366,7 +390,7 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
         },
       };
 
-      // @ts-ignore - Razorpay is loaded via script tag
+      
       const razorpay = new window.Razorpay(options);
       razorpay.open();
 
@@ -378,6 +402,9 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
     }
   };
 
+  // Check if service requires documents
+  const requiresDocuments = displayedDocuments.length > 0 || mandatoryDocs.length > 0 || optionalDocs.length > 0;
+
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">
@@ -385,9 +412,58 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
       </h2>
 
       <form onSubmit={handleSubmit}>
+        {/* Service Sub-Type Selection */}
+        {hasSubServices && (
+          <div className="mb-8 p-4 bg-gradient-to-r from-blue-50 to-teal-50 border-2 border-[#0066b3]/20 rounded-lg">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Service Type <span className="text-red-500">*</span>
+            </label>
+            <select
+              value={serviceSubType}
+              onChange={(e) => handleSubServiceChange(e.target.value)}
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0066b3] focus:border-transparent"
+              required
+              disabled={isSubmitting}
+            >
+              <option value="">Select service type...</option>
+              {service.subServices!.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            
+            {/* Show selected sub-type details */}
+            {serviceSubType && (
+              <div className="mt-4 p-4 bg-white rounded-lg border border-[#0066b3]/20">
+                {(() => {
+                  const selected = service.subServices!.find(opt => opt.value === serviceSubType);
+                  return selected ? (
+                    <>
+                      <p className="text-sm text-gray-700 mb-2">
+                        <strong>{selected.label}:</strong> {selected.description}
+                      </p>
+                      {selected.additionalDocs.length > 0 && (
+                        <div className="mt-2">
+                          <p className="text-xs font-semibold text-gray-600 mb-1">Additional documents needed:</p>
+                          <ul className="text-xs text-gray-600 list-disc list-inside space-y-1">
+                            {selected.additionalDocs.map((doc, idx) => (
+                              <li key={idx}>{doc}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </>
+                  ) : null;
+                })()}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Personal Information Section */}
         <div className="mb-8">
-          <h3 className="text-xl font-semibold text-gray-700 mb-4 pb-2 border-b-2 border-teal-500">
+          <h3 className="text-xl font-semibold mb-4 pb-2 border-b-2 bg-gradient-to-r from-[#0066b3] to-[#14b8a6] bg-clip-text text-transparent">
             Personal Information
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -400,7 +476,7 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
                 required
                 value={formData.fullName}
                 onChange={(e) => handleInputChange('fullName', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0066b3]"
                 placeholder="Enter your full name"
                 disabled={isSubmitting}
               />
@@ -416,7 +492,7 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
                 pattern="[0-9]{12}"
                 value={formData.aadhaar}
                 onChange={(e) => handleInputChange('aadhaar', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0066b3]"
                 placeholder="12-digit Aadhaar number"
                 disabled={isSubmitting}
               />
@@ -432,7 +508,7 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
                 pattern="[0-9]{10}"
                 value={formData.mobile}
                 onChange={(e) => handleInputChange('mobile', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0066b3]"
                 placeholder="10-digit mobile number"
                 disabled={isSubmitting}
               />
@@ -447,7 +523,7 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
                 required
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0066b3]"
                 placeholder="your.email@example.com"
                 disabled={isSubmitting}
               />
@@ -462,7 +538,7 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
                 rows={3}
                 value={formData.address}
                 onChange={(e) => handleInputChange('address', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0066b3]"
                 placeholder="Enter your complete address"
                 disabled={isSubmitting}
               />
@@ -470,61 +546,81 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
           </div>
         </div>
 
-        {/* Mandatory Documents Section */}
-        {mandatoryDocs.length > 0 && (
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-700 mb-4 pb-2 border-b-2 border-red-500">
-              Required Documents <span className="text-red-500">*</span>
-            </h3>
-            <p className="text-sm text-gray-600 mb-4">
-              All documents marked with <span className="text-red-500 font-semibold">*</span> are mandatory for your application.
-            </p>
-            <div className="space-y-4">
-              {mandatoryDocs.map((doc, index) => (
-                <DocumentUploadCard
-                  key={`mandatory-${index}`}
-                  document={doc}
-                  uploadedFile={uploadedFiles[doc.name]}
-                  error={errors[doc.name]}
-                  onUpload={(e) => handleFileUpload(doc.name, doc, e)}
-                  onRemove={() => removeFile(doc.name)}
-                  disabled={isSubmitting}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+        {/* Documents Section - ONLY SHOW IF SERVICE REQUIRES DOCUMENTS */}
+        {requiresDocuments ? (
+          <>
+            {/* Mandatory Documents Section */}
+            {mandatoryDocs.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-700 mb-4 pb-2 border-b-2 border-red-500">
+                  Required Documents <span className="text-red-500">*</span>
+                </h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  All documents marked with <span className="text-red-500 font-semibold">*</span> are mandatory for your application.
+                </p>
+                <div className="space-y-4">
+                  {mandatoryDocs.map((doc, index) => (
+                    <DocumentUploadCard
+                      key={`mandatory-${index}`}
+                      document={doc}
+                      uploadedFile={uploadedFiles[doc.name]}
+                      error={errors[doc.name]}
+                      onUpload={(e) => handleFileUpload(doc.name, doc, e)}
+                      onRemove={() => removeFile(doc.name)}
+                      disabled={isSubmitting}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
 
-        {/* Optional Documents Section */}
-        {optionalDocs.length > 0 && (
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-700 mb-4 pb-2 border-b-2 border-blue-500">
-              Optional Documents
-            </h3>
-            <p className="text-sm text-gray-600 mb-4">
-              These documents are optional but may strengthen your application.
-            </p>
-            <div className="space-y-4">
-              {optionalDocs.map((doc, index) => (
-                <DocumentUploadCard
-                  key={`optional-${index}`}
-                  document={doc}
-                  uploadedFile={uploadedFiles[doc.name]}
-                  error={errors[doc.name]}
-                  onUpload={(e) => handleFileUpload(doc.name, doc, e)}
-                  onRemove={() => removeFile(doc.name)}
-                  disabled={isSubmitting}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+            {/* Optional Documents Section */}
+            {optionalDocs.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-700 mb-4 pb-2 border-b-2 border-blue-500">
+                  Optional Documents
+                </h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  These documents are optional but may strengthen your application.
+                </p>
+                <div className="space-y-4">
+                  {optionalDocs.map((doc, index) => (
+                    <DocumentUploadCard
+                      key={`optional-${index}`}
+                      document={doc}
+                      uploadedFile={uploadedFiles[doc.name]}
+                      error={errors[doc.name]}
+                      onUpload={(e) => handleFileUpload(doc.name, doc, e)}
+                      onRemove={() => removeFile(doc.name)}
+                      disabled={isSubmitting}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
 
-        {/* No Documents Message */}
-        {allDocuments.length === 0 && (
-          <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <p className="text-blue-800 flex items-center gap-2">
-              <FileText className="w-5 h-5" />
+            {/* Display documents from service.requiredDocuments as info */}
+            {displayedDocuments.length > 0 && mandatoryDocs.length === 0 && (
+              <div className="mb-8 p-4 bg-gradient-to-r from-blue-50 to-teal-50 border-2 border-[#0066b3]/20 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-700 mb-3">
+                  📄 Documents You'll Need
+                </h3>
+                <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                  {displayedDocuments.map((doc, index) => (
+                    <li key={index}>{doc}</li>
+                  ))}
+                </ul>
+                <p className="text-xs text-gray-600 mt-3">
+                  Please keep these documents ready. You may be asked to submit them during processing.
+                </p>
+              </div>
+            )}
+          </>
+        ) : (
+          /* No Documents Message */
+          <div className="mb-8 p-4 bg-gradient-to-r from-blue-50 to-teal-50 border-2 border-[#0066b3]/20 rounded-lg">
+            <p className="text-gray-700 flex items-center gap-2">
+              <FileText className="w-5 h-5 text-[#0066b3]" />
               No additional documents required for this service. Please fill in your personal information and submit.
             </p>
           </div>
@@ -532,8 +628,8 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
 
         {/* Progress Message */}
         {uploadProgress && (
-          <div className="mb-4 p-4 bg-teal-50 border border-teal-200 rounded-lg">
-            <p className="text-teal-800 text-center font-medium">
+          <div className="mb-4 p-4 bg-gradient-to-r from-blue-50 to-teal-50 border-2 border-[#0066b3]/20 rounded-lg">
+            <p className="text-gray-800 text-center font-medium">
               {uploadProgress}
             </p>
           </div>
@@ -543,8 +639,8 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
         <div className="flex justify-end">
           <button
             type="submit"
-            disabled={isSubmitting}
-            className="px-8 py-3 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors duration-200 flex items-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            disabled={isSubmitting || (hasSubServices && !serviceSubType)}
+            className="px-8 py-3 bg-gradient-to-r from-[#0066b3] to-[#14b8a6] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity duration-200 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
           >
             {isSubmitting ? (
               <>
@@ -561,7 +657,6 @@ export default function ApplicationForm({ service }: ApplicationFormProps) {
         </div>
       </form>
 
-      {/* Load Razorpay script */}
       <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
     </div>
   );
@@ -598,7 +693,7 @@ function DocumentUploadCard({ document, uploadedFile, error, onUpload, onRemove,
                 Mandatory
               </span>
             ) : (
-              <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs font-semibold rounded">
+              <span className="px-2 py-0.5 bg-gradient-to-r from-blue-100 to-teal-100 text-[#0066b3] text-xs font-semibold rounded">
                 Optional
               </span>
             )}
@@ -648,7 +743,7 @@ function DocumentUploadCard({ document, uploadedFile, error, onUpload, onRemove,
           <>
             <label
               htmlFor={inputId}
-              className={`px-4 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700 cursor-pointer transition-colors duration-200 flex items-center gap-2 ${
+              className={`px-4 py-2 bg-gradient-to-r from-[#0066b3] to-[#14b8a6] text-white text-sm font-medium rounded-lg hover:opacity-90 cursor-pointer transition-opacity duration-200 flex items-center gap-2 ${
                 disabled ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             >

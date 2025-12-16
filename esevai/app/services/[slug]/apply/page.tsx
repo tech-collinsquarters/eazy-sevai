@@ -33,7 +33,7 @@ export default async function ApplyPage({
         </div>
 
         {/* Fee Summary */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-lg shadow-md p-6 mb-8">
+        <div className="bg-gradient-to-r from-[#0066b3] to-[#14b8a6] text-white rounded-lg shadow-md p-6 mb-8">
           <h2 className="text-xl font-semibold mb-4">Fee Summary</h2>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between opacity-90">

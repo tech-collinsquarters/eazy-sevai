@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react'
+import { Mail, Phone, MapPin, Facebook, Instagram, MessageCircle } from 'lucide-react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -29,36 +29,35 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-gray-600 text-sm">
-              Professional documentation services for Tamil Nadu government certificates and licenses.
+              Professional documentation services for Tamil Nadu government certificates and licenses. Serving residents and NRIs.
             </p>
             <div className="flex items-center gap-3">
               <a 
-                href="#" 
+                href="https://facebook.com/EazySevai" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-[#0066b3] text-gray-600 hover:text-white transition flex items-center justify-center"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
               </a>
               <a 
-                href="#" 
-                className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-[#0066b3] text-gray-600 hover:text-white transition flex items-center justify-center"
-                aria-label="Twitter"
+                href="https://wa.me/917845495937" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-[#25D366] text-gray-600 hover:text-white transition flex items-center justify-center"
+                aria-label="WhatsApp"
               >
-                <Twitter className="w-4 h-4" />
+                <MessageCircle className="w-4 h-4" />
               </a>
               <a 
-                href="#" 
-                className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-[#0066b3] text-gray-600 hover:text-white transition flex items-center justify-center"
+                href="https://instagram.com/EazySevai" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-[#E4405F] text-gray-600 hover:text-white transition flex items-center justify-center"
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" />
-              </a>
-              <a 
-                href="#" 
-                className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-[#0066b3] text-gray-600 hover:text-white transition flex items-center justify-center"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -71,7 +70,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="/services" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
-                  All Services
+                  91 Services
                 </Link>
               </li>
               <li>
@@ -85,13 +84,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
-                  Pricing
+                <Link href="/about" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
+                  About Us
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
-                  About Us
+                <Link href="/contact" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -119,13 +118,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/services/death-certificate" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
-                  Death Certificate
+                <Link href="/services/pan-card" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
+                  PAN Card
                 </Link>
               </li>
               <li>
-                <Link href="/services/marriage-certificate" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
-                  Marriage Certificate
+                <Link href="/services/passport-application-support" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
+                  Passport Services
                 </Link>
               </li>
             </ul>
@@ -140,8 +139,8 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-[#0066b3] mt-0.5 flex-shrink-0" />
                 <div>
-                  <a href="mailto:sevai@vysegroup.com" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
-                    sevai@vysegroup.com
+                  <a href="mailto:service@vysegroup.com" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
+                    service@vysegroup.com
                   </a>
                 </div>
               </li>
@@ -156,7 +155,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#0066b3] mt-0.5 flex-shrink-0" />
                 <div className="text-gray-600 text-sm">
-                  Villa 136, SNP Signature Villas,<br />
+                  Villa 246, SNP Signature Villas,<br />
                   Nedugundram, New Perungalathur,<br />
                   Chennai - 600127
                 </div>
@@ -174,11 +173,14 @@ export default function Footer() {
               © {currentYear} Eazy Sevai. All rights reserved.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6">
-              <Link href="/terms" className="hover:underline">Terms & Conditions</Link>
-              <Link href="/refund-policy" className="hover:underline">Refund Policy</Link>
-              <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link>
-              <Link href="/contact" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
-                Contact
+              <Link href="/terms" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
+                Terms & Conditions
+              </Link>
+              <Link href="/refund-policy" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
+                Refund Policy
+              </Link>
+              <Link href="/privacy-policy" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
+                Privacy Policy
               </Link>
             </div>
           </div>

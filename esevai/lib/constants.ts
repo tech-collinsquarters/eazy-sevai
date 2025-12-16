@@ -1,18 +1,18 @@
 export const SITE_NAME = 'Eazy Sevai';
-export const SITE_DESCRIPTION = 'Government Services Made Simple — Apply Online for Aadhaar & Passport Assistance';
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://Eazy Sevai.com';
+export const SITE_DESCRIPTION = 'Government Services Made Simple — Apply Online for Tamil Nadu Government Services. Serving residents and NRIs.';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://eazysevai.com';
 
 export const CONTACT = {
-  phone: '7845495937',
-  whatsapp: '061411888504',
-  email: 'support@Eazy Sevai.com',
-  address: 'Your Office Address, City, State - PIN CODE'
+  phone: '+917845495937',
+  whatsapp: '+917845495937',
+  email: 'service@vysegroup.com',
+  address: 'Villa 246, SNP Signature Villas, Nedugundram, New Perungalathur, Chennai - 600127'
 };
 
 export const SOCIAL_LINKS = {
-  facebook: 'https://facebook.com/Eazy Sevai',
-  twitter: 'https://twitter.com/Eazy Sevai',
-  instagram: 'https://instagram.com/Eazy Sevai'
+  facebook: 'https://facebook.com/EazySevai',
+  instagram: 'https://instagram.com/EazySevai',
+  whatsapp: 'https://wa.me/917845495937'
 };
 
 export const SERVICE_CATEGORIES = [
@@ -58,4 +58,5 @@ export const ANALYTICS_IDS = {
   metaPixel: process.env.NEXT_PUBLIC_META_PIXEL_ID || ''
 };
 
-
+// Total number of services
+export const TOTAL_SERVICES = 91;

@@ -123,7 +123,7 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-bold mb-2" style={{ color: '#1e3a5f' }}>Visit Us</h3>
                   <address className="text-gray-600 not-italic text-sm leading-relaxed">
-                    Villa 136, SNP Signature Villas,<br />
+                    Villa 246, SNP Signature Villas,<br />
                     Nedugundram, New Perungalathur,<br />
                     Chennai - 600127
                   </address>

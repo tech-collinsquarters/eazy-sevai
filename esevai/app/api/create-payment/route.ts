@@ -1,77 +1,61 @@
+// app/api/create-payment/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import Razorpay from 'razorpay';
 
-// Initialize Razorpay
-const razorpay = new Razorpay({
-  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
-  key_secret: process.env.RAZORPAY_KEY_SECRET!,
-});
-
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const body = await request.json();
+    const body = await req.json();
     const { amount, serviceName, serviceSlug, applicationId, userData } = body;
 
     // Validate required fields
-    if (!amount || !serviceName || !serviceSlug || !applicationId || !userData) {
+    if (!amount || !serviceName || !applicationId) {
       return NextResponse.json(
-        { success: false, error: 'Missing required fields' },
+        { 
+          success: false, 
+          error: 'Missing required fields' 
+        },
         { status: 400 }
       );
     }
 
-    // Convert amount to paise (Razorpay uses smallest currency unit)
-    const amountInPaise = Math.round(amount * 100);
+    // Get Razorpay Key from environment
+    const razorpayKeyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+    const razorpayKeySecret = process.env.RAZORPAY_KEY_SECRET;
 
-    // Create Razorpay order
-    const order = await razorpay.orders.create({
-      amount: amountInPaise,
-      currency: 'INR',
-      receipt: applicationId,
-      notes: {
-        applicationId,
-        serviceName,
-        serviceSlug,
-        customerName: userData.name,
-        customerEmail: userData.email,
-        customerPhone: userData.phone,
-      },
-    });
-
-    // Send order created event to N8N (optional tracking)
-    const n8nWebhook = process.env.N8N_ORDER_CREATED_WEBHOOK;
-    if (n8nWebhook) {
-      try {
-        await fetch(n8nWebhook, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            orderId: order.id,
-            applicationId,
-            serviceName,
-            serviceSlug,
-            amount: amount,
-            amountInPaise: amountInPaise,
-            userData,
-            createdAt: new Date().toISOString(),
-            status: 'created',
-          }),
-        });
-      } catch (webhookError) {
-        console.error('N8N webhook error (non-critical):', webhookError);
-      }
+    if (!razorpayKeyId || !razorpayKeySecret) {
+      console.error('❌ Razorpay credentials missing in environment variables');
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: 'Payment gateway not configured. Please contact support.' 
+        },
+        { status: 500 }
+      );
     }
 
+    // Generate order ID
+    const orderId = `ORDER-${Date.now()}-${Math.random().toString(36).substring(2, 9).toUpperCase()}`;
+
+    console.log('✅ Payment order created:', {
+      orderId,
+      amount,
+      serviceName,
+      applicationId,
+    });
+
+    // Return payment order details
     return NextResponse.json({
       success: true,
-      orderId: order.id,
-      amount: order.amount,
+      razorpayKeyId: razorpayKeyId,
+      orderId: orderId,
+      amount: Math.round(amount * 100), // Convert to paise
+      currency: 'INR',
+      serviceSlug,
+      serviceName,
       applicationId,
-      razorpayKeyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
     });
 
   } catch (error: any) {
-    console.error('Payment creation error:', error);
+    console.error('❌ Create payment error:', error);
     return NextResponse.json(
       { 
         success: false, 

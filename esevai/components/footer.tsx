@@ -42,7 +42,7 @@ export default function Footer() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a 
-                href="https://wa.me/917845495937" 
+                href="https://wa.me/916385882835" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-[#25D366] text-gray-600 hover:text-white transition flex items-center justify-center"
@@ -70,7 +70,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="/services" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
-                  91 Services
+                  57+ Services
                 </Link>
               </li>
               <li>
@@ -139,16 +139,16 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-[#0066b3] mt-0.5 flex-shrink-0" />
                 <div>
-                  <a href="mailto:service@vysegroup.com" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
-                    service@vysegroup.com
+                  <a href="mailto:esevaiservices11@vysegroup.com" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
+                    esevaiservices11@vysegroup.com
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-[#0066b3] mt-0.5 flex-shrink-0" />
                 <div>
-                  <a href="tel:+917845495937" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
-                    +91 78454 95937
+                  <a href="tel:+916385882835" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
+                    +91 6385882835
                   </a>
                 </div>
               </li>

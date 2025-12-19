@@ -37,33 +37,14 @@ export interface Service {
 
 export const services: Service[] = [
   // ========================================
-  // IDENTITY & CARDS (14 Services)
+  // IDENTITY & CARDS (10 Active Services)
   // ========================================
-  {
-    id: 'aadhaar-enrollment-support',
-    slug: 'aadhaar-enrollment-support',
-    name: 'Aadhaar Enrollment Support',
-    description: 'Professional assistance for Aadhaar enrollment, updates, or corrections',
-    category: 'identity',
-    categoryGroup: 'Identity & Cards',
-    statutoryFee: 0,
-    professionalFee: 299,
-    gst: 54,
-    totalPayable: 353,
-    processingTime: '15-30 days',
-    requiredDocuments: ['Proof of Identity', 'Proof of Address', 'Date of Birth Proof', 'Photograph'],
-    popular: true,
-    requiresPhysicalPresence: true,
-    isFullyOnline: false,
-    operationalComplexity: 'low',
-    hasSubServices: false
-  },
-
+  
   {
     id: 'aadhaar-update',
     slug: 'aadhaar-update',
     name: 'Aadhaar Update Services',
-    description: 'Update demographic or biometric information in Aadhaar',
+    description: 'Update demographic information in Aadhaar - 100% online',
     category: 'identity',
     categoryGroup: 'Identity & Cards',
     statutoryFee: 0,
@@ -73,27 +54,24 @@ export const services: Service[] = [
     processingTime: '5-7 working days',
     requiredDocuments: ['Aadhaar Card', 'Proof of Update Required'],
     popular: true,
-    isFullyOnline: false,
-    requiresPhysicalPresence: true,
+    isFullyOnline: true,
     operationalComplexity: 'low',
     hasSubServices: true,
     subServices: [
-      { value: 'address-change', label: 'Address Change', description: 'Update address in Aadhaar', additionalDocs: ['Proof of new address (utility bill/ration card)'] },
-      { value: 'mobile-update', label: 'Mobile Number Update', description: 'Update mobile number linked to Aadhaar', additionalDocs: ['Registered mobile number for OTP verification'] },
-      { value: 'name-correction', label: 'Name Correction', description: 'Correct name in Aadhaar', additionalDocs: ['Proof of Name (passport, PAN card)'] },
-      { value: 'dob-correction', label: 'Date of Birth Correction', description: 'Correct date of birth in Aadhaar', additionalDocs: ['Birth Certificate or Passport'] },
-      { value: 'gender-correction', label: 'Gender Correction', description: 'Correct gender in Aadhaar', additionalDocs: ['Valid ID with correct gender'] },
-      { value: 'biometric-update', label: 'Biometric Update', description: 'Update fingerprint/iris in Aadhaar', additionalDocs: [] },
-      { value: 'photo-update', label: 'Photo Update', description: 'Update photograph in Aadhaar', additionalDocs: [] },
-      { value: 'email-update', label: 'Email Update', description: 'Update email address in Aadhaar', additionalDocs: ['Registered mobile number for OTP'] }
+      { value: 'address-change', label: 'Address Change', description: 'Update address in Aadhaar - 100% online', additionalDocs: ['Proof of new address (utility bill/ration card)'] },
+      { value: 'mobile-update', label: 'Mobile Number Update', description: 'Update mobile number - 100% online', additionalDocs: ['Registered mobile number for OTP verification'] },
+      { value: 'name-correction', label: 'Name Correction', description: 'Correct name in Aadhaar - 100% online', additionalDocs: ['Proof of Name (passport, PAN card)'] },
+      { value: 'dob-correction', label: 'Date of Birth Correction', description: 'Correct date of birth - 100% online', additionalDocs: ['Birth Certificate or Passport'] },
+      { value: 'gender-correction', label: 'Gender Correction', description: 'Correct gender - 100% online', additionalDocs: ['Valid ID with correct gender'] },
+      { value: 'email-update', label: 'Email Update', description: 'Update email address - 100% online', additionalDocs: ['Registered mobile number for OTP'] }
     ]
   },
 
   {
     id: 'pan-card',
     slug: 'pan-card',
-    name: 'PAN Card Application',
-    description: 'Fast PAN card application with instant e-PAN',
+    name: 'PAN Card Services',
+    description: 'PAN card application, correction, and reprint - 100% online',
     category: 'identity',
     categoryGroup: 'Identity & Cards',
     statutoryFee: 110,
@@ -105,44 +83,22 @@ export const services: Service[] = [
     popular: true,
     isFullyOnline: true,
     operationalComplexity: 'low',
-    hasSubServices: false
-  },
-
-  {
-    id: 'passport-application-support',
-    slug: 'passport-application-support',
-    name: 'Passport Application Support',
-    description: 'Complete assistance for new passport, renewal, or re-issue',
-    category: 'identity',
-    categoryGroup: 'Identity & Cards',
-    statutoryFee: 1500,
-    professionalFee: 799,
-    gst: 144,
-    totalPayable: 2443,
-    processingTime: '30-45 days',
-    requiredDocuments: ['Birth Certificate', 'Address Proof', 'Identity Proof', 'Passport Photos'],
-    popular: true,
-    requiresPhysicalPresence: true,
-    isFullyOnline: false,
-    operationalComplexity: 'medium',
     hasSubServices: true,
     subServices: [
-      { value: 'new-normal', label: 'New Passport - 36 Pages', description: 'Standard 36-page passport', additionalDocs: ['Address Proof', 'Birth Certificate', 'Photos'] },
-      { value: 'new-jumbo', label: 'New Passport - 60 Pages', description: '60-page passport for frequent travelers', additionalDocs: ['Address Proof', 'Birth Certificate', 'Photos', 'Justification Letter'] },
-      { value: 'new-minor', label: 'Minor Passport', description: 'Passport for children under 18 years', additionalDocs: ['Birth Certificate', 'Parents Passport Copy', 'Photos', 'Annexure D'] },
-      { value: 'renewal', label: 'Passport Renewal', description: 'Renew existing passport', additionalDocs: ['Old Passport', 'Address Proof'] },
-      { value: 'reissue-address', label: 'Reissue - Address Change', description: 'Reissue for address change', additionalDocs: ['Proof of Address', 'Old Passport'] },
-      { value: 'reissue-name', label: 'Reissue - Name Change', description: 'Reissue for name change', additionalDocs: ['Marriage Certificate or Gazette Notification', 'Old Passport'] },
-      { value: 'reissue-spouse', label: 'Reissue - Spouse Addition', description: 'Add or remove spouse name', additionalDocs: ['Marriage Certificate', 'Spouse ID', 'Old Passport'] },
-      { value: 'reissue-lost', label: 'Reissue - Lost/Damaged', description: 'Reissue lost or damaged passport', additionalDocs: ['FIR Copy', 'Affidavit of Loss'] }
+      { value: 'new-pan', label: 'New PAN Card', description: 'Apply for new PAN card - instant e-PAN', additionalDocs: ['Date of Birth Proof', 'Address Proof'] },
+      { value: 'pan-correction', label: 'PAN Correction', description: 'Correct name, DOB, or father\'s name', additionalDocs: ['Existing PAN', 'Proof of Correction'] },
+      { value: 'pan-reprint', label: 'PAN Reprint', description: 'Reprint lost or damaged PAN card', additionalDocs: ['PAN Number', 'Aadhaar'] },
+      { value: 'pan-address', label: 'Update Address', description: 'Change address in PAN records', additionalDocs: ['Existing PAN', 'New Address Proof'] },
+      { value: 'pan-contact', label: 'Update Phone/Email', description: 'Update contact details', additionalDocs: ['Existing PAN', 'Aadhaar'] },
+      { value: 'pan-aadhaar-link', label: 'Link PAN with Aadhaar', description: 'Link PAN and Aadhaar', additionalDocs: ['PAN Card', 'Aadhaar Card'] }
     ]
   },
 
   {
     id: 'voter-id-card',
     slug: 'voter-id-card',
-    name: 'Voter ID Card',
-    description: 'New voter ID enrollment, corrections, and address updates',
+    name: 'Voter ID Card Services',
+    description: 'Voter ID enrollment, corrections, and updates - 100% online',
     category: 'identity',
     categoryGroup: 'Identity & Cards',
     statutoryFee: 0,
@@ -150,107 +106,49 @@ export const services: Service[] = [
     gst: 90,
     totalPayable: 590,
     processingTime: '30-60 days',
-    requiredDocuments: [
-      'Address Proof (Aadhaar/Ration Card/Utility Bill)',
-      'Age Proof (Birth Certificate/School Certificate)',
-      'Passport Size Photos (2 recent)',
-      'Aadhaar Card',
-    ],
+    requiredDocuments: ['Address Proof', 'Age Proof', 'Passport Size Photos', 'Aadhaar Card'],
     popular: true,
-    requiresPhysicalPresence: true,
-    isFullyOnline: false,
+    isFullyOnline: true,
     operationalComplexity: 'medium',
     hasSubServices: true,
     subServices: [
-      { value: 'new', label: 'New Voter ID Enrollment', description: 'First-time voter registration', additionalDocs: [] },
-      { value: 'correction', label: 'Correction in Existing Card', description: 'Fix name, photo, or other details', additionalDocs: ['Existing Voter ID'] },
-      { value: 'address_change', label: 'Address Change (Same Constituency)', description: 'Update address within constituency', additionalDocs: ['New Address Proof', 'Old Voter ID'] },
-      { value: 'address_transfer', label: 'Address Change (Different Constituency)', description: 'Transfer to different constituency', additionalDocs: ['New Address Proof', 'Old Voter ID'] },
-      { value: 'duplicate', label: 'Duplicate Voter ID (Lost/Damaged)', description: 'Reissue lost or damaged card', additionalDocs: ['FIR Copy (if lost)', 'Application'] },
-      { value: 'deletion', label: 'Delete Duplicate/Wrong Entry', description: 'Remove incorrect voter entry', additionalDocs: ['Proof of Correction', 'Identity Proof'] }
+      { value: 'new', label: 'New Voter ID Enrollment', description: 'First-time voter registration - 100% online', additionalDocs: [] },
+      { value: 'correction', label: 'Correction in Existing Card', description: 'Fix name, photo, or details - 100% online', additionalDocs: ['Existing Voter ID'] },
+      { value: 'address_change', label: 'Address Change (Same Constituency)', description: 'Update address - 100% online', additionalDocs: ['New Address Proof', 'Old Voter ID'] },
+      { value: 'address_transfer', label: 'Address Change (Different Constituency)', description: 'Transfer constituency - 100% online', additionalDocs: ['New Address Proof', 'Old Voter ID'] },
+      { value: 'duplicate', label: 'Duplicate Voter ID', description: 'Reissue lost or damaged card - 100% online', additionalDocs: ['FIR Copy (if lost)', 'Application'] },
+      { value: 'deletion', label: 'Delete Duplicate Entry', description: 'Remove incorrect entry - 100% online', additionalDocs: ['Proof of Correction', 'Identity Proof'] }
     ]
   },
 
   {
     id: 'driving-license',
     slug: 'driving-license',
-    name: 'Driving License',
-    description: 'Learner license, permanent DL, renewal, and duplicate',
+    name: 'Driving License Services',
+    description: 'Learner license and DL renewal - online services',
     category: 'identity',
     categoryGroup: 'Identity & Cards',
-    statutoryFee: 200,
-    professionalFee: 1300,
-    gst: 234,
-    totalPayable: 1734,
-    processingTime: '30-45 days',
-    requiredDocuments: [
-      'Aadhaar Card',
-      'Address Proof (Recent - within 3 months)',
-      'Age Proof (Birth Certificate/School Certificate)',
-      'Passport Size Photos (4 recent)',
-      'Medical Certificate (for commercial licenses)',
-      'Learner License (for permanent DL)',
-    ],
-    popular: true,
-    requiresPhysicalPresence: true,
-    isFullyOnline: false,
-    operationalComplexity: 'medium',
-    hasSubServices: true,
-    subServices: [
-      { value: 'learner', label: "Learner's License (LL) - New", description: 'First step for learning to drive', additionalDocs: ['Age Proof', 'Address Proof'] },
-      { value: 'permanent_mcwg', label: 'Permanent DL - Two Wheeler (MCWG)', description: 'Motorcycle/scooter license', additionalDocs: ['Learner License', 'Driving Test Certificate'] },
-      { value: 'permanent_lmv', label: 'Permanent DL - Light Motor Vehicle (Car)', description: 'Car/jeep driving license', additionalDocs: ['Learner License', 'Driving Test Certificate'] },
-      { value: 'permanent_transport', label: 'Permanent DL - Transport Vehicle', description: 'Commercial vehicle license', additionalDocs: ['Learner License', 'Medical Certificate', 'Badge Test'] },
-      { value: 'add_vehicle_class', label: 'Add New Vehicle Class', description: 'Add two-wheeler to existing car license (or vice versa)', additionalDocs: ['Existing DL', 'Test Certificate'] },
-      { value: 'renewal', label: 'License Renewal (Expired)', description: 'Renew expired driving license', additionalDocs: ['Old License', 'Medical Certificate (if 40+)'] },
-      { value: 'duplicate', label: 'Duplicate License (Lost/Damaged)', description: 'Reissue DL', additionalDocs: ['FIR Copy', 'Affidavit'] },
-      { value: 'address_change', label: 'Address Change in Existing DL', description: 'Update address on license', additionalDocs: ['New Address Proof', 'Existing DL'] },
-      { value: 'international', label: 'International Driving Permit', description: 'IDP for driving abroad', additionalDocs: ['Valid DL', 'Passport', 'Travel Documents'] }
-    ]
-  },
-
-  {
-    id: 'ration-card',
-    slug: 'ration-card',
-    name: 'Ration Card',
-    description: 'New ration card, add/delete members, address change, card type conversion',
-    category: 'identity',
-    categoryGroup: 'Identity & Cards',
-    statutoryFee: 0,
-    professionalFee: 600,
-    gst: 108,
-    totalPayable: 708,
-    processingTime: '45-60 days',
-    requiredDocuments: [
-      'Aadhaar Cards (All family members)',
-      'Address Proof (Electricity Bill/Property Tax)',
-      'Income Proof (Salary Slip/IT Returns)',
-      'Passport Size Photos (All members)',
-      'Gas Connection Proof (if available)',
-      'Bank Passbook',
-    ],
+    statutoryFee: 150,
+    professionalFee: 699,
+    gst: 126,
+    totalPayable: 975,
+    processingTime: '7-15 days',
+    requiredDocuments: ['Aadhaar Card', 'Address Proof', 'Age Proof', 'Passport Size Photos'],
     popular: true,
     isFullyOnline: true,
-    operationalComplexity: 'medium',
+    operationalComplexity: 'low',
     hasSubServices: true,
     subServices: [
-      { value: 'new', label: 'New Ration Card', description: 'First-time ration card application', additionalDocs: ['Family Details', 'Income Certificate'] },
-      { value: 'add_member', label: 'Add Family Member', description: 'Add new member to existing card', additionalDocs: ['Member Aadhaar', 'Relationship Proof', 'Existing Card'] },
-      { value: 'delete_member', label: 'Delete Member', description: 'Remove member from card', additionalDocs: ['Reason Documentation', 'Existing Card'] },
-      { value: 'address_change', label: 'Change Address (Same Taluk)', description: 'Update address within taluk', additionalDocs: ['New Address Proof', 'Existing Card'] },
-      { value: 'transfer', label: 'Transfer Card (Different Taluk)', description: 'Transfer to different taluk/district', additionalDocs: ['New Address Proof', 'Surrender Certificate'] },
-      { value: 'duplicate', label: 'Duplicate Card (Lost/Damaged)', description: 'Reissue ration card', additionalDocs: ['FIR (if lost)', 'Application'] },
-      { value: 'surrender', label: 'Surrender Card', description: 'Voluntary surrender', additionalDocs: ['Reason Statement', 'Card to Surrender'] },
-      { value: 'correction', label: 'Correction in Name/Details', description: 'Fix errors on card', additionalDocs: ['Proof of Correction', 'Existing Card'] },
-      { value: 'conversion', label: 'Card Type Conversion (APL/BPL/AAY)', description: 'Change card category', additionalDocs: ['Income Certificate', 'Eligibility Proof'] }
+      { value: 'learner', label: "Learner's License (LL)", description: 'Online test via Aadhaar proctoring - 100% online', additionalDocs: ['Age Proof', 'Address Proof'] },
+      { value: 'renewal', label: 'License Renewal', description: 'Renew expired license - mostly online', additionalDocs: ['Old License', 'Medical Certificate (if 40+)'] }
     ]
   },
 
   {
     id: 'birth-certificate',
     slug: 'birth-certificate',
-    name: 'Birth Certificate',
-    description: 'Birth certificate application or correction',
+    name: 'Birth Certificate Services',
+    description: 'Birth certificate - new, correction, and duplicate - 100% online',
     category: 'identity',
     categoryGroup: 'Identity & Cards',
     statutoryFee: 50,
@@ -262,14 +160,19 @@ export const services: Service[] = [
     popular: true,
     isFullyOnline: true,
     operationalComplexity: 'low',
-    hasSubServices: false
+    hasSubServices: true,
+    subServices: [
+      { value: 'new', label: 'New Birth Certificate', description: 'Institutional births - instant online download', additionalDocs: ['Hospital Birth Certificate'] },
+      { value: 'correction', label: 'Birth Certificate Correction', description: 'Correct name, DOB, or parent names', additionalDocs: ['Existing Certificate', 'Proof of Correction'] },
+      { value: 'duplicate', label: 'Duplicate Birth Certificate', description: 'Download lost certificate', additionalDocs: ['Birth Registration Number'] }
+    ]
   },
 
   {
     id: 'death-certificate',
     slug: 'death-certificate',
-    name: 'Death Certificate',
-    description: 'Death certificate application',
+    name: 'Death Certificate Services',
+    description: 'Death certificate - new, correction, and duplicate - 100% online',
     category: 'identity',
     categoryGroup: 'Identity & Cards',
     statutoryFee: 50,
@@ -281,7 +184,37 @@ export const services: Service[] = [
     popular: false,
     isFullyOnline: true,
     operationalComplexity: 'low',
-    hasSubServices: false
+    hasSubServices: true,
+    subServices: [
+      { value: 'new', label: 'New Death Certificate', description: 'Institutional deaths - instant online download', additionalDocs: ['Hospital Death Certificate'] },
+      { value: 'correction', label: 'Death Certificate Correction', description: 'Correct name, DOB, or details', additionalDocs: ['Existing Certificate', 'Proof of Correction'] },
+      { value: 'duplicate', label: 'Duplicate Death Certificate', description: 'Download lost certificate', additionalDocs: ['Death Registration Number'] }
+    ]
+  },
+
+  {
+    id: 'income-certificate',
+    slug: 'income-certificate',
+    name: 'Income Certificate Services',
+    description: 'Income certificates for various income sources - 100% online',
+    category: 'identity',
+    categoryGroup: 'Identity & Cards',
+    statutoryFee: 20,
+    professionalFee: 340,
+    gst: 61,
+    totalPayable: 421,
+    processingTime: '15-30 days',
+    requiredDocuments: ['Aadhaar', 'Income Proof', 'Address Proof', 'Bank Statement'],
+    popular: true,
+    isFullyOnline: true,
+    operationalComplexity: 'low',
+    hasSubServices: true,
+    subServices: [
+      { value: 'salary', label: 'Salary-Based Income Certificate', description: 'For salaried employees', additionalDocs: ['Salary Slips (6 months)', 'Employer Letter'] },
+      { value: 'business', label: 'Business Income Certificate', description: 'For self-employed/business owners', additionalDocs: ['GST Returns', 'Bank Statements', 'IT Returns'] },
+      { value: 'agricultural', label: 'Agricultural Income Certificate', description: 'For farmers', additionalDocs: ['Land Records', 'Patta Copy', 'Crop Details'] },
+      { value: 'no-income', label: 'No Income Certificate', description: 'For unemployed/students', additionalDocs: ['Self-Declaration', 'Educational Certificates'] }
+    ]
   },
 
   {
@@ -300,25 +233,6 @@ export const services: Service[] = [
     popular: true,
     isFullyOnline: true,
     operationalComplexity: 'medium',
-    hasSubServices: false
-  },
-
-  {
-    id: 'income-certificate',
-    slug: 'income-certificate',
-    name: 'Income Certificate',
-    description: 'Annual income certificate for scholarships and schemes',
-    category: 'identity',
-    categoryGroup: 'Identity & Cards',
-    statutoryFee: 20,
-    professionalFee: 340,
-    gst: 61,
-    totalPayable: 421,
-    processingTime: '15-30 days',
-    requiredDocuments: ['Aadhaar', 'Salary Slips/Income Proof', 'Address Proof', 'Bank Statement'],
-    popular: true,
-    isFullyOnline: true,
-    operationalComplexity: 'low',
     hasSubServices: false
   },
 
@@ -342,25 +256,6 @@ export const services: Service[] = [
   },
 
   {
-    id: 'disability-certificate',
-    slug: 'disability-certificate',
-    name: 'Disability Certificate',
-    description: 'Differently abled certificate with medical board',
-    category: 'identity',
-    categoryGroup: 'Identity & Cards',
-    statutoryFee: 0,
-    professionalFee: 799,
-    gst: 144,
-    totalPayable: 943,
-    processingTime: '30-60 days',
-    requiredDocuments: ['Medical Reports', 'Aadhaar', 'Photographs', 'Medical Board Appointment'],
-    popular: false,
-    requiresPhysicalPresence: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
     id: 'senior-citizen-card',
     slug: 'senior-citizen-card',
     name: 'Senior Citizen Card',
@@ -379,27 +274,8 @@ export const services: Service[] = [
     hasSubServices: false
   },
 
-  {
-    id: 'name-change-gazette',
-    slug: 'name-change-gazette',
-    name: 'Name Change Gazette',
-    description: 'Legal name change through government gazette',
-    category: 'identity',
-    categoryGroup: 'Identity & Cards',
-    statutoryFee: 500,
-    professionalFee: 2999,
-    gst: 540,
-    totalPayable: 4039,
-    processingTime: '45-60 days',
-    requiredDocuments: ['Affidavit', 'Newspaper Advertisement', 'Aadhaar', 'Gazette Application'],
-    popular: false,
-    isFullyOnline: false,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
   // ========================================
-  // REVENUE CERTIFICATES (10 Services)
+  // REVENUE CERTIFICATES (12 Services)
   // ========================================
   {
     id: 'community-certificate',
@@ -478,6 +354,7 @@ export const services: Service[] = [
     processingTime: '30-60 days',
     requiredDocuments: ['Death Certificate', 'Family Details', 'Ration Card', 'Property Details'],
     popular: false,
+    isFullyOnline: false,
     operationalComplexity: 'high',
     hasSubServices: false
   },
@@ -521,29 +398,10 @@ export const services: Service[] = [
   },
 
   {
-    id: 'marriage-certificate',
-    slug: 'marriage-certificate',
-    name: 'Marriage Certificate',
-    description: 'Official marriage registration certificate',
-    category: 'certificates',
-    categoryGroup: 'Revenue Certificates',
-    statutoryFee: 100,
-    professionalFee: 799,
-    gst: 144,
-    totalPayable: 1043,
-    processingTime: '15-30 days',
-    requiredDocuments: ['Marriage Invitation', 'Photos', 'IDs of Couple', 'Witness Details'],
-    popular: true,
-    requiresPhysicalPresence: true,
-    operationalComplexity: 'medium',
-    hasSubServices: false
-  },
-
-  {
     id: 'inter-caste-marriage-certificate',
     slug: 'inter-caste-marriage-certificate',
     name: 'Inter-Caste Marriage Certificate',
-    description: 'Certificate for inter-caste marriage benefits',
+    description: 'Certificate for inter-caste marriage benefits - 100% online',
     category: 'certificates',
     categoryGroup: 'Revenue Certificates',
     statutoryFee: 0,
@@ -553,7 +411,7 @@ export const services: Service[] = [
     processingTime: '30-60 days',
     requiredDocuments: ['Marriage Certificate', 'Caste Certificates', 'Joint Affidavit', 'Photos'],
     popular: false,
-    requiresPhysicalPresence: true,
+    isFullyOnline: true,
     operationalComplexity: 'medium',
     hasSubServices: false
   },
@@ -595,14 +453,52 @@ export const services: Service[] = [
     hasSubServices: false
   },
 
+  {
+    id: 'solvency-certificate',
+    slug: 'solvency-certificate',
+    name: 'Solvency Certificate',
+    description: 'Financial solvency certificate from Tahsildar for loans, tenders, and contracts',
+    category: 'certificates',
+    categoryGroup: 'Revenue Certificates',
+    statutoryFee: 20,
+    professionalFee: 340,
+    gst: 61,
+    totalPayable: 421,
+    processingTime: '15-30 days',
+    requiredDocuments: ['Aadhaar', 'Property Documents', 'Bank Statements', 'IT Returns', 'Address Proof'],
+    popular: false,
+    isFullyOnline: true,
+    operationalComplexity: 'medium',
+    hasSubServices: false
+  },
+
+  {
+    id: 'unemployment-certificate',
+    slug: 'unemployment-certificate',
+    name: 'Unemployment Certificate',
+    description: 'Official unemployment certificate from employment office for various schemes',
+    category: 'certificates',
+    categoryGroup: 'Revenue Certificates',
+    statutoryFee: 20,
+    professionalFee: 299,
+    gst: 54,
+    totalPayable: 373,
+    processingTime: '15-30 days',
+    requiredDocuments: ['Aadhaar', 'Educational Certificates', 'Employment Office Registration', 'Address Proof'],
+    popular: false,
+    isFullyOnline: true,
+    operationalComplexity: 'low',
+    hasSubServices: false
+  },
+
   // ========================================
-  // PROPERTY & ASSETS (11 Services)
+  // PROPERTY & ASSETS (8 Services - Online Only)
   // ========================================
   {
     id: 'patta-services',
     slug: 'patta-services',
     name: 'Patta Services',
-    description: 'Patta transfer and land record services',
+    description: 'Patta transfer and land record services - online',
     category: 'property',
     categoryGroup: 'Property & Assets',
     statutoryFee: 60,
@@ -612,14 +508,13 @@ export const services: Service[] = [
     processingTime: '60-90 days',
     requiredDocuments: ['Registered Sale Deed', 'Old Patta', 'Survey Documents', 'Encumbrance Certificate'],
     popular: true,
+    isFullyOnline: true,
     operationalComplexity: 'high',
     hasSubServices: true,
     subServices: [
-      { value: 'transfer-full', label: 'Patta Transfer - Full Field', description: 'Complete property transfer', additionalDocs: ['Sale Deed', 'Previous Patta', 'Tax Receipts'] },
-      { value: 'transfer-joint', label: 'Patta Transfer - Joint/Partiable', description: 'Joint ownership transfer', additionalDocs: ['Sale Deed', 'Previous Patta', 'Tax Receipts', 'Partition Deed'] },
-      { value: 'subdivision', label: 'Patta Subdivision', description: 'Divide property into smaller portions', additionalDocs: ['Subdivision Plan', 'Survey Documents', 'Previous Patta'] },
-      { value: 'name-correction', label: 'Patta Name Correction', description: 'Fix name errors in patta', additionalDocs: ['ID Proof with Correct Name', 'Patta Copy'] },
-      { value: 'consolidation', label: 'Patta Consolidation', description: 'Merge multiple pattas', additionalDocs: ['All Patta Copies', 'Survey Documents'] }
+      { value: 'transfer-full', label: 'Patta Transfer - Full Field', description: 'Complete property transfer - 100% online', additionalDocs: ['Sale Deed', 'Previous Patta', 'Tax Receipts'] },
+      { value: 'transfer-joint', label: 'Patta Transfer - Joint/Partiable', description: 'Joint ownership transfer - 100% online', additionalDocs: ['Sale Deed', 'Previous Patta', 'Tax Receipts', 'Partition Deed'] },
+      { value: 'name-correction', label: 'Patta Name Correction', description: 'Fix name errors in patta - 100% online', additionalDocs: ['ID Proof with Correct Name', 'Patta Copy'] }
     ]
   },
 
@@ -662,69 +557,10 @@ export const services: Service[] = [
   },
 
   {
-    id: 'building-permit',
-    slug: 'building-permit',
-    name: 'Building Construction Permit',
-    description: 'Construction approval from local authority',
-    category: 'property',
-    categoryGroup: 'Property & Assets',
-    statutoryFee: 5000,
-    professionalFee: 14999,
-    gst: 2700,
-    totalPayable: 22699,
-    processingTime: '60-90 days',
-    requiredDocuments: ['Plot Details', 'Building Plan', 'Architect Certificate', 'Ownership Proof'],
-    popular: false,
-    requiresSiteInspection: true,
-    isStatutoryFeeVariable: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
-    id: 'occupancy-certificate',
-    slug: 'occupancy-certificate',
-    name: 'Occupancy Certificate',
-    description: 'Post-construction occupancy approval',
-    category: 'property',
-    categoryGroup: 'Property & Assets',
-    statutoryFee: 2000,
-    professionalFee: 9999,
-    gst: 1800,
-    totalPayable: 13799,
-    processingTime: '30-60 days',
-    requiredDocuments: ['Building Permit', 'Completion Certificate', 'Site Photos', 'Compliance Report'],
-    popular: false,
-    requiresSiteInspection: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
-    id: 'land-conversion',
-    slug: 'land-conversion',
-    name: 'Land Use Conversion',
-    description: 'Agricultural to non-agricultural conversion',
-    category: 'property',
-    categoryGroup: 'Property & Assets',
-    statutoryFee: 10000,
-    professionalFee: 24999,
-    gst: 4500,
-    totalPayable: 39499,
-    processingTime: '90-180 days',
-    requiredDocuments: ['Patta Copy', 'Survey Map', 'FMB Sketch', 'Land Use Purpose'],
-    popular: false,
-    requiresSiteInspection: true,
-    isStatutoryFeeVariable: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
     id: 'property-registration',
     slug: 'property-registration',
     name: 'Property Document Registration',
-    description: 'Sale deed and property document registration',
+    description: 'Sale deed and property document registration assistance',
     category: 'property',
     categoryGroup: 'Property & Assets',
     statutoryFee: 0,
@@ -773,44 +609,7 @@ export const services: Service[] = [
     processingTime: '30-60 days',
     requiredDocuments: ['Registered Sale Deed', 'Previous Records', 'Tax Receipts', 'Survey Map'],
     popular: false,
-    operationalComplexity: 'medium',
-    hasSubServices: false
-  },
-
-  {
-    id: 'subdivision-certificate',
-    slug: 'subdivision-certificate',
-    name: 'Land Subdivision Certificate',
-    description: 'Divide single land parcel into multiple plots',
-    category: 'property',
-    categoryGroup: 'Property & Assets',
-    statutoryFee: 500,
-    professionalFee: 4999,
-    gst: 900,
-    totalPayable: 6399,
-    processingTime: '60-90 days',
-    requiredDocuments: ['Patta Copy', 'Survey Map', 'Subdivision Plan', 'NOC from Authority'],
-    popular: false,
-    requiresSiteInspection: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
-    id: 'land-survey',
-    slug: 'land-survey',
-    name: 'Land Survey & Demarcation',
-    description: 'Professional land survey and boundary marking',
-    category: 'property',
-    categoryGroup: 'Property & Assets',
-    statutoryFee: 0,
-    professionalFee: 7999,
-    gst: 1440,
-    totalPayable: 9439,
-    processingTime: '15-30 days',
-    requiredDocuments: ['Patta Copy', 'FMB Sketch', 'Adjacent Owner Details'],
-    popular: false,
-    requiresSiteInspection: true,
+    isFullyOnline: true,
     operationalComplexity: 'medium',
     hasSubServices: false
   },
@@ -1009,25 +808,6 @@ export const services: Service[] = [
   },
 
   {
-    id: 'housing-scheme',
-    slug: 'housing-scheme',
-    name: 'Housing Scheme',
-    description: 'Government housing scheme application',
-    category: 'welfare',
-    categoryGroup: 'Welfare Schemes',
-    statutoryFee: 0,
-    professionalFee: 1499,
-    gst: 270,
-    totalPayable: 1769,
-    processingTime: '90-180 days',
-    requiredDocuments: ['Income Certificate', 'Caste Certificate', 'Bank Details', 'Property Documents'],
-    popular: false,
-    isFullyOnline: false,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
     id: 'unemployment-allowance',
     slug: 'unemployment-allowance',
     name: 'Unemployment Allowance',
@@ -1142,13 +922,13 @@ export const services: Service[] = [
   },
 
   // ========================================
-  // BUSINESS & LICENSES (17 Services)
+  // BUSINESS & LICENSES (10 Services - Online Only)
   // ========================================
   {
     id: 'gst-registration',
     slug: 'gst-registration',
-    name: 'GST Registration',
-    description: 'Goods and Services Tax registration',
+    name: 'GST Registration Services',
+    description: 'GST registration, amendment, and cancellation - 100% online',
     category: 'business',
     categoryGroup: 'Business & Licenses',
     statutoryFee: 0,
@@ -1160,26 +940,12 @@ export const services: Service[] = [
     popular: true,
     isFullyOnline: true,
     operationalComplexity: 'medium',
-    hasSubServices: false
-  },
-
-  {
-    id: 'trade-license',
-    slug: 'trade-license',
-    name: 'Trade License',
-    description: 'Municipal trade license for business',
-    category: 'business',
-    categoryGroup: 'Business & Licenses',
-    statutoryFee: 500,
-    professionalFee: 1999,
-    gst: 360,
-    totalPayable: 2859,
-    processingTime: '15-30 days',
-    requiredDocuments: ['Shop/Office Address Proof', 'Owner ID', 'Business Details', 'Layout Plan'],
-    popular: true,
-    requiresSiteInspection: true,
-    operationalComplexity: 'medium',
-    hasSubServices: false
+    hasSubServices: true,
+    subServices: [
+      { value: 'new', label: 'New GST Registration', description: 'Fresh GST registration for new business', additionalDocs: ['Business Registration', 'Bank Details'] },
+      { value: 'amendment', label: 'GST Amendment', description: 'Modify existing GST registration details', additionalDocs: ['Existing GSTIN', 'Documents for Changes'] },
+      { value: 'cancellation', label: 'GST Cancellation', description: 'Close/cancel GST registration', additionalDocs: ['Existing GSTIN', 'Final Returns'] }
+    ]
   },
 
   {
@@ -1196,27 +962,8 @@ export const services: Service[] = [
     processingTime: '15-30 days',
     requiredDocuments: ['Shop Address Proof', 'Owner ID', 'Employee Details', 'Layout Plan'],
     popular: true,
-    isFullyOnline: false,
+    isFullyOnline: true,
     operationalComplexity: 'low',
-    hasSubServices: false
-  },
-
-  {
-    id: 'food-license-fssai',
-    slug: 'food-license-fssai',
-    name: 'FSSAI Food License',
-    description: 'Food Safety and Standards Authority license',
-    category: 'business',
-    categoryGroup: 'Business & Licenses',
-    statutoryFee: 2000,
-    professionalFee: 4999,
-    gst: 900,
-    totalPayable: 7899,
-    processingTime: '30-60 days',
-    requiredDocuments: ['Business Address Proof', 'Food Safety Plan', 'Layout Plan', 'Owner ID'],
-    popular: true,
-    requiresSiteInspection: true,
-    operationalComplexity: 'high',
     hasSubServices: false
   },
 
@@ -1278,123 +1025,6 @@ export const services: Service[] = [
   },
 
   {
-    id: 'factory-license',
-    slug: 'factory-license',
-    name: 'Factory License',
-    description: 'Manufacturing unit license under Factories Act',
-    category: 'business',
-    categoryGroup: 'Business & Licenses',
-    statutoryFee: 2000,
-    professionalFee: 9999,
-    gst: 1800,
-    totalPayable: 13799,
-    processingTime: '45-60 days',
-    requiredDocuments: ['Land Documents', 'Building Plan', 'Machinery Details', 'Safety Measures'],
-    popular: false,
-    requiresSiteInspection: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
-    id: 'fire-noc',
-    slug: 'fire-noc',
-    name: 'Fire NOC',
-    description: 'Fire safety NOC from fire department',
-    category: 'business',
-    categoryGroup: 'Business & Licenses',
-    statutoryFee: 1000,
-    professionalFee: 4999,
-    gst: 900,
-    totalPayable: 6899,
-    processingTime: '30-45 days',
-    requiredDocuments: ['Building Plan', 'Fire Safety Equipment Details', 'Layout Plan', 'Owner ID'],
-    popular: true,
-    requiresSiteInspection: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
-    id: 'liquor-license',
-    slug: 'liquor-license',
-    name: 'Liquor License',
-    description: 'License for sale of alcoholic beverages',
-    category: 'business',
-    categoryGroup: 'Business & Licenses',
-    statutoryFee: 50000,
-    professionalFee: 29999,
-    gst: 5400,
-    totalPayable: 85399,
-    processingTime: '90-180 days',
-    requiredDocuments: ['Shop Details', 'Police Verification', 'Character Certificate', 'Financials'],
-    popular: false,
-    requiresSiteInspection: true,
-    isStatutoryFeeVariable: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
-    id: 'pharmacy-license',
-    slug: 'pharmacy-license',
-    name: 'Pharmacy License',
-    description: 'Drug license for medical shop',
-    category: 'business',
-    categoryGroup: 'Business & Licenses',
-    statutoryFee: 2000,
-    professionalFee: 7999,
-    gst: 1440,
-    totalPayable: 11439,
-    processingTime: '45-60 days',
-    requiredDocuments: ['Pharmacy Degree', 'Shop Details', 'Layout Plan', 'Equipment List'],
-    popular: false,
-    requiresSiteInspection: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
-    id: 'hotel-restaurant-license',
-    slug: 'hotel-restaurant-license',
-    name: 'Hotel/Restaurant License',
-    description: 'Hospitality business license',
-    category: 'business',
-    categoryGroup: 'Business & Licenses',
-    statutoryFee: 5000,
-    professionalFee: 9999,
-    gst: 1800,
-    totalPayable: 16799,
-    processingTime: '45-60 days',
-    requiredDocuments: ['Property Documents', 'FSSAI License', 'Fire NOC', 'Health Certificate'],
-    popular: false,
-    requiresSiteInspection: true,
-    isStatutoryFeeVariable: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
-    id: 'cinema-theater-license',
-    slug: 'cinema-theater-license',
-    name: 'Cinema Theater License',
-    description: 'License for cinema operations',
-    category: 'business',
-    categoryGroup: 'Business & Licenses',
-    statutoryFee: 10000,
-    professionalFee: 19999,
-    gst: 3600,
-    totalPayable: 33599,
-    processingTime: '90-180 days',
-    requiredDocuments: ['Building Plan', 'Fire Safety Certificate', 'Seating Plan', 'Sound System Details'],
-    popular: false,
-    requiresSiteInspection: true,
-    isStatutoryFeeVariable: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
     id: 'contractor-license',
     slug: 'contractor-license',
     name: 'Contractor License',
@@ -1408,110 +1038,14 @@ export const services: Service[] = [
     processingTime: '30-45 days',
     requiredDocuments: ['Technical Qualifications', 'Work Experience', 'PAN Card', 'Business Address'],
     popular: false,
+    isFullyOnline: false,
     operationalComplexity: 'medium',
-    hasSubServices: false
-  },
-
-  {
-    id: 'petrol-pump-license',
-    slug: 'petrol-pump-license',
-    name: 'Petrol Pump License',
-    description: 'Fuel station authorization',
-    category: 'business',
-    categoryGroup: 'Business & Licenses',
-    statutoryFee: 25000,
-    professionalFee: 49999,
-    gst: 9000,
-    totalPayable: 83999,
-    processingTime: '180-365 days',
-    requiredDocuments: ['Land Documents', 'NOC from Petroleum Ministry', 'Pollution NOC', 'Financial Proof'],
-    popular: false,
-    requiresSiteInspection: true,
-    isStatutoryFeeVariable: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
-    id: 'gaming-license',
-    slug: 'gaming-license',
-    name: 'Gaming License',
-    description: 'Gaming parlor or arcade license',
-    category: 'business',
-    categoryGroup: 'Business & Licenses',
-    statutoryFee: 5000,
-    professionalFee: 9999,
-    gst: 1800,
-    totalPayable: 16799,
-    processingTime: '60-90 days',
-    requiredDocuments: ['Shop Details', 'Police Clearance', 'Equipment List', 'Layout Plan'],
-    popular: false,
-    requiresSiteInspection: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
-    id: 'pawn-broker-license',
-    slug: 'pawn-broker-license',
-    name: 'Pawn Broker License',
-    description: 'Money lending against pledged items',
-    category: 'business',
-    categoryGroup: 'Business & Licenses',
-    statutoryFee: 2000,
-    professionalFee: 7999,
-    gst: 1440,
-    totalPayable: 11439,
-    processingTime: '60-90 days',
-    requiredDocuments: ['Shop Details', 'Police Verification', 'Character Certificate', 'Storage Facility'],
-    popular: false,
-    requiresSiteInspection: true,
-    operationalComplexity: 'high',
     hasSubServices: false
   },
 
   // ========================================
-  // VEHICLE SERVICES (12 Services)
+  // VEHICLE SERVICES (6 Services - Online Only)
   // ========================================
-  {
-    id: 'vehicle-registration',
-    slug: 'vehicle-registration',
-    name: 'New Vehicle Registration',
-    description: 'First-time vehicle registration with RTO',
-    category: 'vehicle',
-    categoryGroup: 'Vehicle Services',
-    statutoryFee: 300,
-    professionalFee: 1299,
-    gst: 234,
-    totalPayable: 1833,
-    processingTime: '7-15 days',
-    requiredDocuments: ['Invoice', 'Insurance', 'Pollution Certificate', 'ID Proof', 'Address Proof'],
-    popular: true,
-    requiresPhysicalPresence: true,
-    isStatutoryFeeVariable: true,
-    operationalComplexity: 'medium',
-    hasSubServices: false
-  },
-
-  {
-    id: 'rc-transfer',
-    slug: 'rc-transfer',
-    name: 'RC Transfer (Ownership Change)',
-    description: 'Transfer vehicle ownership',
-    category: 'vehicle',
-    categoryGroup: 'Vehicle Services',
-    statutoryFee: 300,
-    professionalFee: 1499,
-    gst: 270,
-    totalPayable: 2069,
-    processingTime: '15-30 days',
-    requiredDocuments: ['Original RC', 'Sale Agreement', 'Insurance', 'IDs of Both Parties', 'Form 29 & 30'],
-    popular: true,
-    requiresPhysicalPresence: true,
-    operationalComplexity: 'medium',
-    hasSubServices: false
-  },
-
   {
     id: 'duplicate-rc',
     slug: 'duplicate-rc',
@@ -1526,28 +1060,8 @@ export const services: Service[] = [
     processingTime: '7-15 days',
     requiredDocuments: ['FIR Copy (if lost)', 'Owner ID', 'Vehicle Photos', 'Insurance Copy'],
     popular: true,
-    isFullyOnline: false,
+    isFullyOnline: true,
     operationalComplexity: 'low',
-    hasSubServices: false
-  },
-
-  {
-    id: 'vehicle-fitness-certificate',
-    slug: 'vehicle-fitness-certificate',
-    name: 'Vehicle Fitness Certificate',
-    description: 'Fitness certificate for commercial vehicles',
-    category: 'vehicle',
-    categoryGroup: 'Vehicle Services',
-    statutoryFee: 200,
-    professionalFee: 999,
-    gst: 180,
-    totalPayable: 1379,
-    processingTime: '3-7 days',
-    requiredDocuments: ['RC Copy', 'Insurance', 'Pollution Certificate', 'Vehicle Inspection'],
-    popular: false,
-    requiresPhysicalPresence: true,
-    requiresSiteInspection: true,
-    operationalComplexity: 'medium',
     hasSubServices: false
   },
 
@@ -1555,7 +1069,7 @@ export const services: Service[] = [
     id: 'rc-address-change',
     slug: 'rc-address-change',
     name: 'RC Address Change',
-    description: 'Update address in vehicle registration',
+    description: 'Update address in vehicle registration - 100% online',
     category: 'vehicle',
     categoryGroup: 'Vehicle Services',
     statutoryFee: 100,
@@ -1565,25 +1079,6 @@ export const services: Service[] = [
     processingTime: '7-15 days',
     requiredDocuments: ['Original RC', 'New Address Proof', 'Owner ID', 'Form 28'],
     popular: true,
-    isFullyOnline: false,
-    operationalComplexity: 'low',
-    hasSubServices: false
-  },
-
-  {
-    id: 'theft-intimation',
-    slug: 'theft-intimation',
-    name: 'Vehicle Theft Intimation',
-    description: 'Report vehicle theft to RTO',
-    category: 'vehicle',
-    categoryGroup: 'Vehicle Services',
-    statutoryFee: 0,
-    professionalFee: 499,
-    gst: 90,
-    totalPayable: 589,
-    processingTime: '3-7 days',
-    requiredDocuments: ['Vehicle Details', 'Owner ID', 'FIR Copy (if stolen)'],
-    popular: false,
     isFullyOnline: true,
     operationalComplexity: 'low',
     hasSubServices: false
@@ -1603,26 +1098,7 @@ export const services: Service[] = [
     processingTime: '15-30 days',
     requiredDocuments: ['Original RC', 'NOC from Bank', 'Form 35', 'Owner ID'],
     popular: true,
-    isFullyOnline: false,
-    operationalComplexity: 'medium',
-    hasSubServices: false
-  },
-
-  {
-    id: 'noc-vehicle-transfer',
-    slug: 'noc-vehicle-transfer',
-    name: 'Vehicle NOC (Interstate Transfer)',
-    description: 'NOC for interstate vehicle transfer',
-    category: 'vehicle',
-    categoryGroup: 'Vehicle Services',
-    statutoryFee: 200,
-    professionalFee: 1299,
-    gst: 234,
-    totalPayable: 1733,
-    processingTime: '15-30 days',
-    requiredDocuments: ['Original RC', 'Insurance', 'Pollution Certificate', 'Tax Payment'],
-    popular: false,
-    isFullyOnline: false,
+    isFullyOnline: true,
     operationalComplexity: 'medium',
     hasSubServices: false
   },
@@ -1647,64 +1123,26 @@ export const services: Service[] = [
   },
 
   {
-    id: 'learner-license',
-    slug: 'learner-license',
-    name: 'Learner License',
-    description: 'Learner license application',
+    id: 'theft-intimation',
+    slug: 'theft-intimation',
+    name: 'Vehicle Theft Intimation',
+    description: 'Report vehicle theft to RTO',
     category: 'vehicle',
     categoryGroup: 'Vehicle Services',
-    statutoryFee: 150,
-    professionalFee: 699,
-    gst: 126,
-    totalPayable: 975,
-    processingTime: '7-15 days',
-    requiredDocuments: ['Age Proof', 'Address Proof', 'Medical Certificate', 'Photographs'],
-    popular: true,
-    requiresPhysicalPresence: true,
-    operationalComplexity: 'low',
-    hasSubServices: false
-  },
-
-  {
-    id: 'permanent-driving-license',
-    slug: 'permanent-driving-license',
-    name: 'Permanent Driving License',
-    description: 'Permanent DL after learner license',
-    category: 'vehicle',
-    categoryGroup: 'Vehicle Services',
-    statutoryFee: 200,
-    professionalFee: 999,
-    gst: 180,
-    totalPayable: 1379,
-    processingTime: '15-30 days',
-    requiredDocuments: ['Learner License', 'Address Proof', 'Medical Certificate'],
-    popular: true,
-    requiresPhysicalPresence: true,
-    operationalComplexity: 'medium',
-    hasSubServices: false
-  },
-
-  {
-    id: 'international-driving-permit',
-    slug: 'international-driving-permit',
-    name: 'International Driving Permit',
-    description: 'IDP for driving abroad',
-    category: 'vehicle',
-    categoryGroup: 'Vehicle Services',
-    statutoryFee: 1000,
-    professionalFee: 1499,
-    gst: 270,
-    totalPayable: 2769,
-    processingTime: '7-15 days',
-    requiredDocuments: ['Valid DL', 'Passport', 'Photographs', 'Travel Documents'],
+    statutoryFee: 0,
+    professionalFee: 499,
+    gst: 90,
+    totalPayable: 589,
+    processingTime: '3-7 days',
+    requiredDocuments: ['Vehicle Details', 'Owner ID', 'FIR Copy (if stolen)'],
     popular: false,
-    requiresPhysicalPresence: true,
+    isFullyOnline: true,
     operationalComplexity: 'low',
     hasSubServices: false
   },
 
   // ========================================
-  // LEGAL SERVICES (5 Services)
+  // LEGAL SERVICES (4 Services)
   // ========================================
   {
     id: 'affidavit-drafting',
@@ -1720,6 +1158,7 @@ export const services: Service[] = [
     processingTime: '1-3 days',
     requiredDocuments: ['Purpose Details', 'Supporting Documents', 'ID Proof'],
     popular: true,
+    isFullyOnline: true,
     operationalComplexity: 'low',
     hasSubServices: false
   },
@@ -1742,116 +1181,386 @@ export const services: Service[] = [
     hasSubServices: false
   },
 
+  // ========================================
+  // SAFETY & COMPLIANCE (1 Service)
+  // ========================================
   {
-    id: 'power-of-attorney',
-    slug: 'power-of-attorney',
-    name: 'Power of Attorney',
-    description: 'POA preparation and registration',
-    category: 'legal',
-    categoryGroup: 'Legal Services',
+    id: 'name-change-gazette',
+    slug: 'name-change-gazette',
+    name: 'Name Change Gazette',
+    description: 'Legal name change through government gazette',
+    category: 'identity',
+    categoryGroup: 'Identity & Cards',
     statutoryFee: 500,
-    professionalFee: 1999,
-    gst: 360,
-    totalPayable: 2859,
-    processingTime: '7-15 days',
-    requiredDocuments: ['Grantor & Grantee IDs', 'Purpose Details', 'Witnesses'],
-    popular: false,
-    operationalComplexity: 'medium',
-    hasSubServices: false
-  },
-
-  {
-    id: 'succession-certificate',
-    slug: 'succession-certificate',
-    name: 'Succession Certificate',
-    description: 'Court succession certificate for movable property',
-    category: 'legal',
-    categoryGroup: 'Legal Services',
-    statutoryFee: 5000,
-    professionalFee: 14999,
-    gst: 2700,
-    totalPayable: 22699,
-    processingTime: '180-365 days',
-    requiredDocuments: ['Death Certificate', 'Legal Heir Certificate', 'Property Details'],
-    popular: false,
-    isStatutoryFeeVariable: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  },
-
-  {
-    id: 'degree-certificate-verification',
-    slug: 'degree-certificate-verification',
-    name: 'Degree Certificate Verification',
-    description: 'University degree certificate verification',
-    category: 'education',
-    categoryGroup: 'Education',
-    statutoryFee: 100,
-    professionalFee: 799,
-    gst: 144,
-    totalPayable: 1043,
-    processingTime: '15-30 days',
-    requiredDocuments: ['Original Degree', 'Mark Sheets', 'ID Proof'],
+    professionalFee: 2999,
+    gst: 540,
+    totalPayable: 4039,
+    processingTime: '45-60 days',
+    requiredDocuments: ['Affidavit', 'Newspaper Advertisement', 'Aadhaar', 'Gazette Application'],
     popular: false,
     isFullyOnline: false,
-    operationalComplexity: 'medium',
-    hasSubServices: false
-  },
-
-  // ========================================
-  // SAFETY & COMPLIANCE (2 Services)
-  // ========================================
-  {
-    id: 'pollution-control-noc',
-    slug: 'pollution-control-noc',
-    name: 'Pollution Control NOC',
-    description: 'Pollution board clearance',
-    category: 'safety',
-    categoryGroup: 'Safety & Compliance',
-    statutoryFee: 5000,
-    professionalFee: 9999,
-    gst: 1800,
-    totalPayable: 16799,
-    processingTime: '60-90 days',
-    requiredDocuments: ['Industry Details', 'Waste Management Plan', 'Emission Details'],
-    popular: false,
-    requiresSiteInspection: true,
     operationalComplexity: 'high',
     hasSubServices: false
   },
-
-  {
-    id: 'environmental-clearance',
-    slug: 'environmental-clearance',
-    name: 'Environmental Clearance',
-    description: 'MoEF clearance for large projects',
-    category: 'safety',
-    categoryGroup: 'Safety & Compliance',
-    statutoryFee: 0,
-    professionalFee: 49999,
-    gst: 9000,
-    totalPayable: 58999,
-    processingTime: '180-365 days',
-    requiredDocuments: ['Project Report', 'EIA Study', 'Public Hearing Details'],
-    popular: false,
-    isStatutoryFeeVariable: true,
-    requiresSiteInspection: true,
-    operationalComplexity: 'high',
-    hasSubServices: false
-  }
 ];
+
+// ========================================
+// PHASE 2 - SERVICES REQUIRING PHYSICAL PRESENCE
+// These services are commented out and will be added in Phase 2
+// ========================================
+
+/*
+// PASSPORT - All sub-services require PSK appointment
+{
+  id: 'passport-application-support',
+  slug: 'passport-application-support',
+  name: 'Passport Application Support',
+  description: 'Complete assistance for new passport, renewal, or re-issue',
+  category: 'identity',
+  categoryGroup: 'Identity & Cards',
+  statutoryFee: 1500,
+  professionalFee: 799,
+  gst: 144,
+  totalPayable: 2443,
+  processingTime: '30-45 days',
+  requiredDocuments: ['Birth Certificate', 'Address Proof', 'Identity Proof', 'Passport Photos'],
+  popular: true,
+  requiresPhysicalPresence: true,
+  isFullyOnline: false,
+  operationalComplexity: 'medium',
+  hasSubServices: true,
+  subServices: [
+    { value: 'new-normal', label: 'New Passport - 36 Pages', description: 'Standard 36-page passport', additionalDocs: ['Address Proof', 'Birth Certificate', 'Photos'] },
+    { value: 'new-jumbo', label: 'New Passport - 60 Pages', description: '60-page passport for frequent travelers', additionalDocs: ['Address Proof', 'Birth Certificate', 'Photos', 'Justification Letter'] },
+    { value: 'new-minor', label: 'Minor Passport', description: 'Passport for children under 18 years', additionalDocs: ['Birth Certificate', 'Parents Passport Copy', 'Photos', 'Annexure D'] },
+    { value: 'renewal', label: 'Passport Renewal', description: 'Renew existing passport', additionalDocs: ['Old Passport', 'Address Proof'] },
+    { value: 'reissue-address', label: 'Reissue - Address Change', description: 'Reissue for address change', additionalDocs: ['Proof of Address', 'Old Passport'] },
+    { value: 'reissue-name', label: 'Reissue - Name Change', description: 'Reissue for name change', additionalDocs: ['Marriage Certificate or Gazette Notification', 'Old Passport'] },
+    { value: 'reissue-spouse', label: 'Reissue - Spouse Addition', description: 'Add or remove spouse name', additionalDocs: ['Marriage Certificate', 'Spouse ID', 'Old Passport'] },
+    { value: 'reissue-lost', label: 'Reissue - Lost/Damaged', description: 'Reissue lost or damaged passport', additionalDocs: ['FIR Copy', 'Affidavit of Loss'] }
+  ]
+},
+
+// RATION CARD - All sub-services require TSO home inspection
+{
+  id: 'ration-card',
+  slug: 'ration-card',
+  name: 'Ration Card',
+  description: 'New ration card, add/delete members, address change, card type conversion',
+  category: 'identity',
+  categoryGroup: 'Identity & Cards',
+  statutoryFee: 0,
+  professionalFee: 600,
+  gst: 108,
+  totalPayable: 708,
+  processingTime: '45-60 days',
+  requiredDocuments: ['Aadhaar Cards (All family members)', 'Address Proof', 'Income Proof', 'Passport Size Photos', 'Gas Connection Proof', 'Bank Passbook'],
+  popular: true,
+  requiresSiteInspection: true,
+  isFullyOnline: false,
+  operationalComplexity: 'medium',
+  hasSubServices: true,
+  subServices: [
+    { value: 'new', label: 'New Ration Card', description: 'First-time ration card application', additionalDocs: ['Family Details', 'Income Certificate'] },
+    { value: 'add_member', label: 'Add Family Member', description: 'Add new member to existing card', additionalDocs: ['Member Aadhaar', 'Relationship Proof', 'Existing Card'] },
+    { value: 'delete_member', label: 'Delete Member', description: 'Remove member from card', additionalDocs: ['Reason Documentation', 'Existing Card'] },
+    { value: 'address_change', label: 'Change Address (Same Taluk)', description: 'Update address within taluk', additionalDocs: ['New Address Proof', 'Existing Card'] },
+    { value: 'transfer', label: 'Transfer Card (Different Taluk)', description: 'Transfer to different taluk/district', additionalDocs: ['New Address Proof', 'Surrender Certificate'] },
+    { value: 'duplicate', label: 'Duplicate Card (Lost/Damaged)', description: 'Reissue ration card', additionalDocs: ['FIR (if lost)', 'Application'] },
+    { value: 'surrender', label: 'Surrender Card', description: 'Voluntary surrender', additionalDocs: ['Reason Statement', 'Card to Surrender'] },
+    { value: 'correction', label: 'Correction in Name/Details', description: 'Fix errors on card', additionalDocs: ['Proof of Correction', 'Existing Card'] },
+    { value: 'conversion', label: 'Card Type Conversion (APL/BPL/AAY)', description: 'Change card category', additionalDocs: ['Income Certificate', 'Eligibility Proof'] }
+  ]
+},
+
+// DISABILITY CERTIFICATE - Requires medical board examination
+{
+  id: 'disability-certificate',
+  slug: 'disability-certificate',
+  name: 'Disability Certificate',
+  description: 'Differently abled certificate with medical board',
+  category: 'identity',
+  categoryGroup: 'Identity & Cards',
+  statutoryFee: 0,
+  professionalFee: 799,
+  gst: 144,
+  totalPayable: 943,
+  processingTime: '30-60 days',
+  requiredDocuments: ['Medical Reports', 'Aadhaar', 'Photographs', 'Medical Board Appointment'],
+  popular: false,
+  requiresPhysicalPresence: true,
+  operationalComplexity: 'high',
+  hasSubServices: false
+},
+
+// MARRIAGE CERTIFICATE - Requires couple + witnesses at SRO
+{
+  id: 'marriage-certificate',
+  slug: 'marriage-certificate',
+  name: 'Marriage Certificate',
+  description: 'Official marriage registration certificate',
+  category: 'certificates',
+  categoryGroup: 'Revenue Certificates',
+  statutoryFee: 100,
+  professionalFee: 799,
+  gst: 144,
+  totalPayable: 1043,
+  processingTime: '15-30 days',
+  requiredDocuments: ['Marriage Invitation', 'Photos', 'IDs of Couple', 'Witness Details'],
+  popular: true,
+  requiresPhysicalPresence: true,
+  operationalComplexity: 'medium',
+  hasSubServices: false
+},
+
+// INSPECTION-BASED BUSINESS LICENSES
+{
+  id: 'trade-license',
+  slug: 'trade-license',
+  name: 'Trade License',
+  description: 'Municipal trade license for business',
+  category: 'business',
+  categoryGroup: 'Business & Licenses',
+  statutoryFee: 500,
+  professionalFee: 1999,
+  gst: 360,
+  totalPayable: 2859,
+  processingTime: '15-30 days',
+  requiredDocuments: ['Shop/Office Address Proof', 'Owner ID', 'Business Details', 'Layout Plan'],
+  popular: true,
+  requiresSiteInspection: true,
+  operationalComplexity: 'medium',
+  hasSubServices: false
+},
+
+{
+  id: 'food-license-fssai',
+  slug: 'food-license-fssai',
+  name: 'FSSAI Food License',
+  description: 'Food Safety and Standards Authority license',
+  category: 'business',
+  categoryGroup: 'Business & Licenses',
+  statutoryFee: 2000,
+  professionalFee: 4999,
+  gst: 900,
+  totalPayable: 7899,
+  processingTime: '30-60 days',
+  requiredDocuments: ['Business Address Proof', 'Food Safety Plan', 'Layout Plan', 'Owner ID'],
+  popular: true,
+  requiresSiteInspection: true,
+  operationalComplexity: 'high',
+  hasSubServices: false
+},
+
+{
+  id: 'fire-noc',
+  slug: 'fire-noc',
+  name: 'Fire NOC',
+  description: 'Fire safety NOC from fire department',
+  category: 'business',
+  categoryGroup: 'Business & Licenses',
+  statutoryFee: 1000,
+  professionalFee: 4999,
+  gst: 900,
+  totalPayable: 6899,
+  processingTime: '30-45 days',
+  requiredDocuments: ['Building Plan', 'Fire Safety Equipment Details', 'Layout Plan', 'Owner ID'],
+  popular: true,
+  requiresSiteInspection: true,
+  operationalComplexity: 'high',
+  hasSubServices: false
+},
+
+// PROPERTY SERVICES REQUIRING INSPECTION
+{
+  id: 'building-permit',
+  slug: 'building-permit',
+  name: 'Building Construction Permit',
+  description: 'Construction approval from local authority',
+  category: 'property',
+  categoryGroup: 'Property & Assets',
+  statutoryFee: 5000,
+  professionalFee: 14999,
+  gst: 2700,
+  totalPayable: 22699,
+  processingTime: '60-90 days',
+  requiredDocuments: ['Plot Details', 'Building Plan', 'Architect Certificate', 'Ownership Proof'],
+  popular: false,
+  requiresSiteInspection: true,
+  isStatutoryFeeVariable: true,
+  operationalComplexity: 'high',
+  hasSubServices: false
+},
+
+{
+  id: 'occupancy-certificate',
+  slug: 'occupancy-certificate',
+  name: 'Occupancy Certificate',
+  description: 'Post-construction occupancy approval',
+  category: 'property',
+  categoryGroup: 'Property & Assets',
+  statutoryFee: 2000,
+  professionalFee: 9999,
+  gst: 1800,
+  totalPayable: 13799,
+  processingTime: '30-60 days',
+  requiredDocuments: ['Building Permit', 'Completion Certificate', 'Site Photos', 'Compliance Report'],
+  popular: false,
+  requiresSiteInspection: true,
+  operationalComplexity: 'high',
+  hasSubServices: false
+},
+
+{
+  id: 'land-conversion',
+  slug: 'land-conversion',
+  name: 'Land Use Conversion',
+  description: 'Agricultural to non-agricultural conversion',
+  category: 'property',
+  categoryGroup: 'Property & Assets',
+  statutoryFee: 10000,
+  professionalFee: 24999,
+  gst: 4500,
+  totalPayable: 39499,
+  processingTime: '90-180 days',
+  requiredDocuments: ['Patta Copy', 'Survey Map', 'FMB Sketch', 'Land Use Purpose'],
+  popular: false,
+  requiresSiteInspection: true,
+  isStatutoryFeeVariable: true,
+  operationalComplexity: 'high',
+  hasSubServices: false
+},
+
+// VEHICLE SERVICES REQUIRING PHYSICAL PRESENCE
+{
+  id: 'vehicle-registration',
+  slug: 'vehicle-registration',
+  name: 'New Vehicle Registration',
+  description: 'First-time vehicle registration with RTO',
+  category: 'vehicle',
+  categoryGroup: 'Vehicle Services',
+  statutoryFee: 300,
+  professionalFee: 1299,
+  gst: 234,
+  totalPayable: 1833,
+  processingTime: '7-15 days',
+  requiredDocuments: ['Invoice', 'Insurance', 'Pollution Certificate', 'ID Proof', 'Address Proof'],
+  popular: true,
+  requiresPhysicalPresence: true,
+  isStatutoryFeeVariable: true,
+  operationalComplexity: 'medium',
+  hasSubServices: false
+},
+
+{
+  id: 'rc-transfer',
+  slug: 'rc-transfer',
+  name: 'RC Transfer (Ownership Change)',
+  description: 'Transfer vehicle ownership',
+  category: 'vehicle',
+  categoryGroup: 'Vehicle Services',
+  statutoryFee: 300,
+  professionalFee: 1499,
+  gst: 270,
+  totalPayable: 2069,
+  processingTime: '15-30 days',
+  requiredDocuments: ['Original RC', 'Sale Agreement', 'Insurance', 'IDs of Both Parties', 'Form 29 & 30'],
+  popular: true,
+  requiresPhysicalPresence: true,
+  operationalComplexity: 'medium',
+  hasSubServices: false
+},
+
+{
+  id: 'vehicle-fitness-certificate',
+  slug: 'vehicle-fitness-certificate',
+  name: 'Vehicle Fitness Certificate',
+  description: 'Fitness certificate for commercial vehicles',
+  category: 'vehicle',
+  categoryGroup: 'Vehicle Services',
+  statutoryFee: 200,
+  professionalFee: 999,
+  gst: 180,
+  totalPayable: 1379,
+  processingTime: '3-7 days',
+  requiredDocuments: ['RC Copy', 'Insurance', 'Pollution Certificate', 'Vehicle Inspection'],
+  popular: false,
+  requiresPhysicalPresence: true,
+  requiresSiteInspection: true,
+  operationalComplexity: 'medium',
+  hasSubServices: false
+},
+
+// LEGAL SERVICES REQUIRING PHYSICAL PRESENCE
+{
+  id: 'power-of-attorney',
+  slug: 'power-of-attorney',
+  name: 'Power of Attorney',
+  description: 'POA preparation and registration',
+  category: 'legal',
+  categoryGroup: 'Legal Services',
+  statutoryFee: 500,
+  professionalFee: 1999,
+  gst: 360,
+  totalPayable: 2859,
+  processingTime: '7-15 days',
+  requiredDocuments: ['Grantor & Grantee IDs', 'Purpose Details', 'Witnesses'],
+  popular: false,
+  requiresPhysicalPresence: true,
+  operationalComplexity: 'medium',
+  hasSubServices: false
+},
+
+{
+  id: 'succession-certificate',
+  slug: 'succession-certificate',
+  name: 'Succession Certificate',
+  description: 'Court succession certificate for movable property',
+  category: 'legal',
+  categoryGroup: 'Legal Services',
+  statutoryFee: 5000,
+  professionalFee: 14999,
+  gst: 2700,
+  totalPayable: 22699,
+  processingTime: '180-365 days',
+  requiredDocuments: ['Death Certificate', 'Legal Heir Certificate', 'Property Details'],
+  popular: false,
+  requiresPhysicalPresence: true,
+  isStatutoryFeeVariable: true,
+  operationalComplexity: 'high',
+  hasSubServices: false
+},
+
+{
+  id: 'degree-certificate-verification',
+  slug: 'degree-certificate-verification',
+  name: 'Degree Certificate Verification',
+  description: 'University degree certificate verification',
+  category: 'education',
+  categoryGroup: 'Education',
+  statutoryFee: 100,
+  professionalFee: 799,
+  gst: 144,
+  totalPayable: 1043,
+  processingTime: '15-30 days',
+  requiredDocuments: ['Original Degree', 'Mark Sheets', 'ID Proof'],
+  popular: false,
+  requiresPhysicalPresence: true,
+  isFullyOnline: false,
+  operationalComplexity: 'medium',
+  hasSubServices: false
+},
+*/
 
 // SERVICE CATEGORIES
 export const serviceCategories = [
-  { id: 'identity', name: 'Identity & Cards', icon: '🪪', description: 'Aadhaar, PAN, Passport, Voter ID' },
+  { id: 'identity', name: 'Identity & Cards', icon: '🪪', description: 'Aadhaar, PAN, Voter ID, Certificates' },
   { id: 'certificates', name: 'Revenue Certificates', icon: '📄', description: 'Community, Income, Nativity certificates' },
   { id: 'property', name: 'Property & Assets', icon: '🏠', description: 'Patta, Land records, Property services' },
-  { id: 'vehicle', name: 'Vehicle Services', icon: '🚗', description: 'Driving License, Vehicle Registration' },
-  { id: 'business', name: 'Business & Licenses', icon: '💼', description: 'GST, Trade License, FSSAI' },
+  { id: 'vehicle', name: 'Vehicle Services', icon: '🚗', description: 'RC services, Tax payments' },
+  { id: 'business', name: 'Business & Licenses', icon: '💼', description: 'GST, MSME, Trade License' },
   { id: 'welfare', name: 'Welfare Schemes', icon: '🤝', description: 'Pensions, Scholarships, Social welfare' },
-  { id: 'legal', name: 'Legal Services', icon: '⚖️', description: 'Affidavits, Legal heir, POA' },
-  { id: 'education', name: 'Education', icon: '🎓', description: 'Educational certificates and services' },
-  { id: 'safety', name: 'Safety & Compliance', icon: '🛡️', description: 'Fire NOC, Pollution certificates' },
+  { id: 'legal', name: 'Legal Services', icon: '⚖️', description: 'Affidavits, Notary services' },
   { id: 'other', name: 'Other Services', icon: '📋', description: 'Additional government services' }
 ];
 
@@ -1874,6 +1583,10 @@ export function getAllServices(): Service[] {
 
 export function getPopularServices(): Service[] {
   return services.filter(service => service.popular === true);
+}
+
+export function getOnlineServices(): Service[] {
+  return services.filter(service => service.isFullyOnline === true);
 }
 
 export function searchServices(query: string): Service[] {

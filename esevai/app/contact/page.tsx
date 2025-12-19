@@ -85,10 +85,10 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-bold mb-2" style={{ color: '#1e3a5f' }}>Email Us</h3>
                   <a 
-                    href="mailto:sevai@vysegroup.com" 
+                    href="mailto:esevaiservices11@vysegroup.com" 
                     className="text-gray-600 hover:text-[#0066b3] transition break-all"
                   >
-                    sevai@vysegroup.com
+                    esevaiservices11@vysegroup.com
                   </a>
                   <p className="text-sm text-gray-500 mt-1">We'll respond within 24 hours</p>
                 </div>
@@ -104,10 +104,10 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-bold mb-2" style={{ color: '#1e3a5f' }}>Call Us</h3>
                   <a 
-                    href="tel:+917845495937" 
+                    href="tel:+916385882835" 
                     className="text-gray-600 hover:text-[#0066b3] transition text-lg font-semibold"
                   >
-                    +91 78454 95937
+                    +91 63858 82835
                   </a>
                   <p className="text-sm text-gray-500 mt-1">Mon-Sat: 9:00 AM - 6:00 PM</p>
                 </div>
@@ -139,7 +139,7 @@ export default function ContactPage() {
                   <h3 className="font-bold mb-3" style={{ color: '#1e3a5f' }}>Business Hours</h3>
                   <div className="space-y-2 text-sm text-gray-700">
                     <div className="flex justify-between">
-                      <span className="font-medium">Monday - Friday:</span>
+                      <span className="font-medium">Monday - Friday:&nbsp;</span>
                       <span>9:00 AM - 6:00 PM</span>
                     </div>
                     <div className="flex justify-between">

@@ -110,7 +110,7 @@ export default function AboutPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                    91 total services available
+                    57+ total services available
                   </li>
                 </ul>
               </div>
@@ -268,7 +268,7 @@ export default function AboutPage() {
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90">
               <Link href="/services">
-                Browse 91 Services
+                Browse 57+ Services
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>

@@ -15,7 +15,7 @@ export default function HowItWorksPage() {
       number: "1",
       icon: FileSearch,
       title: "Choose Your Service",
-      description: "Browse our 91 government services and select the one you need. Each service has clear pricing and document requirements listed.",
+      description: "Browse our 57+ government services and select the one you need. Each service has clear pricing and document requirements listed.",
       color: "from-blue-500 to-teal-500"
     },
     {
@@ -145,7 +145,7 @@ export default function HowItWorksPage() {
         <div className="text-center max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-gray-600 mb-8">
-            Choose from 91 government services and get your documentation done hassle-free
+            Choose from 57+ government services and get your documentation done hassle-free
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild className="bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90">

@@ -131,7 +131,7 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white">
               <div>
-                <div className="text-4xl md:text-5xl font-bold mb-2">91+</div>
+                <div className="text-4xl md:text-5xl font-bold mb-2">57+</div>
                 <div className="text-lg opacity-90">Government Services</div>
               </div>
               <div>
@@ -168,7 +168,7 @@ export default function HomePage() {
                   Choose Service
                 </h3>
                 <p className="text-gray-600">
-                  Select the service you need from our 91+ government services
+                  Select the service you need from our 75+ government services
                 </p>
               </div>
 
@@ -276,7 +276,7 @@ export default function HomePage() {
                 style={{ backgroundColor: '#0066b3' }}
               >
                 <TrendingUp className="w-5 h-5" />
-                View All 91 Services
+                View All 57+ Services
               </Link>
             </div>
           </div>

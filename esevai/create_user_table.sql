@@ -1,0 +1,16 @@
+CREATE SCHEMA IF NOT EXISTS public;
+
+CREATE TABLE IF NOT EXISTS "User" (
+  id TEXT NOT NULL PRIMARY KEY,
+  full_name TEXT,
+  email TEXT UNIQUE,
+  email_verified TIMESTAMPTZ,
+  image TEXT,
+  mobile TEXT,
+  country TEXT,
+  "hashedPassword" TEXT,
+  "verificationToken" TEXT,
+  role TEXT NOT NULL DEFAULT 'CLIENT',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

@@ -11,8 +11,8 @@ function PaymentContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
-  // Fix: Properly parse amount as float, default to 0
   const amount = parseFloat(searchParams.get('amount') || '0');
+  const currency = searchParams.get('currency') || 'INR';
   const serviceName = searchParams.get('service') || 'Service';
   const serviceSlug = searchParams.get('slug') || '';
   
@@ -36,9 +36,11 @@ function PaymentContent() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          amount: amount * 100, // Convert to paise
+          amount: amount, // Send actual amount, API translates to subunits
+          currency,
           serviceName,
           serviceSlug,
+          applicationId: searchParams.get('appId') || 'TEMP-APP-ID', // Provide dummy if not exists
         }),
       });
 
@@ -51,8 +53,8 @@ function PaymentContent() {
       // Step 2: Initialize Razorpay
       const options = {
         key: razorpayKeyId,
-        amount: amount * 100,
-        currency: 'INR',
+        amount: amount * 100, // Subunits
+        currency: currency,
         name: 'Eazy Sevai',
         description: serviceName,
         order_id: orderId,
@@ -153,7 +155,8 @@ function PaymentContent() {
                 <div className="flex justify-between items-center">
                   <p className="text-sm text-gray-600">Total Amount</p>
                   <p className="text-3xl font-bold text-blue-600">
-                    ₹{amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    {currency === 'USD' ? '$' : currency === 'GBP' ? '£' : currency === 'AED' ? 'د.إ ' : '₹'}
+                    {amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </p>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">

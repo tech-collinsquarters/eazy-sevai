@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Script from "next/script";
 
-const inter = Inter({ subsets: ["latin"] });
+const bodoni = Bodoni_Moda({ 
+  subsets: ["latin"],
+  variable: "--font-serif",
+  weight: ["400", "500", "600", "700"]
+});
 
 export const metadata: Metadata = {
-  title: "Eazy Sevai - Tamil Nadu Government Services",
-  description: "Professional documentation services for Tamil Nadu government certificates and licenses. Expert private consulting, zero hassle, guaranteed verification.",
+  title: "Eazy Sevai - NRI Platform",
+  description: "Professional document services for NRIs.",
 };
 
 export default function RootLayout({
@@ -19,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${bodoni.variable} font-sans antialiased text-navy-900 bg-gold-50`}>
         <Header />
         <main>
           {children}

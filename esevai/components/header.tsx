@@ -7,13 +7,13 @@ import MegaMenu from './navigation/MegaMenu'
 // WhatsApp Icon Component (inline SVG - guaranteed to work)
 function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
-    <svg 
+    <svg
       className={className}
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
       strokeLinejoin="round"
     >
       <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
@@ -42,7 +42,7 @@ export default function Header() {
               <span className="text-xl font-bold text-[#1e3a5f] group-hover:text-[#0066b3] transition-colors">
                 Eazy Sevai
               </span>
-              
+
             </div>
           </Link>
 
@@ -52,6 +52,9 @@ export default function Header() {
               Home
             </Link>
             <MegaMenu />
+            <Link href="/nri-services" className="text-sm font-bold text-navy-900 hover:text-gold-600 transition-colors flex items-center gap-1">
+              NRI Concierge ✨
+            </Link>
             <Link href="/eligibility-checker" className="text-sm font-medium text-gray-700 hover:text-[#0066b3] transition-colors">
               Eligibility Checker
             </Link>
@@ -84,6 +87,14 @@ export default function Header() {
               style={{ background: 'linear-gradient(135deg, #0066b3 0%, #14b8a6 100%)' }}
             >
               Get Started
+            </Link>
+
+            {/* NRI Portal Button */}
+            <Link
+              href="/dashboard"
+              className="px-6 py-2.5 bg-navy-900 text-gold-400 rounded-lg hover:bg-navy-800 transition-all font-semibold shadow-md border border-gold-400"
+            >
+              NRI Login
             </Link>
           </div>
         </div>

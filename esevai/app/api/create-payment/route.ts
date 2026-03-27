@@ -5,7 +5,7 @@ import Razorpay from 'razorpay';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { amount, serviceName, serviceSlug, applicationId, userData } = body;
+    const { amount, serviceName, serviceSlug, applicationId, userData, currency = 'INR' } = body;
 
     // Validate inputs
     if (!amount || !serviceName || !applicationId) {
@@ -33,13 +33,13 @@ export async function POST(req: NextRequest) {
       key_secret: razorpayKeySecret,
     });
 
-    // ✅ FIX 2: Convert amount to paise (integer)
+    // ✅ FIX 2: Convert amount to subunits (paise/cents/etc)
     const amountInPaise = Math.round(amount * 100);
 
     // ✅ FIX 3: Create proper Razorpay order
     const razorpayOrder = await razorpay.orders.create({
-      amount: amountInPaise,  // Amount in paise
-      currency: 'INR',
+      amount: amountInPaise,
+      currency: currency,
       receipt: applicationId,
       notes: {
         serviceName: serviceName,
@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
       razorpayKeyId: razorpayKeyId,
       orderId: razorpayOrder.id,  // ✅ Use Razorpay's order ID
       amount: amountInPaise,
-      currency: 'INR',
+      currency: currency,
       serviceSlug,
       serviceName,
       applicationId,

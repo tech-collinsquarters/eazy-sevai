@@ -56,11 +56,10 @@ export default function HomePage() {
                   Browse All Services →
                 </Link>
                 <Link
-                  href="#how-it-works"
-                  className="w-full sm:w-auto px-8 py-4 bg-white rounded-lg hover:bg-blue-50 transition-all font-semibold text-lg border-2"
-                  style={{ color: '#0066b3', borderColor: '#0066b3' }}
+                  href="/nri-services"
+                  className="w-full sm:w-auto px-8 py-4 bg-navy-900 text-gold-400 rounded-lg hover:bg-navy-800 transition-all font-semibold text-lg border border-gold-400 shadow-xl"
                 >
-                  How It Works
+                  Premium NRI Services ✨
                 </Link>
               </div>
             </div>

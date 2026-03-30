@@ -60,7 +60,7 @@ function SuccessContent() {
                   📧 Email: <a href="mailto:support@eazysevai.com" className="text-blue-600 hover:underline">support@eazysevai.com</a>
                 </p>
                 <p className="text-gray-700">
-                  📞 Phone: <a href="tel:+919876543210" className="text-blue-600 hover:underline">+91 98765 43210</a>
+                  📞 Phone: <a href="tel:+919944633029" className="text-blue-600 hover:underline">+91 99446 33029</a>
                 </p>
                 <p className="text-gray-700">
                   🕐 Hours: Monday - Saturday, 9:00 AM - 6:00 PM IST

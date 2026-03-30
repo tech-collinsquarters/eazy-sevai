@@ -104,10 +104,10 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-bold mb-2" style={{ color: '#1e3a5f' }}>Call Us</h3>
                   <a 
-                    href="tel:+916385882835" 
+                    href="tel:+919944633029" 
                     className="text-gray-600 hover:text-[#0066b3] transition text-lg font-semibold"
                   >
-                    +91 63858 82835
+                    +91 99446 33029
                   </a>
                   <p className="text-sm text-gray-500 mt-1">Mon-Sat: 9:00 AM - 6:00 PM</p>
                 </div>
@@ -309,8 +309,8 @@ export default function ContactPage() {
             <div className="mt-6 p-6 bg-blue-50 rounded-lg border-2 border-[#0066b3]/20">
               <p className="text-sm text-gray-700">
                 <strong className="text-[#1e3a5f]">Need immediate assistance?</strong> Call us directly at{' '}
-                <a href="tel:+917845495937" className="font-semibold text-[#0066b3] hover:underline">
-                  +91 78454 95937
+                <a href="tel:+919944633029" className="font-semibold text-[#0066b3] hover:underline">
+                  +91 99446 33029
                 </a>{' '}
                 or email{' '}
                 <a href="mailto:sevai@vysegroup.com" className="font-semibold text-[#0066b3] hover:underline">

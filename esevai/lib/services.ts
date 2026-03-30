@@ -1964,14 +1964,14 @@ export const services: Service[] = [
 
 // SERVICE CATEGORIES
 export const serviceCategories = [
-  { id: 'identity', name: 'Identity & Cards', icon: '≡ƒ¬¬', description: 'Aadhaar, PAN, Voter ID, Certificates' },
-  { id: 'certificates', name: 'Revenue Certificates', icon: '≡ƒôä', description: 'Community, Income, Nativity certificates' },
-  { id: 'property', name: 'Property & Assets', icon: '≡ƒÅá', description: 'Patta, Land records, Property services' },
-  { id: 'vehicle', name: 'Vehicle Services', icon: '≡ƒÜù', description: 'RC services, Tax payments' },
-  { id: 'business', name: 'Business & Licenses', icon: '≡ƒÆ╝', description: 'GST, MSME, Trade License' },
-  { id: 'welfare', name: 'Welfare Schemes', icon: '≡ƒñ¥', description: 'Pensions, Scholarships, Social welfare' },
-  { id: 'legal', name: 'Legal Services', icon: 'ΓÜû∩╕Å', description: 'Affidavits, Notary services' },
-  { id: 'other', name: 'Other Services', icon: '≡ƒôï', description: 'Additional government services' }
+  { id: 'identity', name: 'Identity & Cards', icon: '🪪', description: 'Aadhaar, PAN, Voter ID, Certificates' },
+  { id: 'certificates', name: 'Revenue Certificates', icon: '📜', description: 'Community, Income, Nativity certificates' },
+  { id: 'property', name: 'Property & Assets', icon: '🏠', description: 'Patta, Land records, Property services' },
+  { id: 'vehicle', name: 'Vehicle Services', icon: '🚗', description: 'RC services, Tax payments' },
+  { id: 'business', name: 'Business & Licenses', icon: '🏢', description: 'GST, MSME, Trade License' },
+  { id: 'welfare', name: 'Welfare Schemes', icon: '🤝', description: 'Pensions, Scholarships, Social welfare' },
+  { id: 'legal', name: 'Legal Services', icon: '⚖️', description: 'Affidavits, Notary services' },
+  { id: 'other', name: 'Other Services', icon: '📋', description: 'Additional government services' }
 ];
 
 // HELPER FUNCTIONS

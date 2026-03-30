@@ -3,8 +3,8 @@ export const SITE_DESCRIPTION = 'Government Services Made Simple — Apply Onlin
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://eazysevai.com';
 
 export const CONTACT = {
-  phone: '+917845495937',
-  whatsapp: '+917845495937',
+  phone: '+919944633029',
+  whatsapp: '+919944633029',
   email: 'service@vysegroup.com',
   address: 'Villa 246, SNP Signature Villas, Nedugundram, New Perungalathur, Chennai - 600127'
 };
@@ -12,7 +12,7 @@ export const CONTACT = {
 export const SOCIAL_LINKS = {
   facebook: 'https://facebook.com/EazySevai',
   instagram: 'https://instagram.com/EazySevai',
-  whatsapp: 'https://wa.me/917845495937'
+  whatsapp: 'https://wa.me/919944633029'
 };
 
 export const SERVICE_CATEGORIES = [

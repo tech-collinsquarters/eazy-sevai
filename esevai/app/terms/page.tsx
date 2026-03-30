@@ -131,8 +131,8 @@ export default function TermsAndConditions() {
               </p>
               <ul className="list-disc pl-6 space-y-2 mt-3">
                 <li>Email: sevai@vysegroup.com</li>
-                <li>Phone: +91 78454 95937</li>
-                <li>WhatsApp Business: +91 78454 95937</li>
+                <li>Phone: +91 99446 33029</li>
+                <li>WhatsApp Business: +91 99446 33029</li>
               </ul>
               <p className="mt-3">
                 Support hours: Monday to Saturday, 9:00 AM to 6:00 PM IST (excluding public holidays)
@@ -182,7 +182,7 @@ export default function TermsAndConditions() {
               <div className="mt-3 p-4 bg-gray-50 rounded-lg">
                 <p><strong>Eazy Sevai</strong></p>
                 <p>Email: sevai@vysegroup.com</p>
-                <p>Phone: +91 78454 95937</p>
+                <p>Phone: +91 99446 33029</p>
                 <p>Location: Chennai, Tamil Nadu, India</p>
               </div>
             </section>

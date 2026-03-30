@@ -135,13 +135,13 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
           {/* Phone CTA */}
           <a 
-            href="tel:+917845495937" 
+            href="tel:+919944633029" 
             className="flex items-center gap-3 p-4 bg-gradient-to-r from-blue-50 to-teal-50 border-2 border-brand-blue rounded-lg text-brand-blue font-semibold hover:shadow-md transition"
           >
             <Phone className="w-5 h-5" />
             <div>
               <div className="text-xs text-gray-600">Call Us</div>
-              <div>+91 78454 95937</div>
+              <div>+91 99446 33029</div>
             </div>
           </a>
         </div>

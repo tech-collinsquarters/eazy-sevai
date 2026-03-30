@@ -42,7 +42,7 @@ export default function Footer() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a 
-                href="https://wa.me/916385882835" 
+                href="https://wa.me/919944633029" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-[#25D366] text-gray-600 hover:text-white transition flex items-center justify-center"
@@ -147,8 +147,8 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-[#0066b3] mt-0.5 flex-shrink-0" />
                 <div>
-                  <a href="tel:+916385882835" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
-                    +91 6385882835
+                  <a href="tel:+919944633029" className="text-gray-600 hover:text-[#0066b3] transition text-sm">
+                    +91 99446 33029
                   </a>
                 </div>
               </li>

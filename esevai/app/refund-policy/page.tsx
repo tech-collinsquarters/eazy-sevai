@@ -228,7 +228,7 @@ export default function RefundPolicy() {
               <div className="p-4 bg-gray-50 rounded-lg">
                 <p className="font-semibold mb-2">For refund requests or queries:</p>
                 <p>Email: sevai@vysegroup.com</p>
-                <p>Phone: +91 78454 95937</p>
+                <p>Phone: +91 99446 33029</p>
                 <p>Subject Line: "Refund Request - [Order ID]"</p>
                 <p className="mt-3 text-sm text-gray-600">
                   Please include your order ID, payment proof, and reason for refund request.

@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Script from "next/script";
+import NextAuthProvider from "@/components/providers/NextAuthProvider";
 
 const bodoni = Bodoni_Moda({ 
   subsets: ["latin"],
@@ -24,12 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${bodoni.variable} font-sans antialiased text-navy-900 bg-gold-50`}>
-        <Header />
-        <main>
-          {children}
-        </main>
-        <Footer />
-        
+        <NextAuthProvider>
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </NextAuthProvider>
+
         {/* Razorpay Script - Load globally */}
         <Script
           src="https://checkout.razorpay.com/v1/checkout.js"

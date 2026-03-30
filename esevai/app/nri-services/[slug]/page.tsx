@@ -3,6 +3,8 @@
 import React, { use } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSession, signIn } from "next-auth/react";
 import { nriServices } from "@/lib/nri-services";
 import { useCurrency } from "@/components/providers/CurrencyProvider";
 import { Button } from "@/components/ui/button";
@@ -17,6 +19,32 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
   const { slug } = use(params);
   const service = nriServices.find((s) => s.slug === slug);
   const { formatPrice, currency } = useCurrency();
+  const router = useRouter();
+  const { data: session, status } = useSession();
+
+  const [hasChatted, setHasChatted] = React.useState(false);
+
+  const whatsappMessage = encodeURIComponent(`Hello Eazy Sevai team, I am interested in ${service?.name} (NRI service). Please assist me with next steps.`);
+  const whatsappUrl = `https://wa.me/919999999999?text=${whatsappMessage}`;
+
+  const handleChat = () => {
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    setHasChatted(true);
+  };
+
+  const handleStartApplication = () => {
+    if (!session) {
+      signIn(undefined, { callbackUrl: `/nri-services/${slug}` });
+      return;
+    }
+
+    if (!hasChatted) {
+      alert('Please chat with us on WhatsApp before starting your application.');
+      return;
+    }
+
+    router.push(`/apply?service=${service?.slug}`);
+  };
 
   if (!service) {
     notFound();
@@ -84,14 +112,40 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
                     ))}
                   </ul>
 
-                  <div className="pt-4">
-                    {/* Will connect to application form flow later */}
-                    <Link href={`/apply?service=${service.slug}`} className="w-full">
-                      <Button className="w-full h-14 text-lg bg-gold-600 hover:bg-gold-700 text-white font-semibold transition-colors shadow-md">
-                        Start Application <ArrowRight className="w-5 h-5 ml-2" />
-                      </Button>
-                    </Link>
+                  <div className="space-y-3">
+                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 text-sm text-blue-800">
+                      For every NRI service request, we recommend a short WhatsApp consult first.
+                      This ensures all paperwork is in order and avoids delays.
+                    </div>
+
+                    <Button
+                      onClick={handleChat}
+                      className="w-full h-12 text-sm font-semibold bg-green-600 hover:bg-green-700 text-white transition-colors shadow-md"
+                    >
+                      Chat on WhatsApp First
+                    </Button>
+
+                    <Button
+                      onClick={() => {
+                        if (!session) {
+                          signIn(undefined, { callbackUrl: `/nri-services/${slug}` });
+                          return;
+                        }
+                        if (!hasChatted) {
+                          alert('Please start a WhatsApp chat before proceeding to application.');
+                          return;
+                        }
+                        handleStartApplication();
+                      }}
+                      className={`w-full h-14 text-lg font-semibold transition-colors shadow-md ${
+                        !session ? 'bg-blue-500 hover:bg-blue-600 text-white' : !hasChatted ? 'bg-gray-300 text-gray-600 cursor-not-allowed' : 'bg-gold-600 hover:bg-gold-700 text-white'
+                      }`}
+                      disabled={session ? !hasChatted : false}
+                    >
+                      {session ? (hasChatted ? 'Start Application' : 'Chat First to Apply') : 'Login to Apply'} <ArrowRight className="w-5 h-5 ml-2 inline" />
+                    </Button>
                   </div>
+
                   <p className="text-center text-xs text-navy-400 mt-4">
                     Protected by standard 256-bit encryption. <br className="hidden md:block" />
                     Payments securely processed via international gateway.

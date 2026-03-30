@@ -23,7 +23,7 @@ export default function NRIServicesDirectory() {
             Premium Document Services for NRIs
           </h1>
           <p className="text-lg text-navy-600 font-sans">
-            Navigate Tamil Nadu's bureaucratic processes seamlessly from anywhere in the world. 
+            Navigate Tamil Nadu&apos;s bureaucratic processes seamlessly from anywhere in the world. 
             No physical travel required. End-to-end legal assistance.
           </p>
         </div>
@@ -118,6 +118,22 @@ export default function NRIServicesDirectory() {
             </CardFooter>
           </Card>
         ))}
+      </div>
+
+      {/* CTA: All Services for NRIs */}
+      <div className="mt-16 bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-12 text-center">
+        <h2 className="text-3xl md:text-4xl font-serif text-gold-50 mb-4">
+          Want to Explore All Government Services?
+        </h2>
+        <p className="text-navy-100 text-lg max-w-2xl mx-auto mb-8">
+          Browse all 57+ Tamil Nadu government services with NRI-optimized pricing and international support.
+        </p>
+        <Link
+          href="/nri-services/all-services"
+          className="inline-flex items-center gap-2 px-8 py-4 bg-gold-500 hover:bg-gold-600 text-navy-900 rounded-lg font-semibold transition-colors shadow-lg text-lg"
+        >
+          Browse All NRI Services <ArrowRight className="w-5 h-5" />
+        </Link>
       </div>
     </div>
   );

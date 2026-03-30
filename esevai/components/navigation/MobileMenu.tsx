@@ -3,6 +3,7 @@
 import { X, Phone, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { getAllServices } from '@/lib/services'
+import { signOut, useSession } from 'next-auth/react'
 
 interface MobileMenuProps {
   isOpen: boolean
@@ -22,6 +23,8 @@ const serviceCategories = [
 ]
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const { data: session, status } = useSession();
+
   if (!isOpen) return null
 
   const allServices = getAllServices()
@@ -106,6 +109,28 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             >
               Contact
             </Link>
+          </div>
+
+          {/* Auth status */}
+          <div className="pt-4 border-t space-y-2">
+            {status === 'loading' && <div className="p-3 text-sm text-gray-500">Checking login status...</div>}
+            {status === 'authenticated' && session?.user ? (
+              <>
+                <div className="p-3 text-sm text-gray-700">Signed in as {session.user.name || session.user.email}</div>
+                <Link href="/dashboard" onClick={onClose} className="block p-3 text-sm text-brand-blue font-semibold rounded-lg hover:bg-blue-50">Dashboard</Link>
+                <button
+                  onClick={() => { signOut({ callbackUrl: '/' }); onClose(); }}
+                  className="w-full text-left p-3 text-sm font-semibold text-red-600 rounded-lg hover:bg-red-50"
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : status === 'unauthenticated' ? (
+              <>
+                <Link href="/login" onClick={onClose} className="block p-3 text-sm font-semibold text-brand-blue rounded-lg hover:bg-blue-50">Login</Link>
+                <Link href="/register" onClick={onClose} className="block p-3 text-sm font-semibold text-white bg-brand-blue rounded-lg hover:bg-brand-blue/90">Sign Up</Link>
+              </>
+            ) : null}
           </div>
 
           {/* Phone CTA */}

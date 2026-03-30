@@ -51,14 +51,11 @@ model User {
   email             String?   @unique
   emailVerified     DateTime? @map("email_verified")
   image             String?
-  
-  // Custom fields
   mobile            String?
   country           String?
-  hashedPassword    String?
-  verificationToken String?
-  role              String    @default("CLIENT") // CLIENT, ADMIN, AGENT
-  
+  hashedPassword    String?   @map("hashed_password")
+  verificationToken String?   @map("verification_token")
+  role              String    @default("CLIENT")
   createdAt         DateTime  @default(now()) @map("created_at")
   updatedAt         DateTime  @updatedAt @map("updated_at")
 

@@ -51,16 +51,27 @@ export default function ConsultationPage() {
 
   return (
     <div className="container mx-auto py-12 px-4 space-y-8 bg-gold-50 min-h-screen">
-      <div className="flex justify-between items-end border-b border-gold-200 pb-6">
+<div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-gold-200 pb-6 gap-3">
         <div>
           <h1 className="text-3xl font-serif text-navy-900">Video Consultation</h1>
           <p className="text-navy-600 font-sans mt-2">Book a 1-on-1 session with our NRI legal experts.</p>
         </div>
-        <Link href="/dashboard">
-          <Button variant="outline" className="border-gold-300 text-gold-700 hover:bg-gold-50">
-            Back to Dashboard
-          </Button>
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-2">
+          <a
+            href="https://wa.me/919999999999?text=Hi%20Eazy%20Sevai%20team,%20I%20would%20like%20to%20book%20a%201-on-1%20consultation%20session"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button className="bg-green-600 hover:bg-green-700 text-white font-medium">
+              Chat on WhatsApp first
+            </Button>
+          </a>
+          <Link href="/dashboard">
+            <Button variant="outline" className="border-gold-300 text-gold-700 hover:bg-gold-50">
+              Back to Dashboard
+            </Button>
+          </Link>
+        </div>
       </div>
 
       <div className="mx-auto max-w-4xl">

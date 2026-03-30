@@ -91,11 +91,43 @@ export default async function DashboardPage() {
               <p className="text-navy-600 font-sans text-sm">
                 Need expert advice? Schedule a 1-on-1 video call with our NRI legal specialists.
               </p>
-              <Link href="/dashboard/consultation">
-                <Button className="w-full bg-gold-600 hover:bg-gold-500 text-white font-medium">
-                  Book a Consultation
+              <div className="grid grid-cols-1 gap-3">
+                <a
+                  href="https://wa.me/919999999999?text=Hi%20Eazy%20Sevai%20team,%20I%20want%20a%201-on-1%20NRI%20consultation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-medium">
+                    Chat on WhatsApp for consultation
+                  </Button>
+                </a>
+                <Link href="/dashboard/consultation">
+                  <Button className="w-full bg-gold-600 hover:bg-gold-500 text-white font-medium">
+                    Book in-app 1-on-1 session
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-gold-200 shadow-md bg-white hover:border-gold-300 transition-colors">
+            <CardHeader className="bg-navy-50/50">
+              <CardTitle className="text-xl text-navy-900">Explore Services</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-4 space-y-3">
+              <Link href="/nri-services">
+                <Button className="w-full bg-navy-900 hover:bg-navy-800 text-white font-medium">
+                  View NRI Services
                 </Button>
               </Link>
+              <Link href="/nri-services/all-services">
+                <Button className="w-full bg-gold-600 hover:bg-gold-500 text-white font-medium">
+                  Browse All Services (NRI Pricing)
+                </Button>
+              </Link>
+              <p className="text-xs text-navy-500">
+                Before applying for an NRI service, please connect with us on WhatsApp (click the green button in service pages).
+              </p>
             </CardContent>
           </Card>
 

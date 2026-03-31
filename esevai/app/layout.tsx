@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Script from "next/script";
 import NextAuthProvider from "@/components/providers/NextAuthProvider";
+import { CurrencyProvider } from "@/components/providers/CurrencyProvider";
 
 const bodoni = Bodoni_Moda({ 
   subsets: ["latin"],

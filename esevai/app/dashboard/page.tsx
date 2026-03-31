@@ -134,15 +134,15 @@ export default async function DashboardPage() {
           <Card className="border-none shadow-md bg-gradient-to-br from-navy-900 to-navy-800 text-white h-fit">
             <CardHeader>
               <CardTitle className="text-gold-400 flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5" /> Military-Grade Security
+                <ShieldCheck className="w-5 h-5" /> Enterprise Grade Vault
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-navy-100 text-sm">
               <p>
-                Documents are uploaded directly to our secure AWS S3 enterprise buckets, bypassing our application servers entirely.
+                Documents are uploaded securely to our enterprise cloud storage, bypassing our application servers entirely for maximum security.
               </p>
               <p>
-                All files are strictly encrypted at rest and in transit. Access is limited through highly-restrictive IAM policies and time-limited pre-signed URLs.
+                All files are encrypted at rest and in transit. Access is limited through highly-restrictive IAM policies and time-limited secure links.
               </p>
             </CardContent>
           </Card>

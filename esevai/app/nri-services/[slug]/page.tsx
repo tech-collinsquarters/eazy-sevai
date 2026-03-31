@@ -38,11 +38,6 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
       return;
     }
 
-    if (!hasChatted) {
-      alert('Please chat with us on WhatsApp before starting your application.');
-      return;
-    }
-
     router.push(`/apply?service=${service?.slug}`);
   };
 
@@ -131,18 +126,13 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
                           signIn(undefined, { callbackUrl: `/nri-services/${slug}` });
                           return;
                         }
-                        if (!hasChatted) {
-                          alert('Please start a WhatsApp chat before proceeding to application.');
-                          return;
-                        }
                         handleStartApplication();
                       }}
                       className={`w-full h-14 text-lg font-semibold transition-colors shadow-md ${
-                        !session ? 'bg-blue-500 hover:bg-blue-600 text-white' : !hasChatted ? 'bg-gray-300 text-gray-600 cursor-not-allowed' : 'bg-gold-600 hover:bg-gold-700 text-white'
+                        !session ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-gold-600 hover:bg-gold-700 text-white'
                       }`}
-                      disabled={session ? !hasChatted : false}
                     >
-                      {session ? (hasChatted ? 'Start Application' : 'Chat First to Apply') : 'Login to Apply'} <ArrowRight className="w-5 h-5 ml-2 inline" />
+                      {session ? 'Start Secure Application' : 'Login to Apply'} <ArrowRight className="w-5 h-5 ml-2 inline" />
                     </Button>
                   </div>
 

@@ -34,40 +34,38 @@ export default function DocumentUploadPage() {
     setError("");
 
     try {
-      // 1. Get presigned URL
-      const presignRes = await fetch("/api/documents/presigned-url", {
+      // 1. Upload to Cloudinary securely
+      const formData = new FormData();
+      formData.append("file", file);
+      
+      const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "esevai-uploads";
+      const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+      
+      if (!cloudName) throw new Error("Cloudinary configuration missing");
+      
+      formData.append("upload_preset", uploadPreset);
+      
+      const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fileName: file.name,
-          contentType: file.type,
-        }),
-      });
-
-      if (!presignRes.ok) {
-        throw new Error("Failed to get upload URL");
-      }
-
-      const { uploadUrl, fileKey } = await presignRes.json();
-
-      // 2. Upload to S3 directly
-      const uploadRes = await fetch(uploadUrl, {
-        method: "PUT",
-        headers: { "Content-Type": file.type },
-        body: file,
+        body: formData,
       });
 
       if (!uploadRes.ok) {
-        throw new Error("Failed to upload file to S3");
+        throw new Error("Failed to upload file to Secure Vault");
       }
+      
+      const clData = await uploadRes.json();
+      const fileKey = clData.public_id;
+      const fileUrl = clData.secure_url;
 
-      // 3. Confirm upload with our server
+      // 2. Confirm upload with our server to save metadata
       const confirmRes = await fetch("/api/documents/confirm-upload", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           fileName: file.name,
-          fileKey,
+          fileKey: fileKey,
+          fileUrl: fileUrl,
           fileSize: file.size,
           fileType: file.type,
           documentType,

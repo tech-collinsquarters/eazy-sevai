@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getDownloadPresignedUrl } from "@/lib/s3";
 
 export async function GET(req: Request) {
   try {
@@ -33,11 +32,8 @@ export async function GET(req: Request) {
       return NextResponse.json({ message: "Unauthorized access to document" }, { status: 403 });
     }
 
-    // Generate specific S3 download URL
-    const signedUrl = await getDownloadPresignedUrl(document.fileUrl);
-
-    // Redirect user to the secure URL
-    return NextResponse.redirect(signedUrl);
+    // Redirect user to the secure Cloudinary URL
+    return NextResponse.redirect(document.fileUrl);
 
   } catch (error: any) {
     console.error("Download URL Error:", error);

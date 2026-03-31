@@ -1,0 +1,10 @@
+﻿b508520 Update WhatsApp number to +91 99446 33029 and fix category icons
+26ea139 feat: Implement dual-pricing architecture for NRI services
+461b9e3 database added
+1cf397f project added
+3d8787a updated from 91 to 57
+f44c5c3 fixed documents issue in service documents
+8cb056e updated services and contact
+7e2c17f fixed razorpay
+e297cc6 updated
+cc3ec49 chore: trigger redeploy

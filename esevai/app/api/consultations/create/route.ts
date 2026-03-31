@@ -25,6 +25,23 @@ export async function POST(req: Request) {
       },
     });
 
+    const n8nWebhookUrl = process.env.N8N_INQUIRY_WEBHOOK;
+    if (n8nWebhookUrl) {
+      fetch(n8nWebhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event: "consultation.scheduled",
+          userId,
+          userEmail: session.user.email,
+          userName: session.user.name,
+          eventUri,
+          inviteeUri,
+          timestamp: new Date().toISOString()
+        })
+      }).catch(err => console.error("Consultation Webhook Error:", err));
+    }
+
     return NextResponse.json({ success: true, consultation });
   } catch (error: unknown) {
     console.error("Consultation create error:", error);

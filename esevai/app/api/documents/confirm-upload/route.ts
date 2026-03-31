@@ -12,10 +12,10 @@ export async function POST(req: Request) {
     }
 
     const userId = (session.user as { id: string }).id;
-    const { fileName, fileKey, fileSize, fileType, documentType = "General" } = await req.json();
+    const { fileName, fileKey, fileUrl, fileSize, fileType, documentType = "General" } = await req.json();
 
-    if (!fileName || !fileKey) {
-      return NextResponse.json({ message: "Filename and fileKey required" }, { status: 400 });
+    if (!fileName || !fileUrl) {
+      return NextResponse.json({ message: "Filename and fileUrl required" }, { status: 400 });
     }
 
     // 1. Save document to Prisma Database
@@ -26,7 +26,8 @@ export async function POST(req: Request) {
         fileName,
         fileType: fileType || "application/pdf",
         fileSize: fileSize || 0,
-        fileUrl: fileKey, // We store the S3 Key here
+        fileUrl: fileUrl, // Store Cloudinary URL
+
         documentType,
         status: "uploaded",
         encrypted: true

@@ -1,0 +1,424 @@
+"use client";
+
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { createApplicationDraft } from './actions';
+import { useCurrency } from '@/components/providers/CurrencyProvider';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { CheckCircle2, ArrowRight, ArrowLeft, Loader2, CreditCard } from 'lucide-react';
+import Script from 'next/script';
+
+const applicantSchema = z.object({
+  firstName: z.string().min(2, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  email: z.string().email("Valid email is required"),
+  phone: z.string().min(10, "Valid phone number is required"),
+  identityNumber: z.string().optional(),
+});
+
+type ApplicantData = z.infer<typeof applicantSchema>;
+
+export default function ApplyForm({
+  serviceSlug,
+  serviceName,
+  user,
+  isNRI,
+  prices,
+  baseAmount
+}: {
+  serviceSlug: string;
+  serviceName: string;
+  user: any;
+  isNRI: boolean;
+  prices: any;
+  baseAmount: any;
+}) {
+  const [step, setStep] = useState(1);
+  const [applicantData, setApplicantData] = useState<ApplicantData | null>(null);
+  const [serviceData, setServiceData] = useState<any>({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const { currency, formatPrice } = useCurrency();
+
+  // Basic Form
+  const { register, handleSubmit, formState: { errors } } = useForm<ApplicantData>({
+    resolver: zodResolver(applicantSchema),
+    defaultValues: {
+      firstName: user?.name?.split(' ')[0] || '',
+      lastName: user?.name?.split(' ').slice(1).join(' ') || '',
+      email: user?.email || '',
+      phone: user?.mobile || '',
+      identityNumber: '',
+    }
+  });
+
+  const onNextStep1 = (data: ApplicantData) => {
+    setApplicantData(data);
+    setStep(2);
+  };
+
+  const getAmount = () => {
+    if (isNRI && prices) {
+      return prices[currency];
+    }
+    return baseAmount; // fallback generic domestic amount
+  };
+
+  const handleCheckout = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      const amount = getAmount();
+
+      // 1. Save Application Draft to Database
+      const formData = {
+        applicant: applicantData,
+        serviceSpecifics: serviceData
+      };
+
+      const res = await createApplicationDraft({
+        serviceSlug,
+        serviceName,
+        formData,
+        amount,
+        currency
+      });
+
+      if (!res.success || !res.applicationId) {
+        throw new Error(res.error || "Failed to create application");
+      }
+
+      // 2. Fetch Razorpay Order
+      const paymentRes = await fetch('/api/create-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount,
+          currency,
+          serviceName,
+          serviceSlug,
+          applicationId: res.applicationId,
+          userData: applicantData
+        })
+      });
+
+      const paymentData = await paymentRes.json();
+
+      if (!paymentData.success) {
+        throw new Error(paymentData.error || "Failed to initiate payment gateway");
+      }
+
+      // 3. Open Razorpay Checkout popup
+      const options = {
+        key: paymentData.razorpayKeyId,
+        amount: paymentData.amount,
+        currency: paymentData.currency,
+        name: "Eazy Sevai",
+        description: `Application for ${serviceName}`,
+        order_id: paymentData.orderId,
+        handler: async function (response: any) {
+          // Success Callback
+          window.location.href = `/payment/success?reference=${response.razorpay_payment_id}&order=${paymentData.orderId}`;
+        },
+        prefill: {
+          name: `${applicantData?.firstName} ${applicantData?.lastName}`,
+          email: applicantData?.email,
+          contact: applicantData?.phone
+        },
+        theme: {
+          color: "#B48B44" // Gold Theme
+        }
+      };
+
+      const rzp = new (window as any).Razorpay(options);
+      rzp.on('payment.failed', function (response: any) {
+        setError(response.error.description);
+      });
+      rzp.open();
+
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Dynamic Fields Render
+  const renderDynamicFields = () => {
+    switch (serviceSlug) {
+      case 'document-apostille':
+        return (
+          <>
+            <div className="space-y-2">
+              <Label>Document Type</Label>
+              <Select onValueChange={(v) => setServiceData({ ...serviceData, docType: v })}>
+                <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="educational">Educational Document</SelectItem>
+                  <SelectItem value="non-educational">Non-Educational / Personal</SelectItem>
+                  <SelectItem value="commercial">Commercial Document</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label>Issuing State / Authority</Label>
+              <Input placeholder="e.g. Tamil Nadu Board" onChange={(e) => setServiceData({ ...serviceData, issuingAuthority: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label>Destination Country</Label>
+              <Input placeholder="Country where document will be used" onChange={(e) => setServiceData({ ...serviceData, destinationCountry: e.target.value })} />
+            </div>
+          </>
+        );
+      case 'non-availability-birth-certificate':
+        return (
+          <>
+            <div className="space-y-2">
+              <Label>Full Name of Person</Label>
+              <Input placeholder="Name as per existing records" onChange={(e) => setServiceData({ ...serviceData, personName: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label>Date of Birth</Label>
+              <Input type="date" onChange={(e) => setServiceData({ ...serviceData, dob: e.target.value })} />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Father's Name</Label>
+                <Input onChange={(e) => setServiceData({ ...serviceData, fatherName: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Mother's Name</Label>
+                <Input onChange={(e) => setServiceData({ ...serviceData, motherName: e.target.value })} />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Place of Birth (City / Hospital)</Label>
+              <Input onChange={(e) => setServiceData({ ...serviceData, pob: e.target.value })} />
+            </div>
+          </>
+        );
+      case 'property-title-search-khata':
+        return (
+          <>
+            <div className="space-y-2">
+              <Label>Property Full Address</Label>
+              <Textarea placeholder="Include street, city, pin code" onChange={(e) => setServiceData({ ...serviceData, propertyAddress: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label>Survey / Plot Number</Label>
+              <Input onChange={(e) => setServiceData({ ...serviceData, surveyNumber: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label>Registration District / Sub-Registrar</Label>
+              <Input onChange={(e) => setServiceData({ ...serviceData, registrarOffice: e.target.value })} />
+            </div>
+          </>
+        );
+      case 'legal-heir-certificate':
+        return (
+          <>
+            <div className="space-y-2">
+              <Label>Deceased Person's Full Name</Label>
+              <Input onChange={(e) => setServiceData({ ...serviceData, deceasedName: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label>Date of Death</Label>
+              <Input type="date" onChange={(e) => setServiceData({ ...serviceData, dateOfDeath: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label>Address at time of death</Label>
+              <Textarea onChange={(e) => setServiceData({ ...serviceData, deathAddress: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label>Surviving Members List</Label>
+              <Textarea placeholder="Please list names and relations" onChange={(e) => setServiceData({ ...serviceData, survivingMembers: e.target.value })} />
+            </div>
+          </>
+        );
+      case 'marriage-certificate-registration':
+        return (
+          <>
+            <div className="space-y-2">
+              <Label>Date of Marriage</Label>
+              <Input type="date" onChange={(e) => setServiceData({ ...serviceData, dateOfMarriage: e.target.value })} />
+            </div>
+            <div className="space-y-2">
+              <Label>Place / Hall of Marriage</Label>
+              <Input onChange={(e) => setServiceData({ ...serviceData, placeOfMarriage: e.target.value })} />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Groom's Name</Label>
+                <Input onChange={(e) => setServiceData({ ...serviceData, groomName: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Bride's Name</Label>
+                <Input onChange={(e) => setServiceData({ ...serviceData, brideName: e.target.value })} />
+              </div>
+            </div>
+          </>
+        );
+      default:
+        return (
+          <div className="space-y-2">
+            <Label>Additional Details & Specific Requirements</Label>
+            <Textarea 
+              placeholder="Any specific requests, file numbers, or previous application details?"
+              rows={4}
+              onChange={(e) => setServiceData({ ...serviceData, notes: e.target.value })}
+            />
+          </div>
+        );
+    }
+  };
+
+  return (
+    <>
+      <Script src="https://checkout.razorpay.com/v1/checkout.js" />
+      
+      {/* Progress Steps */}
+      <div className="flex items-center justify-between mb-8 px-2 relative">
+        <div className="absolute left-[15%] right-[15%] top-1/2 h-0.5 bg-gray-200 -z-10 transform -translate-y-1/2"></div>
+        <div className="absolute left-[15%] right-[15%] top-1/2 h-0.5 bg-gold-500 -z-10 transform -translate-y-1/2" style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%', transition: 'width 0.3s' }}></div>
+        
+        {[1, 2, 3].map((s) => (
+          <div key={s} className={`flex flex-col items-center gap-2 ${step >= s ? 'text-gold-600' : 'text-gray-400'}`}>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${step >= s ? 'bg-gold-500 text-white shadow-md shadow-gold-200' : 'bg-gray-100'}`}>
+              {step > s ? <CheckCircle2 className="w-5 h-5 text-white" /> : s}
+            </div>
+            <span className="text-xs font-medium uppercase tracking-wider">{s === 1 ? 'Applicant' : s === 2 ? 'Service details' : 'Review'}</span>
+          </div>
+        ))}
+      </div>
+
+      {error && (
+        <div className="p-4 mb-6 bg-red-50 text-red-700 border border-red-200 rounded-lg text-sm">
+          {error}
+        </div>
+      )}
+
+      {/* Step 1: Applicant Details */}
+      {step === 1 && (
+        <form onSubmit={handleSubmit(onNextStep1)} className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label>First Name <span className="text-red-500">*</span></Label>
+              <Input {...register('firstName')} className={errors.firstName ? 'border-red-500' : ''} />
+              {errors.firstName && <span className="text-xs text-red-500">{errors.firstName.message}</span>}
+            </div>
+            <div className="space-y-2">
+              <Label>Last Name <span className="text-red-500">*</span></Label>
+              <Input {...register('lastName')} className={errors.lastName ? 'border-red-500' : ''} />
+              {errors.lastName && <span className="text-xs text-red-500">{errors.lastName.message}</span>}
+            </div>
+          </div>
+          
+          <div className="space-y-2">
+            <Label>Email <span className="text-red-500">*</span></Label>
+            <Input type="email" {...register('email')} className={errors.email ? 'border-red-500' : ''} />
+            {errors.email && <span className="text-xs text-red-500">{errors.email.message}</span>}
+          </div>
+
+          <div className="space-y-2">
+            <Label>Mobile Number (WhatsApp) <span className="text-red-500">*</span></Label>
+            <Input type="tel" {...register('phone')} className={errors.phone ? 'border-red-500' : ''} />
+            {errors.phone && <span className="text-xs text-red-500">{errors.phone.message}</span>}
+          </div>
+
+          <div className="space-y-2">
+            <Label>Passport / Aadhaar / Identity Number <span className="text-gray-400 font-normal text-xs ml-1">(Optional for now)</span></Label>
+            <Input {...register('identityNumber')} />
+          </div>
+
+          <div className="pt-4 flex justify-end">
+            <Button type="submit" className="bg-navy-900 hover:bg-navy-800 text-white px-8">
+              Proceed <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+        </form>
+      )}
+
+      {/* Step 2: Service Specific Details */}
+      {step === 2 && (
+        <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
+          <div className="bg-gold-50 p-4 rounded-lg border border-gold-100 space-y-4">
+            <h3 className="font-semibold text-navy-900 border-b border-gold-200 pb-2">Information required for {serviceName}</h3>
+            {renderDynamicFields()}
+          </div>
+
+          <div className="pt-4 flex justify-between">
+            <Button variant="outline" onClick={() => setStep(1)} className="border-gray-200">
+              <ArrowLeft className="w-4 h-4 mr-2" /> Back
+            </Button>
+            <Button onClick={() => setStep(3)} className="bg-navy-900 hover:bg-navy-800 text-white px-8">
+              Save & Review <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* Step 3: Review & Payment */}
+      {step === 3 && (
+        <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
+          <div className="bg-white border shadow-sm rounded-xl p-6">
+            <h3 className="font-semibold text-lg text-navy-900 border-b pb-3 mb-4">Application Summary</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 text-sm mt-4">
+              <div>
+                <span className="text-gray-500 block text-xs">Service</span>
+                <span className="font-medium text-navy-900">{serviceName}</span>
+              </div>
+              <div>
+                <span className="text-gray-500 block text-xs">Applicant</span>
+                <span className="font-medium text-navy-900">{applicantData?.firstName} {applicantData?.lastName}</span>
+              </div>
+              <div>
+                <span className="text-gray-500 block text-xs">Email</span>
+                <span className="font-medium text-navy-900">{applicantData?.email}</span>
+              </div>
+              <div>
+                <span className="text-gray-500 block text-xs">Phone</span>
+                <span className="font-medium text-navy-900">{applicantData?.phone}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-navy-50 rounded-xl p-6 flex flex-col items-center justify-center text-center space-y-4 border border-navy-100">
+            <span className="text-navy-600 font-medium">Total Professional Fee</span>
+            <div className="text-4xl font-serif text-navy-900">
+              {formatPrice({ USD: getAmount(), GBP: getAmount(), AED: getAmount(), INR: getAmount() })}
+            </div>
+            <p className="text-xs text-navy-400 max-w-sm">
+              Includes all secure transaction charges. After payment, you'll be redirected to upload any mandatory documents in your vault.
+            </p>
+
+            <Button 
+              onClick={handleCheckout} 
+              disabled={isLoading}
+              className="w-full max-w-sm h-14 mt-4 bg-green-600 hover:bg-green-700 text-white text-lg transition-colors shadow-lg shadow-green-200"
+            >
+              {isLoading ? (
+                <><Loader2 className="w-5 h-5 mr-3 animate-spin"/> Processing Securely...</>
+              ) : (
+                <><CreditCard className="w-5 h-5 mr-3" /> Pay Securely via Razorpay</>
+              )}
+            </Button>
+          </div>
+
+          <div className="flex justify-start pt-2">
+            <Button variant="ghost" onClick={() => setStep(2)} className="text-navy-600" disabled={isLoading}>
+              <ArrowLeft className="w-4 h-4 mr-2" /> Modify details
+            </Button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}

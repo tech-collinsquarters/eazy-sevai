@@ -54,7 +54,7 @@ export default function ApplyForm({
       firstName: user?.name?.split(' ')[0] || '',
       lastName: user?.name?.split(' ').slice(1).join(' ') || '',
       email: user?.email || '',
-      phone: user?.mobile || '',
+      phone: (user?.mobile || '').replace(/^0=/, ''),
       identityNumber: '',
     }
   });
@@ -160,7 +160,7 @@ export default function ApplyForm({
               <Label>Document Type</Label>
               <Select onValueChange={(v) => setServiceData({ ...serviceData, docType: v })}>
                 <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white z-50">
                   <SelectItem value="educational">Educational Document</SelectItem>
                   <SelectItem value="non-educational">Non-Educational / Personal</SelectItem>
                   <SelectItem value="commercial">Commercial Document</SelectItem>

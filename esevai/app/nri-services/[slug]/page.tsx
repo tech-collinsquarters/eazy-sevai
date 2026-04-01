@@ -46,10 +46,10 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gold-50">
+    <div className="min-h-screen bg-transparent">
       {/* Hero Section */}
-      <section className="bg-navy-900 text-gold-50 py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-400 via-gold-600 to-gold-400" />
+      <section className="bg-gradient-to-br from-[#1e3a5f] to-[#0066b3] text-white py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0066b3] via-[#14b8a6] to-[#0066b3]" />
         <div className="container mx-auto px-4 relative z-10">
           <Link href="/nri-services" className="inline-flex items-center text-navy-300 hover:text-white mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" /> Back to All Services
@@ -57,7 +57,7 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-800 border border-navy-700 text-sm text-gold-400 font-medium">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-800 border border-navy-700 text-sm text-[#14b8a6] font-medium">
                 NRI Premium Service
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight">
@@ -68,17 +68,17 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
               </p>
               
               <div className="flex flex-wrap gap-4 pt-4">
-                <div className="flex items-center gap-2 bg-navy-800 rounded-lg px-4 py-3 border border-navy-700">
-                  <Clock className="w-5 h-5 text-gold-500" />
+                <div className="flex items-center gap-2 bg-navy-800/50 rounded-lg px-4 py-3 border border-navy-700/50">
+                  <Clock className="w-5 h-5 text-[#14b8a6]" />
                   <div>
-                    <div className="text-xs text-navy-400 uppercase tracking-wider">Processing Time</div>
+                    <div className="text-xs text-blue-200 uppercase tracking-wider">Processing Time</div>
                     <div className="font-semibold text-white">{service.processingTime}</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 bg-navy-800 rounded-lg px-4 py-3 border border-navy-700">
-                  <ShieldCheck className="w-5 h-5 text-gold-500" />
+                <div className="flex items-center gap-2 bg-navy-800/50 rounded-lg px-4 py-3 border border-navy-700/50">
+                  <ShieldCheck className="w-5 h-5 text-[#14b8a6]" />
                   <div>
-                    <div className="text-xs text-navy-400 uppercase tracking-wider">Legal Guarantee</div>
+                    <div className="text-xs text-blue-200 uppercase tracking-wider">Legal Guarantee</div>
                     <div className="font-semibold text-white">100% Authentic</div>
                   </div>
                 </div>
@@ -87,9 +87,9 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
             
             {/* Pricing Card */}
             <div className="lg:pl-12">
-              <Card className="bg-white text-navy-900 border-none shadow-2xl overflow-hidden rounded-2xl transform hover:-translate-y-1 transition-transform duration-300">
-                <div className="h-2 w-full bg-gradient-to-r from-gold-400 to-gold-600" />
-                <CardContent className="p-8 space-y-8">
+              <Card className="bg-white text-navy-900 border-none shadow-2xl shadow-navy-900/10 overflow-hidden rounded-3xl transform hover:-translate-y-1 transition-transform duration-300">
+                <div className="h-2 w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6]" />
+                <CardContent className="p-10 md:p-12 space-y-8">
                   <div className="text-center space-y-2">
                     <p className="text-navy-500 font-medium uppercase tracking-widest text-sm">Professional Fee</p>
                     <div className="text-5xl font-serif text-navy-900">
@@ -101,7 +101,7 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
                   <ul className="space-y-4">
                     {service.benefits.map((benefit, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-gold-600 shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-5 h-5 text-[#14b8a6] shrink-0 mt-0.5" />
                         <span className="text-navy-700">{benefit}</span>
                       </li>
                     ))}
@@ -128,8 +128,8 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
                         }
                         handleStartApplication();
                       }}
-                      className={`w-full h-14 text-lg font-semibold transition-colors shadow-md ${
-                        !session ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-gold-600 hover:bg-gold-700 text-white'
+                      className={`w-full h-14 text-lg font-semibold transition-all shadow-md ${
+                        !session ? 'bg-[#0066b3] hover:bg-[#004d87] text-white' : 'bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white'
                       }`}
                     >
                       {session ? 'Start Secure Application' : 'Login to Apply'} <ArrowRight className="w-5 h-5 ml-2 inline" />
@@ -157,13 +157,13 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
             </p>
           </div>
           
-          <div className="bg-white rounded-2xl p-8 border border-gold-200 shadow-sm relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gold-50 rounded-bl-full -z-0 opacity-50" />
+          <div className="bg-white rounded-3xl p-10 md:p-12 border-none shadow-xl shadow-navy-900/5 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#0066b3]/5 rounded-bl-full -z-0 opacity-100" />
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
               {service.requiredDocuments.map((doc, idx) => (
-                <li key={idx} className="flex items-center gap-3 bg-gold-50/50 p-4 rounded-lg border border-gold-100">
-                  <FileText className="w-5 h-5 text-gold-600 shrink-0" />
-                  <span className="font-medium text-navy-800">{doc}</span>
+                <li key={idx} className="flex items-center gap-3 bg-blue-50/50 p-5 rounded-xl border-none shadow-sm shadow-navy-900/5">
+                  <FileText className="w-5 h-5 text-[#0066b3] shrink-0" />
+                  <span className="font-medium font-serif text-lg text-navy-800">{doc}</span>
                 </li>
               ))}
             </ul>
@@ -187,7 +187,7 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
               { title: "Doorstep Delivery", desc: "Receive your official certificates via secure tracked DHL courier." }
             ].map((step, idx) => (
               <div key={idx} className="relative group">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-navy-900 text-gold-400 font-serif text-xl font-bold mb-6 group-hover:bg-gold-600 group-hover:text-white transition-colors">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-navy-900 text-white font-serif text-xl font-bold mb-6 group-hover:bg-[#0066b3] transition-colors shadow-lg">
                   {idx + 1}
                 </div>
                 <h3 className="text-xl font-semibold text-navy-900 mb-3">{step.title}</h3>

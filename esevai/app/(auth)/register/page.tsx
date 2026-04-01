@@ -55,13 +55,18 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-gold-50 py-12 px-4 sm:px-6 lg:px-8">
-      <Card className="w-full max-w-lg border-gold-200 shadow-xl bg-white rounded-2xl overflow-hidden">
-        <div className="h-2 w-full bg-gradient-to-r from-gold-600 to-gold-400" />
-        <CardHeader className="space-y-3 pt-8 pb-4">
-          <CardTitle className="text-3xl font-serif text-navy-900 text-center">Create an Account</CardTitle>
-          <CardDescription className="text-center text-navy-500 font-sans text-base">
-            Get started with Eazy Sevai for exclusive NRI services.
+    <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-teal-50 py-12 px-4 sm:px-6 lg:px-8">
+      <Card className="w-full max-w-lg border-none shadow-2xl shadow-[#1e3a5f]/10 bg-white rounded-3xl overflow-hidden">
+        <div className="h-2 w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6]" />
+        <CardHeader className="space-y-5 pt-10 pb-4 flex flex-col items-center text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-50 to-teal-50 border border-[#14b8a6]/20 shadow-sm text-sm text-[#0066b3] font-semibold tracking-wide uppercase shadow-[#0066b3]/5">
+            Eazy Sevai NRI Portal
+          </div>
+          <CardTitle className="text-3xl md:text-4xl font-serif text-navy-900 leading-tight">
+            Create an Account
+          </CardTitle>
+          <CardDescription className="text-navy-500 font-sans text-base max-w-sm mx-auto">
+            Get started to access secure, end-to-end documentation processing exclusively for Non-Resident Indians.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -80,7 +85,7 @@ export default function RegisterPage() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="John Doe" 
-                className="border-navy-200 focus-visible:ring-gold-500 h-12"
+                className="border-gray-200 focus-visible:ring-[#14b8a6] h-12 rounded-xl"
               />
             </div>
 
@@ -93,7 +98,7 @@ export default function RegisterPage() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="nri.user@example.com" 
-                className="border-navy-200 focus-visible:ring-gold-500 h-12"
+                className="border-gray-200 focus-visible:ring-[#14b8a6] h-12 rounded-xl"
               />
             </div>
 
@@ -105,7 +110,7 @@ export default function RegisterPage() {
                 value={formData.mobile}
                 onChange={handleChange}
                 placeholder="+1 234 567 8900" 
-                className="border-navy-200 focus-visible:ring-gold-500 h-12"
+                className="border-gray-200 focus-visible:ring-[#14b8a6] h-12 rounded-xl"
               />
               <p className="text-xs text-navy-300">With country code. Used for WhatsApp updates.</p>
             </div>
@@ -119,23 +124,23 @@ export default function RegisterPage() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••" 
-                className="border-navy-200 focus-visible:ring-gold-500 h-12"
+                className="border-gray-200 focus-visible:ring-[#14b8a6] h-12 rounded-xl"
               />
             </div>
 
             <Button 
               type="submit" 
-              className="w-full bg-gold-600 hover:bg-gold-700 text-white font-medium h-12 text-lg transition-colors mt-2"
+              className="w-full bg-gradient-to-r from-[#1e3a5f] to-[#0066b3] border border-[#14b8a6]/50 hover:opacity-90 hover:scale-[1.01] text-white font-semibold tracking-wide h-14 rounded-xl text-lg transition-all mt-2 shadow-lg shadow-[#0066b3]/20"
               disabled={loading}
             >
-              {loading ? "Creating Account..." : "Register"}
+              {loading ? "Creating Account..." : "Register NRI Account"}
             </Button>
           </form>
         </CardContent>
         <CardFooter className="flex justify-center pb-8 pt-2">
           <p className="text-navy-600 text-sm">
             Already have an account?{" "}
-            <Link href="/login" className="font-semibold text-gold-600 hover:text-gold-700 hover:underline">
+            <Link href="/login" className="font-semibold text-[#0066b3] hover:text-[#004d87] hover:underline">
               Sign In here
             </Link>
           </p>

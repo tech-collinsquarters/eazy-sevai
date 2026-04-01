@@ -133,7 +133,7 @@ export default function ApplyForm({
           contact: applicantData?.phone
         },
         theme: {
-          color: "#B48B44" // Gold Theme
+          color: "#0066b3" // Eazy Sevai Brand Blue
         }
       };
 
@@ -286,11 +286,11 @@ export default function ApplyForm({
       {/* Progress Steps */}
       <div className="flex items-center justify-between mb-8 px-2 relative">
         <div className="absolute left-[15%] right-[15%] top-1/2 h-0.5 bg-gray-200 -z-10 transform -translate-y-1/2"></div>
-        <div className="absolute left-[15%] right-[15%] top-1/2 h-0.5 bg-gold-500 -z-10 transform -translate-y-1/2" style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%', transition: 'width 0.3s' }}></div>
+        <div className="absolute left-[15%] right-[15%] top-1/2 h-0.5 bg-gradient-to-r from-[#0066b3] to-[#14b8a6] -z-10 transform -translate-y-1/2" style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%', transition: 'width 0.3s' }}></div>
         
         {[1, 2, 3].map((s) => (
-          <div key={s} className={`flex flex-col items-center gap-2 ${step >= s ? 'text-gold-600' : 'text-gray-400'}`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${step >= s ? 'bg-gold-500 text-white shadow-md shadow-gold-200' : 'bg-gray-100'}`}>
+          <div key={s} className={`flex flex-col items-center gap-2 ${step >= s ? 'text-[#0066b3]' : 'text-gray-400'}`}>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${step >= s ? 'bg-gradient-to-r from-[#0066b3] to-[#14b8a6] text-white shadow-md shadow-teal-200' : 'bg-gray-100'}`}>
               {step > s ? <CheckCircle2 className="w-5 h-5 text-white" /> : s}
             </div>
             <span className="text-xs font-medium uppercase tracking-wider">{s === 1 ? 'Applicant' : s === 2 ? 'Service details' : 'Review'}</span>
@@ -348,8 +348,8 @@ export default function ApplyForm({
       {/* Step 2: Service Specific Details */}
       {step === 2 && (
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
-          <div className="bg-gold-50 p-4 rounded-lg border border-gold-100 space-y-4">
-            <h3 className="font-semibold text-navy-900 border-b border-gold-200 pb-2">Information required for {serviceName}</h3>
+          <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-navy-900/5 border-none space-y-6">
+            <h3 className="font-semibold font-serif text-xl border-none text-navy-900 pb-2">Information required for {serviceName}</h3>
             {renderDynamicFields()}
           </div>
 
@@ -367,35 +367,35 @@ export default function ApplyForm({
       {/* Step 3: Review & Payment */}
       {step === 3 && (
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
-          <div className="bg-white border shadow-sm rounded-xl p-6">
-            <h3 className="font-semibold text-lg text-navy-900 border-b pb-3 mb-4">Application Summary</h3>
+          <div className="bg-white shadow-xl shadow-navy-900/5 border-none rounded-3xl p-8 md:p-12">
+            <h3 className="font-semibold font-serif text-2xl text-navy-900 border-none pb-2 mb-6">Application Summary</h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 text-sm mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 text-sm mt-4">
               <div>
-                <span className="text-gray-500 block text-xs">Service</span>
-                <span className="font-medium text-navy-900">{serviceName}</span>
+                <span className="text-gray-500 block text-xs uppercase tracking-wider mb-1">Service</span>
+                <span className="font-medium font-serif text-lg text-navy-900">{serviceName}</span>
               </div>
               <div>
-                <span className="text-gray-500 block text-xs">Applicant</span>
-                <span className="font-medium text-navy-900">{applicantData?.firstName} {applicantData?.lastName}</span>
+                <span className="text-gray-500 block text-xs uppercase tracking-wider mb-1">Applicant</span>
+                <span className="font-medium font-serif text-lg text-navy-900">{applicantData?.firstName} {applicantData?.lastName}</span>
               </div>
               <div>
-                <span className="text-gray-500 block text-xs">Email</span>
-                <span className="font-medium text-navy-900">{applicantData?.email}</span>
+                <span className="text-gray-500 block text-xs uppercase tracking-wider mb-1">Email</span>
+                <span className="font-medium text-base text-navy-900">{applicantData?.email}</span>
               </div>
               <div>
-                <span className="text-gray-500 block text-xs">Phone</span>
-                <span className="font-medium text-navy-900">{applicantData?.phone}</span>
+                <span className="text-gray-500 block text-xs uppercase tracking-wider mb-1">Phone</span>
+                <span className="font-medium text-base text-navy-900">{applicantData?.phone}</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-navy-50 rounded-xl p-6 flex flex-col items-center justify-center text-center space-y-4 border border-navy-100">
-            <span className="text-navy-600 font-medium">Total Professional Fee</span>
-            <div className="text-4xl font-serif text-navy-900">
+          <div className="bg-white border-none shadow-xl shadow-navy-900/5 rounded-3xl p-10 flex flex-col items-center justify-center text-center space-y-4">
+            <span className="text-navy-500 font-medium uppercase tracking-widest text-sm">Total Professional Fee</span>
+            <div className="text-5xl md:text-6xl font-serif text-navy-900">
               {formatPrice({ USD: getAmount(), GBP: getAmount(), AED: getAmount(), INR: getAmount() })}
             </div>
-            <p className="text-xs text-navy-400 max-w-sm">
+            <p className="text-xs text-navy-400 max-w-md pt-2">
               Includes all secure transaction charges. After payment, you'll be redirected to upload any mandatory documents in your vault.
             </p>
 

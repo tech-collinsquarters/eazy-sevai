@@ -87,11 +87,11 @@ export default function DocumentUploadPage() {
   };
 
   return (
-    <div className="container mx-auto py-12 px-4 bg-gold-50 min-h-screen">
+    <div className="container mx-auto py-12 px-4 bg-gradient-to-br from-white via-blue-50 to-teal-50 min-h-[80vh]">
       <div className="max-w-2xl mx-auto space-y-6">
-        <div className="flex items-center gap-4 border-b border-gold-200 pb-6">
+        <div className="flex items-center gap-4 border-b border-[#0066b3]/10 pb-6">
           <Link href="/dashboard">
-            <Button variant="ghost" size="icon" className="text-navy-600 hover:text-navy-900 hover:bg-gold-100">
+            <Button variant="ghost" size="icon" className="text-navy-600 hover:text-navy-900 hover:bg-blue-50">
               <ArrowLeft className="w-5 h-5" />
             </Button>
           </Link>
@@ -101,10 +101,10 @@ export default function DocumentUploadPage() {
           </div>
         </div>
 
-        <Card className="border-gold-200 shadow-sm bg-white">
-          <CardHeader className="bg-navy-50/50 border-b border-navy-100">
+        <Card className="border-none shadow-2xl shadow-navy-900/10 bg-white rounded-3xl overflow-hidden">
+          <CardHeader className="bg-blue-50/50 border-b border-[#0066b3]/10">
             <CardTitle className="text-xl text-navy-900 flex items-center gap-2">
-              <UploadCloud className="w-5 h-5 text-gold-600" /> New File Upload
+              <UploadCloud className="w-5 h-5 text-[#0066b3]" /> New File Upload
             </CardTitle>
             <CardDescription>Supported formats: PDF, JPG, PNG, DOCX (Max 10MB)</CardDescription>
           </CardHeader>
@@ -123,7 +123,7 @@ export default function DocumentUploadPage() {
                   aria-label="Document Type"
                   value={documentType}
                   onChange={(e) => setDocumentType(e.target.value)}
-                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-gold-300 focus:ring-navy-500"
+                  className="flex h-12 w-full rounded-xl border border-gray-200 focus:border-[#14b8a6] focus:ring-[#14b8a6] focus:ring-1 focus-visible:outline-none bg-background px-3 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <option value="General">General</option>
                   <option value="Identity">Identity Proof (Passport, PAN, Aadhar)</option>
@@ -140,14 +140,14 @@ export default function DocumentUploadPage() {
                   id="file"
                   type="file"
                   onChange={handleFileChange}
-                  className="border-gold-300 focus-visible:ring-navy-500 cursor-pointer"
+                  className="border-gray-200 focus-visible:ring-[#14b8a6] h-12 cursor-pointer rounded-xl"
                   accept=".pdf,.jpg,.jpeg,.png,.docx"
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full bg-navy-900 hover:bg-navy-800 text-gold-50 h-12 text-lg disabled:opacity-70 disabled:cursor-not-allowed gap-2 mt-4"
+                className="w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white h-14 rounded-xl text-lg disabled:opacity-70 disabled:cursor-not-allowed gap-2 mt-4 shadow-md transition-all"
                 disabled={isUploading || !file}
               >
                 {isUploading ? (

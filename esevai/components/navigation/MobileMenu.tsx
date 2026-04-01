@@ -126,10 +126,10 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 </button>
               </>
             ) : status === 'unauthenticated' ? (
-              <>
-                <Link href="/login" onClick={onClose} className="block p-3 text-sm font-semibold text-brand-blue rounded-lg hover:bg-blue-50">Login</Link>
-                <Link href="/register" onClick={onClose} className="block p-3 text-sm font-semibold text-white bg-brand-blue rounded-lg hover:bg-brand-blue/90">Sign Up</Link>
-              </>
+              <div className="flex flex-col gap-2">
+                <Link href="/login" onClick={onClose} className="block p-3 text-sm font-semibold text-[#0066b3] bg-blue-50/50 border border-[#0066b3]/20 rounded-lg hover:bg-blue-50 text-center">NRI Login</Link>
+                <Link href="/register" onClick={onClose} className="block p-3 text-sm font-semibold text-white bg-gradient-to-r from-[#1e3a5f] to-[#0066b3] border border-[#14b8a6]/50 shadow-md rounded-lg text-center hover:opacity-90">Register as NRI</Link>
+              </div>
             ) : null}
           </div>
 

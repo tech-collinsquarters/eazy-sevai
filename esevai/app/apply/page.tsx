@@ -25,7 +25,7 @@ export default async function ApplyPage({
       <div className="container mx-auto py-20 px-4 text-center">
         <h1 className="text-2xl text-navy-900 font-serif mb-4">No Service Selected</h1>
         <p className="text-navy-600 mb-8">Please select a service from our catalog first.</p>
-        <Link href="/nri-services" className="inline-flex items-center text-gold-600 font-medium hover:text-gold-700">
+        <Link href="/nri-services" className="inline-flex items-center text-[#0066b3] font-medium hover:opacity-80">
           <ArrowLeft className="w-4 h-4 mr-2" /> Browse Services
         </Link>
       </div>
@@ -44,7 +44,7 @@ export default async function ApplyPage({
       <div className="container mx-auto py-20 px-4 text-center">
         <h1 className="text-2xl text-navy-900 font-serif mb-4">Service Not Found</h1>
         <p className="text-navy-600 mb-8">The service you're looking for doesn't exist.</p>
-        <Link href="/nri-services" className="inline-flex items-center text-gold-600 font-medium hover:text-gold-700">
+        <Link href="/nri-services" className="inline-flex items-center text-[#0066b3] font-medium hover:opacity-80">
           <ArrowLeft className="w-4 h-4 mr-2" /> Browse Services
         </Link>
       </div>
@@ -52,13 +52,13 @@ export default async function ApplyPage({
   }
 
   return (
-    <div className="min-h-screen bg-gold-50 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-teal-50 py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         <Link href={isNRI ? `/nri-services/${slug}` : `/services/${slug}`} className="inline-flex items-center text-navy-500 hover:text-navy-900 mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to {serviceData.name} details
         </Link>
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gold-200">
-          <div className="p-8 md:p-12">
+        <div className="bg-white rounded-3xl shadow-2xl shadow-navy-900/10 border-none overflow-hidden">
+          <div className="p-10 md:p-16">
             <h1 className="text-3xl md:text-4xl font-serif text-navy-900 mb-2">Apply for {serviceData.name}</h1>
             <p className="text-navy-600 mb-8">Please provide the details below to start your application securely.</p>
             

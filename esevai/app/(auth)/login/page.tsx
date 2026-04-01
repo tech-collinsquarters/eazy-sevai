@@ -38,13 +38,18 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-gold-50 py-12 px-4 sm:px-6 lg:px-8">
-      <Card className="w-full max-w-md border-gold-200 shadow-xl bg-white rounded-2xl overflow-hidden">
-        <div className="h-2 w-full bg-gradient-to-r from-navy-800 to-navy-500" />
-        <CardHeader className="space-y-3 pt-8 pb-4">
-          <CardTitle className="text-3xl font-serif text-navy-900 text-center">Welcome Back</CardTitle>
-          <CardDescription className="text-center text-navy-500 font-sans text-base">
-            Secure access to your Eazy Sevai portal.
+    <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-teal-50 py-12 px-4 sm:px-6 lg:px-8">
+      <Card className="w-full max-w-md border-none shadow-2xl shadow-[#1e3a5f]/10 bg-white rounded-3xl overflow-hidden">
+        <div className="h-2 w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6]" />
+        <CardHeader className="space-y-5 pt-10 pb-4 flex flex-col items-center text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-50 to-teal-50 border border-[#14b8a6]/20 shadow-sm text-sm text-[#0066b3] font-semibold tracking-wide uppercase shadow-[#0066b3]/5">
+            Eazy Sevai NRI Portal
+          </div>
+          <CardTitle className="text-3xl md:text-4xl font-serif text-navy-900 leading-tight">
+            Welcome Back
+          </CardTitle>
+          <CardDescription className="text-navy-500 font-sans text-base max-w-xs mx-auto">
+            Secure access to premium documentation services exclusively for Non-Resident Indians.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -64,14 +69,14 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="nri.portal@example.com" 
-                className="border-navy-200 focus-visible:ring-gold-500 h-12"
+                className="border-gray-200 focus-visible:ring-[#14b8a6] h-12 rounded-xl"
               />
             </div>
             
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password" className="text-navy-700 font-medium">Password</Label>
-                <Link href="/forgot-password" className="text-sm font-medium text-gold-600 hover:text-gold-700">
+                <Link href="/forgot-password" className="text-sm font-medium text-[#0066b3] hover:text-[#004d87]">
                   Forgot password?
                 </Link>
               </div>
@@ -82,23 +87,23 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••" 
-                className="border-navy-200 focus-visible:ring-gold-500 h-12"
+                className="border-gray-200 focus-visible:ring-[#14b8a6] h-12 rounded-xl"
               />
             </div>
 
             <Button 
               type="submit" 
-              className="w-full bg-navy-900 hover:bg-navy-800 text-gold-50 font-medium h-12 text-lg transition-colors"
+              className="w-full bg-gradient-to-r from-[#1e3a5f] to-[#0066b3] border border-[#14b8a6]/50 hover:opacity-90 hover:scale-[1.01] text-white font-semibold tracking-wide h-14 rounded-xl text-lg transition-all shadow-lg shadow-[#0066b3]/20"
               disabled={loading}
             >
-              {loading ? "Authenticating..." : "Sign In"}
+              {loading ? "Authenticating..." : "Sign in to NRI Portal"}
             </Button>
           </form>
         </CardContent>
         <CardFooter className="flex justify-center pb-8 pt-2">
           <p className="text-navy-600 text-sm">
             Don't have an account?{" "}
-            <Link href="/register" className="font-semibold text-gold-600 hover:text-gold-700 hover:underline">
+            <Link href="/register" className="font-semibold text-[#0066b3] hover:text-[#004d87] hover:underline">
               Create an account
             </Link>
           </p>

@@ -43,12 +43,12 @@ export default function NRIAllServicesPage() {
     .filter((cat) => cat.services.length > 0);
 
   return (
-    <div className="min-h-screen bg-gold-50">
+    <div className="min-h-screen bg-transparent">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-navy-900 to-navy-800 text-gold-50 py-16 md:py-20">
+      <section className="bg-gradient-to-br from-[#1e3a5f] to-[#0066b3] text-white py-16 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
-            <Badge className="bg-gold-500 text-navy-900 hover:bg-gold-400 font-sans tracking-wide mb-4">
+            <Badge className="bg-[#14b8a6] text-white hover:bg-[#0f9e8d] font-sans tracking-wide mb-4">
               NRI Premium Pricing
             </Badge>
             <h1 className="text-4xl md:text-5xl font-serif mb-4">
@@ -65,8 +65,8 @@ export default function NRIAllServicesPage() {
       {/* Trust Badges */}
       <section className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="flex items-center gap-4 bg-white p-4 rounded-xl border border-gold-200 shadow-sm">
-            <div className="bg-gold-50 p-3 rounded-full text-gold-600">
+          <div className="flex items-center gap-4 bg-white p-6 rounded-2xl shadow-lg shadow-navy-900/5 border-none">
+            <div className="bg-blue-50 p-3 rounded-full text-[#0066b3]">
               <Globe className="w-6 h-6" />
             </div>
             <div>
@@ -74,8 +74,8 @@ export default function NRIAllServicesPage() {
               <p className="text-sm text-navy-500">All services accessible from anywhere</p>
             </div>
           </div>
-          <div className="flex items-center gap-4 bg-white p-4 rounded-xl border border-gold-200 shadow-sm">
-            <div className="bg-gold-50 p-3 rounded-full text-gold-600">
+          <div className="flex items-center gap-4 bg-white p-6 rounded-2xl shadow-lg shadow-navy-900/5 border-none">
+            <div className="bg-blue-50 p-3 rounded-full text-[#0066b3]">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
@@ -88,13 +88,13 @@ export default function NRIAllServicesPage() {
 
       {/* Currency Switcher */}
       <section className="container mx-auto px-4 py-6 flex justify-center">
-        <div className="bg-white p-3 rounded-lg shadow-sm border border-gold-100 flex gap-2">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-[#0066b3]/10 flex gap-2">
           {(["USD", "GBP", "AED", "INR"] as const).map((c) => (
             <button
               key={c}
               onClick={() => setCurrency(c)}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                currency === c ? "bg-navy-900 text-gold-50" : "text-navy-500 hover:bg-navy-50"
+                currency === c ? "bg-[#0066b3] text-white" : "text-navy-500 hover:bg-blue-50"
               }`}
             >
               {c}
@@ -107,7 +107,7 @@ export default function NRIAllServicesPage() {
       <section className="container mx-auto px-4 py-12 space-y-16">
         {servicesByCategory.map((category) => (
           <div key={category.id} id={category.id}>
-            <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-gold-200">
+            <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-[#0066b3]/20">
               <span className="text-4xl">{category.icon}</span>
               <div>
                 <h2 className="text-3xl font-serif text-navy-900">{category.name}</h2>
@@ -119,29 +119,29 @@ export default function NRIAllServicesPage() {
               {category.services.map((service) => (
                 <Card
                   key={service.id}
-                  className="group hover:shadow-lg transition-all duration-300 border-gold-200 bg-white flex flex-col h-full overflow-hidden"
+                  className="group shadow-xl shadow-navy-900/5 hover:shadow-2xl hover:shadow-navy-900/10 border-none bg-white flex flex-col h-full overflow-hidden rounded-2xl cursor-pointer"
                 >
-                  <div className="h-1.5 w-full bg-gradient-to-r from-gold-400 to-gold-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                  <CardHeader>
+                  <div className="h-1.5 w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  <CardHeader className="p-8">
                     <div className="flex justify-between items-start mb-3 gap-2">
-                      <Badge variant="outline" className="border-navy-200 text-navy-600 flex-shrink-0">
+                      <Badge variant="outline" className="border-navy-100 text-navy-600 bg-navy-50 hover:bg-navy-50 flex-shrink-0">
                         {service.processingTime}
                       </Badge>
                       {service.popular && (
-                        <Badge className="bg-gold-500 text-navy-900 flex-shrink-0">HOT</Badge>
+                        <Badge className="bg-[#14b8a6] text-white flex-shrink-0">HOT</Badge>
                       )}
                     </div>
-                    <CardTitle className="font-serif text-xl text-navy-900 leading-tight">
+                    <CardTitle className="font-serif text-2xl text-navy-900 leading-tight">
                       {service.name}
                     </CardTitle>
                     <CardDescription className="text-navy-600 text-sm mt-2 line-clamp-2">
                       {service.description}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="flex-grow">
+                  <CardContent className="flex-grow px-8">
                     <div className="mb-4">
                       <p className="text-xs text-navy-400 uppercase tracking-wider mb-1">NRI Price</p>
-                      <div className="text-2xl font-bold text-navy-900">
+                      <div className="text-3xl font-serif font-semibold text-navy-900">
                         {currency === "INR" && "₹"}
                         {currency === "USD" && "$"}
                         {currency === "GBP" && "£"}
@@ -156,9 +156,9 @@ export default function NRIAllServicesPage() {
                       <p className="text-xs text-navy-400 mt-1">Includes international support</p>
                     </div>
                   </CardContent>
-                  <CardFooter className="pt-4 border-t border-gold-100">
+                  <CardFooter className="p-8 pt-6 border-t border-[#0066b3]/10">
                     <Link href={`/services/${service.slug}`} className="w-full">
-                      <button className="w-full flex items-center justify-center gap-2 bg-navy-900 hover:bg-navy-800 text-white py-2 rounded-lg font-medium transition-colors text-sm">
+                      <button className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white py-3 md:py-4 rounded-xl font-medium transition-colors text-sm">
                         View & Apply <ArrowRight className="w-4 h-4" />
                       </button>
                     </Link>
@@ -171,10 +171,10 @@ export default function NRIAllServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-navy-900 text-gold-50 py-16">
+      <section className="bg-gradient-to-r from-[#0066b3] to-[#1e3a5f] text-white py-16">
         <div className="container mx-auto px-4 text-center space-y-6">
           <h2 className="text-3xl font-serif">Need Help Choosing?</h2>
-          <p className="text-navy-100 max-w-2xl mx-auto">
+          <p className="text-blue-100 max-w-2xl mx-auto">
             Chat with our NRI specialists on WhatsApp to get personalized assistance with your service selection.
           </p>
           <a

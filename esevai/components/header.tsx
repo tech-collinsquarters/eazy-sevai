@@ -59,15 +59,15 @@ function AuthActions() {
     <div className="flex items-center gap-2">
       <Link
         href="/login"
-        className="px-4 py-2 text-sm font-semibold text-slate-800 border border-slate-300 rounded-lg hover:bg-slate-100 transition-colors"
+        className="px-4 py-2 text-sm font-semibold text-[#0066b3] bg-blue-50/50 border border-[#0066b3]/20 rounded-lg hover:bg-blue-50 transition-colors shadow-sm"
       >
-        Login
+        NRI Login
       </Link>
       <Link
         href="/register"
-        className="px-4 py-2 text-sm font-semibold text-white rounded-lg bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-95 transition-opacity"
+        className="px-4 py-2 text-sm font-semibold text-white rounded-lg bg-gradient-to-r from-[#1e3a5f] to-[#0066b3] border border-[#14b8a6]/50 shadow-md shadow-[#0066b3]/20 hover:opacity-90 transition-all hover:scale-[1.02]"
       >
-        Sign Up
+        Register as NRI
       </Link>
     </div>
   );

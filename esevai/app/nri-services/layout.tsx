@@ -6,7 +6,7 @@ import React from "react";
 export default function NRILayout({ children }: { children: React.ReactNode }) {
   return (
     <CurrencyProvider>
-      <div className="bg-gold-50 min-h-screen">
+      <div className="bg-gradient-to-br from-white via-blue-50 to-teal-50 min-h-screen">
         {children}
       </div>
     </CurrencyProvider>

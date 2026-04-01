@@ -57,7 +57,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="/nri-services"
-                  className="w-full sm:w-auto px-8 py-4 bg-navy-900 text-gold-400 rounded-lg hover:bg-navy-800 transition-all font-semibold text-lg border border-gold-400 shadow-xl"
+                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#1e3a5f] via-[#0066b3] to-[#14b8a6] text-white rounded-lg hover:opacity-90 hover:scale-[1.02] transition-all font-semibold text-lg shadow-[0_0_20px_rgba(20,184,166,0.2)] border border-[#14b8a6]/30"
                 >
                   Premium NRI Services ✨
                 </Link>

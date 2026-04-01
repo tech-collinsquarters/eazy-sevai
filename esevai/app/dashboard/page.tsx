@@ -24,24 +24,24 @@ export default async function DashboardPage() {
   });
 
   return (
-    <div className="container mx-auto py-12 px-4 space-y-8 bg-gold-50 min-h-screen">
-      <div className="flex justify-between items-end border-b border-gold-200 pb-6">
+    <div className="container mx-auto py-12 px-4 space-y-8 bg-gradient-to-br from-white via-blue-50 to-teal-50 min-h-screen">
+      <div className="flex justify-between items-end border-b border-[#0066b3]/10 pb-6">
         <div>
           <h1 className="text-3xl font-serif text-navy-900">Secure Vault</h1>
           <p className="text-navy-600 font-sans mt-2">Manage your sensitive documents safely via AES-256 encryption.</p>
         </div>
         <Link href="/dashboard/upload">
-          <Button className="bg-navy-900 hover:bg-navy-800 text-gold-50 gap-2">
+          <Button className="bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white gap-2 shadow-md">
             <UploadCloud className="w-4 h-4" /> Upload Document
           </Button>
         </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="md:col-span-2 border-gold-200 shadow-sm bg-white">
-          <CardHeader className="bg-navy-50/50 border-b border-navy-100">
+        <Card className="md:col-span-2 border-none shadow-xl shadow-navy-900/5 bg-white rounded-3xl overflow-hidden">
+          <CardHeader className="bg-blue-50/50 border-b border-[#0066b3]/10">
             <CardTitle className="text-xl text-navy-900 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-gold-600" /> Your Files
+              <FileText className="w-5 h-5 text-[#0066b3]" /> Your Files
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
@@ -50,15 +50,15 @@ export default async function DashboardPage() {
                 <FileText className="w-12 h-12 text-navy-200 mx-auto" />
                 <p className="text-navy-600">No documents found in your vault.</p>
                 <Link href="/dashboard/upload">
-                  <Button variant="outline" className="border-gold-300 text-gold-700 mt-2 hover:bg-gold-50">Upload your first file</Button>
+                  <Button variant="outline" className="border-[#0066b3]/50 text-[#0066b3] mt-2 hover:bg-blue-50 rounded-xl">Upload your first file</Button>
                 </Link>
               </div>
             ) : (
-              <ul className="divide-y divide-navy-100">
+              <ul className="divide-y divide-[#0066b3]/5">
                 {documents.map((doc: { id: string; fileName: string; createdAt: Date; fileSize: number; status: string }) => (
-                  <li key={doc.id} className="p-4 flex items-center justify-between hover:bg-gold-50 transition-colors">
+                  <li key={doc.id} className="p-4 flex items-center justify-between hover:bg-blue-50/50 transition-colors">
                     <div className="flex items-center gap-4">
-                      <div className="bg-navy-100 p-2 rounded text-navy-600">
+                      <div className="bg-blue-50 p-2 rounded-lg text-[#0066b3]">
                         <FileText className="w-5 h-5" />
                       </div>
                       <div>
@@ -68,7 +68,7 @@ export default async function DashboardPage() {
                     </div>
                     {/* The download link needs an API route to generate a presigned download URL */}
                     <a href={`/api/documents/download?id=${doc.id}`} target="_blank" rel="noopener noreferrer">
-                      <Button variant="ghost" size="icon" className="text-gold-600 hover:bg-gold-100 hover:text-gold-700">
+                      <Button variant="ghost" size="icon" className="text-[#0066b3] hover:bg-blue-100 hover:text-[#004d87]">
                         <Download className="w-4 h-4" />
                       </Button>
                     </a>
@@ -81,10 +81,10 @@ export default async function DashboardPage() {
 
         {/* Side Panel: Consultations & Security */}
         <div className="space-y-6 md:col-span-1">
-          <Card className="border-gold-200 shadow-md bg-white hover:border-gold-300 transition-colors">
-            <CardHeader className="bg-gold-50/50">
+          <Card className="border-none shadow-xl shadow-navy-900/5 bg-white rounded-3xl overflow-hidden hover:shadow-2xl transition-all">
+            <CardHeader className="bg-blue-50/50">
               <CardTitle className="text-xl text-navy-900 flex items-center gap-2">
-                <CalendarDays className="w-5 h-5 text-gold-600" /> Consultations
+                <CalendarDays className="w-5 h-5 text-[#14b8a6]" /> Consultations
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-4 space-y-4">
@@ -97,12 +97,12 @@ export default async function DashboardPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-medium">
+                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl">
                     Chat on WhatsApp for consultation
                   </Button>
                 </a>
                 <Link href="/dashboard/consultation">
-                  <Button className="w-full bg-gold-600 hover:bg-gold-500 text-white font-medium">
+                  <Button className="w-full bg-[#14b8a6] hover:bg-[#0f9e8d] text-white font-medium rounded-xl shadow-md">
                     Book in-app 1-on-1 session
                   </Button>
                 </Link>
@@ -110,18 +110,18 @@ export default async function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-gold-200 shadow-md bg-white hover:border-gold-300 transition-colors">
-            <CardHeader className="bg-navy-50/50">
+          <Card className="border-none shadow-xl shadow-navy-900/5 bg-white rounded-3xl overflow-hidden hover:shadow-2xl transition-all">
+            <CardHeader className="bg-blue-50/50">
               <CardTitle className="text-xl text-navy-900">Explore Services</CardTitle>
             </CardHeader>
             <CardContent className="pt-4 space-y-3">
               <Link href="/nri-services">
-                <Button className="w-full bg-navy-900 hover:bg-navy-800 text-white font-medium">
+                <Button className="w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white font-medium rounded-xl shadow-md">
                   View NRI Services
                 </Button>
               </Link>
               <Link href="/nri-services/all-services">
-                <Button className="w-full bg-gold-600 hover:bg-gold-500 text-white font-medium">
+                <Button className="w-full bg-white border border-[#0066b3] text-[#0066b3] hover:bg-blue-50 font-medium rounded-xl shadow-sm">
                   Browse All Services (NRI Pricing)
                 </Button>
               </Link>
@@ -131,13 +131,13 @@ export default async function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-none shadow-md bg-gradient-to-br from-navy-900 to-navy-800 text-white h-fit">
+          <Card className="border-none shadow-xl shadow-navy-900/10 bg-gradient-to-br from-[#1e3a5f] to-[#0066b3] text-white h-fit rounded-3xl overflow-hidden">
             <CardHeader>
-              <CardTitle className="text-gold-400 flex items-center gap-2">
+              <CardTitle className="text-[#14b8a6] flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5" /> Enterprise Grade Vault
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4 text-navy-100 text-sm">
+            <CardContent className="space-y-4 text-blue-100 text-sm">
               <p>
                 Documents are uploaded securely to our enterprise cloud storage, bypassing our application servers entirely for maximum security.
               </p>

@@ -50,8 +50,8 @@ export default function ConsultationPage() {
   });
 
   return (
-    <div className="container mx-auto py-12 px-4 space-y-8 bg-gold-50 min-h-screen">
-<div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-gold-200 pb-6 gap-3">
+    <div className="container mx-auto py-12 px-4 space-y-8 bg-gradient-to-br from-white via-blue-50 to-teal-50 min-h-[80vh]">
+<div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-[#0066b3]/10 pb-6 gap-3">
         <div>
           <h1 className="text-3xl font-serif text-navy-900">Video Consultation</h1>
           <p className="text-navy-600 font-sans mt-2">Book a 1-on-1 session with our NRI legal experts.</p>
@@ -62,12 +62,12 @@ export default function ConsultationPage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button className="bg-green-600 hover:bg-green-700 text-white font-medium">
+            <Button className="bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl">
               Chat on WhatsApp first
             </Button>
           </a>
           <Link href="/dashboard">
-            <Button variant="outline" className="border-gold-300 text-gold-700 hover:bg-gold-50">
+            <Button variant="outline" className="border-[#0066b3]/50 text-[#0066b3] hover:bg-blue-50 rounded-xl">
               Back to Dashboard
             </Button>
           </Link>
@@ -76,25 +76,25 @@ export default function ConsultationPage() {
 
       <div className="mx-auto max-w-4xl">
         {bookingSuccess ? (
-          <Card className="border-gold-200 shadow-sm bg-white text-center py-12">
+          <Card className="border-none shadow-2xl shadow-[#1e3a5f]/5 bg-white rounded-3xl text-center py-12">
             <CardContent className="space-y-4 flex flex-col items-center">
-              <CheckCircle2 className="w-16 h-16 text-green-500" />
+              <CheckCircle2 className="w-16 h-16 text-[#14b8a6]" />
               <h2 className="text-2xl font-serif text-navy-900">Booking Confirmed!</h2>
               <p className="text-navy-600 max-w-md">
                 Your consultation has been scheduled successfully. You will receive an email confirmation with the Zoom meeting details shortly.
               </p>
               <Link href="/dashboard" className="pt-4">
-                <Button className="bg-navy-900 hover:bg-navy-800 text-gold-50">
+                <Button className="bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white rounded-xl shadow-md h-12 px-6">
                   Return to Dashboard
                 </Button>
               </Link>
             </CardContent>
           </Card>
         ) : (
-          <Card className="border-gold-200 shadow-md bg-white overflow-hidden">
-            <CardHeader className="bg-navy-50/50 border-b border-navy-100">
+          <Card className="border-none shadow-2xl shadow-[#1e3a5f]/10 bg-white rounded-3xl overflow-hidden">
+            <CardHeader className="bg-blue-50/50 border-b border-[#0066b3]/10">
               <CardTitle className="text-xl text-navy-900 flex items-center gap-2">
-                <CalendarDays className="w-5 h-5 text-gold-600" /> Schedule Your Session
+                <CalendarDays className="w-5 h-5 text-[#0066b3]" /> Schedule Your Session
               </CardTitle>
               <CardDescription className="text-navy-600 font-sans">
                 Please select a convenient time for your consultation. All times are displayed in your local timezone.

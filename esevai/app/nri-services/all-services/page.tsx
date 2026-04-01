@@ -43,18 +43,18 @@ export default function NRIAllServicesPage() {
     .filter((cat) => cat.services.length > 0);
 
   return (
-    <div className="min-h-screen bg-transparent">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#1e3a5f] to-[#0066b3] text-white py-16 md:py-20">
-        <div className="container mx-auto px-4">
+      <section className="py-16 md:py-20" style={{ background: 'linear-gradient(135deg, rgba(10,22,40,0.9) 0%, rgba(30,58,95,0.7) 100%)' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <Badge className="bg-[#14b8a6] text-white hover:bg-[#0f9e8d] font-sans tracking-wide mb-4">
+            <Badge className="bg-[#14b8a6]/20 text-[#14b8a6] border border-[#14b8a6]/30 hover:bg-[#14b8a6]/30 font-sans tracking-wide mb-4">
               NRI Premium Pricing
             </Badge>
-            <h1 className="text-4xl md:text-5xl font-serif mb-4">
+            <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">
               All Government Services for NRIs
             </h1>
-            <p className="text-lg text-navy-100 font-sans">
+            <p className="text-lg text-white/70 font-sans">
               Access all 57+ government services with NRI-friendly pricing and international support.
               No travel to India required—we handle everything remotely.
             </p>
@@ -63,40 +63,33 @@ export default function NRIAllServicesPage() {
       </section>
 
       {/* Trust Badges */}
-      <section className="container mx-auto px-4 py-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="flex items-center gap-4 bg-white p-6 rounded-2xl shadow-lg shadow-navy-900/5 border-none">
-            <div className="bg-blue-50 p-3 rounded-full text-[#0066b3]">
-              <Globe className="w-6 h-6" />
-            </div>
+          <div className="flex items-center gap-4 bg-white/5 border border-white/10 backdrop-blur-sm p-6 rounded-2xl">
+            <div className="bg-[#14b8a6]/20 p-3 rounded-full text-[#14b8a6]"><Globe className="w-6 h-6" /></div>
             <div>
-              <h3 className="font-semibold text-navy-900">100% Remote Process</h3>
-              <p className="text-sm text-navy-500">All services accessible from anywhere</p>
+              <h3 className="font-semibold text-white">100% Remote Process</h3>
+              <p className="text-sm text-white/50">All services accessible from anywhere</p>
             </div>
           </div>
-          <div className="flex items-center gap-4 bg-white p-6 rounded-2xl shadow-lg shadow-navy-900/5 border-none">
-            <div className="bg-blue-50 p-3 rounded-full text-[#0066b3]">
-              <ShieldCheck className="w-6 h-6" />
-            </div>
+          <div className="flex items-center gap-4 bg-white/5 border border-white/10 backdrop-blur-sm p-6 rounded-2xl">
+            <div className="bg-[#14b8a6]/20 p-3 rounded-full text-[#14b8a6]"><ShieldCheck className="w-6 h-6" /></div>
             <div>
-              <h3 className="font-semibold text-navy-900">Expert Assistance</h3>
-              <p className="text-sm text-navy-500">Legal advocates & field agents at every step</p>
+              <h3 className="font-semibold text-white">Expert Assistance</h3>
+              <p className="text-sm text-white/50">Legal advocates & field agents at every step</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Currency Switcher */}
-      <section className="container mx-auto px-4 py-6 flex justify-center">
-        <div className="bg-white p-3 rounded-lg shadow-sm border border-[#0066b3]/10 flex gap-2">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 flex justify-center">
+        <div className="bg-white/5 border border-white/10 p-1.5 rounded-xl flex gap-1 backdrop-blur-sm">
           {(["USD", "GBP", "AED", "INR"] as const).map((c) => (
-            <button
-              key={c}
-              onClick={() => setCurrency(c)}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                currency === c ? "bg-[#0066b3] text-white" : "text-navy-500 hover:bg-blue-50"
-              }`}
-            >
+            <button key={c} onClick={() => setCurrency(c)}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                currency === c ? "bg-gradient-to-r from-[#0066b3] to-[#14b8a6] text-white shadow-md" : "text-white/50 hover:text-white hover:bg-white/5"
+              }`}>
               {c}
             </button>
           ))}
@@ -104,14 +97,14 @@ export default function NRIAllServicesPage() {
       </section>
 
       {/* Services by Category */}
-      <section className="container mx-auto px-4 py-12 space-y-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
         {servicesByCategory.map((category) => (
           <div key={category.id} id={category.id}>
-            <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-[#0066b3]/20">
+            <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-white/10">
               <span className="text-4xl">{category.icon}</span>
               <div>
-                <h2 className="text-3xl font-serif text-navy-900">{category.name}</h2>
-                <p className="text-sm text-navy-500 mt-1">{category.services.length} services available</p>
+                <h2 className="text-3xl font-serif text-white">{category.name}</h2>
+                <p className="text-sm text-white/40 mt-1">{category.services.length} services available</p>
               </div>
             </div>
 
@@ -171,20 +164,19 @@ export default function NRIAllServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-[#0066b3] to-[#1e3a5f] text-white py-16">
-        <div className="container mx-auto px-4 text-center space-y-6">
-          <h2 className="text-3xl font-serif">Need Help Choosing?</h2>
-          <p className="text-blue-100 max-w-2xl mx-auto">
-            Chat with our NRI specialists on WhatsApp to get personalized assistance with your service selection.
-          </p>
-          <a
-            href="https://wa.me/919999999999?text=Hi%20Eazy%20Sevai%20team,%20I%20need%20help%20selecting%20a%20service%20from%20your%20all-services%20catalog."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors"
-          >
-            Chat on WhatsApp
-          </a>
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <div className="bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl p-12">
+            <h2 className="text-3xl font-serif text-white">Need Help Choosing?</h2>
+            <p className="text-white/60 max-w-2xl mx-auto mt-3 mb-6">
+              Chat with our NRI specialists on WhatsApp to get personalized assistance with your service selection.
+            </p>
+            <a href="https://wa.me/919999999999?text=Hi%20Eazy%20Sevai%20team,%20I%20need%20help%20selecting%20a%20service%20from%20your%20all-services%20catalog."
+              target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-emerald-600 to-green-500 hover:opacity-90 text-white rounded-xl font-semibold transition-all shadow-lg shadow-green-500/20">
+              Chat on WhatsApp
+            </a>
+          </div>
         </div>
       </section>
     </div>

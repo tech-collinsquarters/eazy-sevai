@@ -87,17 +87,17 @@ export default function DocumentUploadPage() {
   };
 
   return (
-    <div className="container mx-auto py-12 px-4 bg-gradient-to-br from-white via-blue-50 to-teal-50 min-h-[80vh]">
+    <div className="min-h-[80vh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="max-w-2xl mx-auto space-y-6">
-        <div className="flex items-center gap-4 border-b border-[#0066b3]/10 pb-6">
+        <div className="flex items-center gap-4 border-b border-white/10 pb-6">
           <Link href="/dashboard">
-            <Button variant="ghost" size="icon" className="text-navy-600 hover:text-navy-900 hover:bg-blue-50">
+            <Button variant="ghost" size="icon" className="text-white/50 hover:text-white hover:bg-white/5">
               <ArrowLeft className="w-5 h-5" />
             </Button>
           </Link>
           <div>
-            <h1 className="text-3xl font-serif text-navy-900">Upload Document</h1>
-            <p className="text-navy-600 font-sans mt-1">Upload securely to your encrypted vault.</p>
+            <h1 className="text-3xl font-serif text-white">Upload Document</h1>
+            <p className="text-white/50 font-sans mt-1">Upload securely to your encrypted vault.</p>
           </div>
         </div>
 

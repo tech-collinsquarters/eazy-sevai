@@ -12,32 +12,32 @@ export default function NRIServicesDirectory() {
   const { formatPrice, currency, setCurrency } = useCurrency();
 
   return (
-    <div className="container mx-auto py-16 px-4 space-y-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
       {/* Header & Currency Switcher */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-[#0066b3]/20 pb-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-white/10 pb-8">
         <div className="space-y-4 max-w-2xl">
-          <Badge className="bg-navy-100 text-navy-800 hover:bg-navy-200 font-sans tracking-wide">
+          <Badge className="bg-[#14b8a6]/20 text-[#14b8a6] border border-[#14b8a6]/30 hover:bg-[#14b8a6]/30 font-sans tracking-wide">
             NRI Concierge Desk
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-serif text-navy-900">
+          <h1 className="text-4xl md:text-5xl font-serif text-white">
             Premium Document Services for NRIs
           </h1>
-          <p className="text-lg text-navy-600 font-sans">
-            Navigate Tamil Nadu&apos;s bureaucratic processes seamlessly from anywhere in the world. 
+          <p className="text-lg text-white/70 font-sans">
+            Navigate Tamil Nadu&apos;s bureaucratic processes seamlessly from anywhere in the world.
             No physical travel required. End-to-end legal assistance.
           </p>
         </div>
-        
+
         {/* Currency Switcher */}
-        <div className="bg-white p-2 rounded-lg shadow-sm border border-[#0066b3]/10 flex gap-2">
+        <div className="bg-white/5 border border-white/10 p-1.5 rounded-xl flex gap-1 backdrop-blur-sm">
           {(["USD", "GBP", "AED", "INR"] as const).map((c) => (
             <button
               key={c}
               onClick={() => setCurrency(c)}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                currency === c 
-                  ? "bg-[#0066b3] text-white" 
-                  : "text-navy-500 hover:bg-blue-50"
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                currency === c
+                  ? "bg-gradient-to-r from-[#0066b3] to-[#14b8a6] text-white shadow-md"
+                  : "text-white/50 hover:text-white hover:bg-white/5"
               }`}
             >
               {c}
@@ -46,33 +46,34 @@ export default function NRIServicesDirectory() {
         </div>
       </div>
 
+
       {/* Trust Badges */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="flex items-center gap-4 bg-white p-6 rounded-2xl shadow-lg shadow-navy-900/5 border-none">
-          <div className="bg-blue-50 p-3 rounded-full text-[#0066b3]">
+        <div className="flex items-center gap-4 bg-white/5 border border-white/10 backdrop-blur-sm p-6 rounded-2xl">
+          <div className="bg-[#14b8a6]/20 p-3 rounded-full text-[#14b8a6]">
             <Globe className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="font-semibold text-navy-900">100% Remote Process</h3>
-            <p className="text-sm text-navy-500">Zero travel required to India</p>
+            <h3 className="font-semibold text-white">100% Remote Process</h3>
+            <p className="text-sm text-white/50">Zero travel required to India</p>
           </div>
         </div>
-        <div className="flex items-center gap-4 bg-white p-6 rounded-2xl shadow-lg shadow-navy-900/5 border-none">
-          <div className="bg-blue-50 p-3 rounded-full text-[#0066b3]">
+        <div className="flex items-center gap-4 bg-white/5 border border-white/10 backdrop-blur-sm p-6 rounded-2xl">
+          <div className="bg-[#14b8a6]/20 p-3 rounded-full text-[#14b8a6]">
             <ShieldCheck className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="font-semibold text-navy-900">Legal Vetting</h3>
-            <p className="text-sm text-navy-500">Expert advocate representation</p>
+            <h3 className="font-semibold text-white">Legal Vetting</h3>
+            <p className="text-sm text-white/50">Expert advocate representation</p>
           </div>
         </div>
-        <div className="flex items-center gap-4 bg-white p-6 rounded-2xl shadow-lg shadow-navy-900/5 border-none">
-          <div className="bg-blue-50 p-3 rounded-full text-[#0066b3]">
+        <div className="flex items-center gap-4 bg-white/5 border border-white/10 backdrop-blur-sm p-6 rounded-2xl">
+          <div className="bg-[#14b8a6]/20 p-3 rounded-full text-[#14b8a6]">
             <Clock className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="font-semibold text-navy-900">Timely Dispatch</h3>
-            <p className="text-sm text-navy-500">Secure DHL delivery worldwide</p>
+            <h3 className="font-semibold text-white">Timely Dispatch</h3>
+            <p className="text-sm text-white/50">Secure DHL delivery worldwide</p>
           </div>
         </div>
       </div>
@@ -121,16 +122,16 @@ export default function NRIServicesDirectory() {
       </div>
 
       {/* CTA: All Services for NRIs */}
-      <div className="mt-16 bg-gradient-to-r from-[#0066b3] to-[#1e3a5f] rounded-2xl p-12 text-center shadow-lg">
+      <div className="mt-16 bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl p-12 text-center shadow-lg">
         <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">
           Want to Explore All Government Services?
         </h2>
-        <p className="text-blue-100 text-lg max-w-2xl mx-auto mb-8">
+        <p className="text-white/60 text-lg max-w-2xl mx-auto mb-8">
           Browse all 57+ Tamil Nadu government services with NRI-optimized pricing and international support.
         </p>
         <Link
           href="/nri-services/all-services"
-          className="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-gray-50 text-[#0066b3] rounded-lg font-semibold transition-colors shadow-lg text-lg"
+          className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white rounded-xl font-semibold transition-all shadow-lg text-lg hover:scale-[1.02]"
         >
           Browse All NRI Services <ArrowRight className="w-5 h-5" />
         </Link>

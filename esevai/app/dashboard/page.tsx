@@ -24,35 +24,35 @@ export default async function DashboardPage() {
   });
 
   return (
-    <div className="container mx-auto py-12 px-4 space-y-8 bg-gradient-to-br from-white via-blue-50 to-teal-50 min-h-screen">
-      <div className="flex justify-between items-end border-b border-[#0066b3]/10 pb-6">
+    <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 space-y-8 max-w-7xl mx-auto" style={{ color: 'white' }}>
+      <div className="flex justify-between items-end border-b border-white/10 pb-6">
         <div>
-          <h1 className="text-3xl font-serif text-navy-900">Secure Vault</h1>
-          <p className="text-navy-600 font-sans mt-2">Manage your sensitive documents safely via AES-256 encryption.</p>
+          <h1 className="text-3xl font-serif text-white">Secure Vault</h1>
+          <p className="text-white/50 font-sans mt-2">Manage your sensitive documents safely via AES-256 encryption.</p>
         </div>
         <Link href="/dashboard/upload">
-          <Button className="bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white gap-2 shadow-md">
+          <Button className="bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white gap-2 shadow-lg">
             <UploadCloud className="w-4 h-4" /> Upload Document
           </Button>
         </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="md:col-span-2 border-none shadow-xl shadow-navy-900/5 bg-white rounded-3xl overflow-hidden">
-          <CardHeader className="bg-blue-50/50 border-b border-[#0066b3]/10 py-5">
-            <CardTitle className="text-2xl font-serif text-navy-900 flex items-center gap-2.5">
-              <FileText className="w-6 h-6 text-[#0066b3]" strokeWidth={2.5} /> Your Files
+        <Card className="md:col-span-2 border border-white/10 shadow-xl rounded-3xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.04)', backdropFilter: 'blur(8px)' }}>
+          <CardHeader className="bg-white/5 border-b border-white/10 py-5">
+            <CardTitle className="text-2xl font-serif text-white flex items-center gap-2.5">
+              <FileText className="w-6 h-6 text-[#14b8a6]" strokeWidth={2.5} /> Your Files
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             {documents.length === 0 ? (
               <div className="p-16 flex flex-col items-center justify-center space-y-4 text-center">
-                <div className="bg-blue-50/50 p-4 rounded-full border border-blue-100">
-                  <FileText className="w-12 h-12 text-[#0066b3] opacity-50" />
+                <div className="bg-white/5 p-4 rounded-full border border-white/10">
+                  <FileText className="w-12 h-12 text-[#14b8a6] opacity-50" />
                 </div>
-                <p className="text-navy-600 font-medium">No documents found in your vault.</p>
+                <p className="text-white/50 font-medium">No documents found in your vault.</p>
                 <Link href="/dashboard/upload">
-                  <Button variant="outline" className="border-[#14b8a6]/50 text-[#0066b3] mt-2 hover:bg-teal-50 rounded-xl shadow-sm px-6 h-11 font-semibold">
+                  <Button variant="outline" className="border-[#14b8a6]/30 text-[#14b8a6] mt-2 hover:bg-white/5 rounded-xl shadow-sm px-6 h-11 font-semibold">
                     Upload your first file
                   </Button>
                 </Link>

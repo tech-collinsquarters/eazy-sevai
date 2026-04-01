@@ -38,17 +38,17 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-teal-50 py-12 px-4 sm:px-6 lg:px-8">
-      <Card className="w-full max-w-md border-none shadow-2xl shadow-[#1e3a5f]/10 bg-white rounded-3xl overflow-hidden">
-        <div className="h-2 w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6]" />
+    <div className="min-h-[80vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
+      <Card className="w-full max-w-md border border-white/10 shadow-2xl shadow-black/40 rounded-3xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.04)', backdropFilter: 'blur(16px)' }}>
+        <div className="h-1 w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6]" />
         <CardHeader className="space-y-5 pt-10 pb-4 flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-50 to-teal-50 border border-[#14b8a6]/20 shadow-sm text-sm text-[#0066b3] font-semibold tracking-wide uppercase shadow-[#0066b3]/5">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#14b8a6]/20 border border-[#14b8a6]/30 text-sm text-[#14b8a6] font-semibold tracking-wide uppercase">
             Eazy Sevai NRI Portal
           </div>
-          <CardTitle className="text-3xl md:text-4xl font-serif text-navy-900 leading-tight">
+          <CardTitle className="text-3xl md:text-4xl font-serif text-white leading-tight">
             Welcome Back
           </CardTitle>
-          <CardDescription className="text-navy-500 font-sans text-base max-w-xs mx-auto">
+          <CardDescription className="text-white/50 font-sans text-sm max-w-xs mx-auto">
             Secure access to premium documentation services exclusively for Non-Resident Indians.
           </CardDescription>
         </CardHeader>
@@ -61,22 +61,22 @@ export default function LoginPage() {
             )}
             
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-navy-700 font-medium">Email Address</Label>
+              <Label htmlFor="email" className="text-white/70 font-medium text-sm">Email Address</Label>
               <Input 
                 id="email" 
                 type="email" 
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="nri.portal@example.com" 
-                className="border-gray-200 focus-visible:ring-[#14b8a6] h-12 rounded-xl"
+                placeholder="your@email.com" 
+                className="border-white/10 bg-white/5 text-white placeholder:text-white/30 focus-visible:ring-[#14b8a6] h-12 rounded-xl"
               />
             </div>
             
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password" className="text-navy-700 font-medium">Password</Label>
-                <Link href="/forgot-password" className="text-sm font-medium text-[#0066b3] hover:text-[#004d87]">
+                <Label htmlFor="password" className="text-white/70 font-medium text-sm">Password</Label>
+                <Link href="/forgot-password" className="text-xs font-medium text-[#14b8a6] hover:text-[#0f9e8d]">
                   Forgot password?
                 </Link>
               </div>
@@ -87,7 +87,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••" 
-                className="border-gray-200 focus-visible:ring-[#14b8a6] h-12 rounded-xl"
+                className="border-white/10 bg-white/5 text-white placeholder:text-white/30 focus-visible:ring-[#14b8a6] h-12 rounded-xl"
               />
             </div>
 
@@ -100,10 +100,10 @@ export default function LoginPage() {
             </Button>
           </form>
         </CardContent>
-        <CardFooter className="flex justify-center pb-8 pt-2">
-          <p className="text-navy-600 text-sm">
+        <CardFooter className="flex justify-center pb-10 pt-2">
+          <p className="text-white/50 text-sm">
             Don't have an account?{" "}
-            <Link href="/register" className="font-semibold text-[#0066b3] hover:text-[#004d87] hover:underline">
+            <Link href="/register" className="font-semibold text-[#14b8a6] hover:text-[#0f9e8d] hover:underline">
               Create an account
             </Link>
           </p>

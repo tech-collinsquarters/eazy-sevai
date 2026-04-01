@@ -55,7 +55,7 @@ export default function MegaMenu() {
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
         >
-          <div className="bg-white rounded-xl shadow-2xl border border-gray-200 w-[95vw] max-w-5xl">
+          <div className="bg-white rounded-xl shadow-2xl border border-gray-200 w-[95vw] max-w-5xl flex flex-col" style={{ maxHeight: 'calc(100vh - 120px)' }}>
             {/* Header with brand gradient */}
             <div className="border-b border-gray-200 px-6 py-4 bg-gradient-to-r from-blue-50 via-teal-50 to-blue-50">
               <div className="flex items-center justify-between">
@@ -74,8 +74,8 @@ export default function MegaMenu() {
               </div>
             </div>
 
-            {/* Mega Menu Content */}
-            <div className="p-6 max-h-[500px] overflow-y-auto">
+            {/* Mega Menu Content - scrollable */}
+            <div className="p-6 overflow-y-auto flex-1">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {dynamicServiceCategories.map((category) => (
                   <div key={category.id} className="space-y-3">

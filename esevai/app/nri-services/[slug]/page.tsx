@@ -48,9 +48,8 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-transparent">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#1e3a5f] to-[#0066b3] text-white py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0066b3] via-[#14b8a6] to-[#0066b3]" />
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(10,22,40,0.8) 0%, rgba(30,58,95,0.6) 100%)' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <Link href="/nri-services" className="inline-flex items-center text-navy-300 hover:text-white mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" /> Back to All Services
           </Link>
@@ -147,38 +146,36 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Requirements Section */}
-      <section className="py-20 container mx-auto px-4">
-        <div className="max-w-3xl mx-auto space-y-12">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl md:text-4xl font-serif text-navy-900">Required Documents</h2>
-            <p className="text-navy-600 text-lg">
-              To ensure swift processing, please keep digital copies of the following documents ready for upload via our secure vault.
-            </p>
-          </div>
-          
-          <div className="bg-white rounded-3xl p-10 md:p-12 border-none shadow-xl shadow-navy-900/5 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#0066b3]/5 rounded-bl-full -z-0 opacity-100" />
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-              {service.requiredDocuments.map((doc, idx) => (
-                <li key={idx} className="flex items-center gap-3 bg-blue-50/50 p-5 rounded-xl border-none shadow-sm shadow-navy-900/5">
-                  <FileText className="w-5 h-5 text-[#0066b3] shrink-0" />
-                  <span className="font-medium font-serif text-lg text-navy-800">{doc}</span>
-                </li>
-              ))}
-            </ul>
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto space-y-12">
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl md:text-4xl font-serif text-white">Required Documents</h2>
+              <p className="text-white/60 text-lg">
+                To ensure swift processing, please keep digital copies of the following documents ready for upload via our secure vault.
+              </p>
+            </div>
+            <div className="bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl p-10 md:p-12 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#14b8a6]/5 rounded-bl-full -z-0 opacity-100" />
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                {service.requiredDocuments.map((doc, idx) => (
+                  <li key={idx} className="flex items-center gap-3 bg-white/5 border border-white/10 p-5 rounded-xl">
+                    <FileText className="w-5 h-5 text-[#14b8a6] shrink-0" />
+                    <span className="font-medium font-serif text-lg text-white">{doc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
-      
-      {/* Process Section */}
-      <section className="bg-white py-20 border-t border-navy-50">
-        <div className="container mx-auto px-4 max-w-5xl">
+
+      <section className="py-20 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif text-navy-900">How It Works</h2>
-            <p className="text-navy-600 text-lg">A seamless 4-step process designed entirely for non-residents.</p>
+            <h2 className="text-3xl md:text-4xl font-serif text-white">How It Works</h2>
+            <p className="text-white/60 text-lg">A seamless 4-step process designed entirely for non-residents.</p>
           </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
               { title: "Apply Online", desc: "Select your service and pay securely via our international gateway." },
@@ -187,15 +184,13 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
               { title: "Doorstep Delivery", desc: "Receive your official certificates via secure tracked DHL courier." }
             ].map((step, idx) => (
               <div key={idx} className="relative group">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-navy-900 text-white font-serif text-xl font-bold mb-6 group-hover:bg-[#0066b3] transition-colors shadow-lg">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6] text-white font-serif text-xl font-bold mb-6 shadow-lg shadow-[#0066b3]/30">
                   {idx + 1}
                 </div>
-                <h3 className="text-xl font-semibold text-navy-900 mb-3">{step.title}</h3>
-                <p className="text-navy-600 leading-relaxed">{step.desc}</p>
-                
-                {/* Connector line for desktop */}
+                <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
+                <p className="text-white/60 leading-relaxed">{step.desc}</p>
                 {idx < 3 && (
-                  <div className="hidden md:block absolute top-6 left-[3rem] w-[calc(100%-3rem)] h-[1px] bg-navy-100 -z-10" />
+                  <div className="hidden md:block absolute top-6 left-[3rem] w-[calc(100%-3rem)] h-[1px] bg-white/10 -z-10" />
                 )}
               </div>
             ))}

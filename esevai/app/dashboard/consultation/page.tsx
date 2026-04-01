@@ -50,11 +50,11 @@ export default function ConsultationPage() {
   });
 
   return (
-    <div className="container mx-auto py-12 px-4 space-y-8 bg-gradient-to-br from-white via-blue-50 to-teal-50 min-h-[80vh]">
-<div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-[#0066b3]/10 pb-6 gap-3">
+    <div className="min-h-[80vh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-white/10 pb-6 gap-3">
         <div>
-          <h1 className="text-3xl font-serif text-navy-900">Video Consultation</h1>
-          <p className="text-navy-600 font-sans mt-2">Book a 1-on-1 session with our NRI legal experts.</p>
+          <h1 className="text-3xl font-serif text-white">Video Consultation</h1>
+          <p className="text-white/50 font-sans mt-2">Book a 1-on-1 session with our NRI legal experts.</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
           <a
@@ -67,7 +67,7 @@ export default function ConsultationPage() {
             </Button>
           </a>
           <Link href="/dashboard">
-            <Button variant="outline" className="w-full sm:w-auto border-[#0066b3]/30 text-[#0066b3] hover:bg-blue-50 hover:border-[#0066b3]/60 rounded-xl font-semibold h-11 px-6 shadow-sm transition-all">
+            <Button variant="outline" className="w-full sm:w-auto border-white/20 text-white/70 hover:bg-white/5 hover:text-white rounded-xl font-semibold h-11 px-6 transition-all">
               Back to Secure Vault
             </Button>
           </Link>

@@ -1,0 +1,14 @@
+import React from "react";
+
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      className="min-h-screen"
+      style={{
+        background: 'linear-gradient(135deg, #0a1628 0%, #0f2345 30%, #1a3660 60%, #0f2d55 80%, #0a1e3d 100%)',
+      }}
+    >
+      {children}
+    </div>
+  );
+}

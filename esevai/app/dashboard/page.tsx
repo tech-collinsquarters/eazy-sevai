@@ -39,31 +39,35 @@ export default async function DashboardPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="md:col-span-2 border-none shadow-xl shadow-navy-900/5 bg-white rounded-3xl overflow-hidden">
-          <CardHeader className="bg-blue-50/50 border-b border-[#0066b3]/10">
-            <CardTitle className="text-xl text-navy-900 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-[#0066b3]" /> Your Files
+          <CardHeader className="bg-blue-50/50 border-b border-[#0066b3]/10 py-5">
+            <CardTitle className="text-2xl font-serif text-navy-900 flex items-center gap-2.5">
+              <FileText className="w-6 h-6 text-[#0066b3]" strokeWidth={2.5} /> Your Files
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             {documents.length === 0 ? (
-              <div className="p-12 text-center space-y-3">
-                <FileText className="w-12 h-12 text-navy-200 mx-auto" />
-                <p className="text-navy-600">No documents found in your vault.</p>
+              <div className="p-16 flex flex-col items-center justify-center space-y-4 text-center">
+                <div className="bg-blue-50/50 p-4 rounded-full border border-blue-100">
+                  <FileText className="w-12 h-12 text-[#0066b3] opacity-50" />
+                </div>
+                <p className="text-navy-600 font-medium">No documents found in your vault.</p>
                 <Link href="/dashboard/upload">
-                  <Button variant="outline" className="border-[#0066b3]/50 text-[#0066b3] mt-2 hover:bg-blue-50 rounded-xl">Upload your first file</Button>
+                  <Button variant="outline" className="border-[#14b8a6]/50 text-[#0066b3] mt-2 hover:bg-teal-50 rounded-xl shadow-sm px-6 h-11 font-semibold">
+                    Upload your first file
+                  </Button>
                 </Link>
               </div>
             ) : (
               <ul className="divide-y divide-[#0066b3]/5">
                 {documents.map((doc: { id: string; fileName: string; createdAt: Date; fileSize: number; status: string }) => (
                   <li key={doc.id} className="p-4 flex items-center justify-between hover:bg-blue-50/50 transition-colors">
-                    <div className="flex items-center gap-4">
-                      <div className="bg-blue-50 p-2 rounded-lg text-[#0066b3]">
-                        <FileText className="w-5 h-5" />
+                    <div className="flex items-center gap-4 min-w-0 flex-1">
+                      <div className="bg-blue-50 p-2 rounded-xl text-[#0066b3] shrink-0 border border-blue-100/50">
+                        <FileText className="w-6 h-6" />
                       </div>
-                      <div>
-                        <p className="font-medium text-navy-900">{doc.fileName}</p>
-                        <p className="text-xs text-navy-500">{new Date(doc.createdAt).toLocaleDateString()} &bull; {Math.round(doc.fileSize / 1024)} KB &bull; <span className="uppercase">{doc.status}</span></p>
+                      <div className="min-w-0 flex-1 pr-4">
+                        <p className="font-semibold text-navy-900 truncate">{doc.fileName}</p>
+                        <p className="text-xs text-navy-500 font-medium mt-0.5">{new Date(doc.createdAt).toLocaleDateString()} &bull; {Math.round(doc.fileSize / 1024)} KB &bull; <span className="uppercase text-[#14b8a6]">{doc.status}</span></p>
                       </div>
                     </div>
                     {/* The download link needs an API route to generate a presigned download URL */}
@@ -82,9 +86,9 @@ export default async function DashboardPage() {
         {/* Side Panel: Consultations & Security */}
         <div className="space-y-6 md:col-span-1">
           <Card className="border-none shadow-xl shadow-navy-900/5 bg-white rounded-3xl overflow-hidden hover:shadow-2xl transition-all">
-            <CardHeader className="bg-blue-50/50">
-              <CardTitle className="text-xl text-navy-900 flex items-center gap-2">
-                <CalendarDays className="w-5 h-5 text-[#14b8a6]" /> Consultations
+            <CardHeader className="bg-blue-50/50 py-5">
+              <CardTitle className="text-2xl font-serif text-navy-900 flex items-center gap-2.5">
+                <CalendarDays className="w-6 h-6 text-[#14b8a6]" strokeWidth={2.5} /> Consultations
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-4 space-y-4">
@@ -97,13 +101,13 @@ export default async function DashboardPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl">
-                    Chat on WhatsApp for consultation
+                  <Button className="w-full bg-gradient-to-r from-emerald-600 to-green-500 hover:opacity-90 shadow-lg shadow-green-500/20 text-white font-semibold rounded-xl h-12 transition-all hover:scale-[1.01]">
+                    Chat on WhatsApp
                   </Button>
                 </a>
                 <Link href="/dashboard/consultation">
-                  <Button className="w-full bg-[#14b8a6] hover:bg-[#0f9e8d] text-white font-medium rounded-xl shadow-md">
-                    Book in-app 1-on-1 session
+                  <Button className="w-full bg-gradient-to-r from-[#1e3a5f] to-[#0066b3] border border-[#14b8a6]/50 shadow-lg shadow-[#0066b3]/20 hover:scale-[1.01] text-white font-semibold rounded-xl h-12 transition-all hover:opacity-90">
+                    Book Video Session
                   </Button>
                 </Link>
               </div>
@@ -111,18 +115,18 @@ export default async function DashboardPage() {
           </Card>
 
           <Card className="border-none shadow-xl shadow-navy-900/5 bg-white rounded-3xl overflow-hidden hover:shadow-2xl transition-all">
-            <CardHeader className="bg-blue-50/50">
-              <CardTitle className="text-xl text-navy-900">Explore Services</CardTitle>
+            <CardHeader className="bg-blue-50/50 py-5">
+              <CardTitle className="text-2xl font-serif text-navy-900">Explore Services</CardTitle>
             </CardHeader>
-            <CardContent className="pt-4 space-y-3">
+            <CardContent className="pt-6 flex flex-col gap-4">
               <Link href="/nri-services">
-                <Button className="w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white font-medium rounded-xl shadow-md">
+                <Button className="w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white font-medium rounded-xl h-12 shadow-md hover:scale-[1.01] transition-all">
                   View NRI Services
                 </Button>
               </Link>
               <Link href="/nri-services/all-services">
-                <Button className="w-full bg-white border border-[#0066b3] text-[#0066b3] hover:bg-blue-50 font-medium rounded-xl shadow-sm">
-                  Browse All Services (NRI Pricing)
+                <Button className="w-full bg-white border-2 border-[#0066b3]/80 text-[#0066b3] hover:bg-blue-50 font-bold rounded-xl h-12 shadow-sm hover:scale-[1.01] transition-all mt-1">
+                  Browse All Services (NRI)
                 </Button>
               </Link>
               <p className="text-xs text-navy-500">
@@ -132,9 +136,9 @@ export default async function DashboardPage() {
           </Card>
 
           <Card className="border-none shadow-xl shadow-navy-900/10 bg-gradient-to-br from-[#1e3a5f] to-[#0066b3] text-white h-fit rounded-3xl overflow-hidden">
-            <CardHeader>
-              <CardTitle className="text-[#14b8a6] flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5" /> Enterprise Grade Vault
+            <CardHeader className="py-5">
+              <CardTitle className="text-2xl font-serif text-[#14b8a6] flex items-center gap-2.5">
+                <ShieldCheck className="w-6 h-6" strokeWidth={2.5} /> Enterprise Vault
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-blue-100 text-sm">

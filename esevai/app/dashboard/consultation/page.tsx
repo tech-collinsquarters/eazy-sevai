@@ -56,19 +56,19 @@ export default function ConsultationPage() {
           <h1 className="text-3xl font-serif text-navy-900">Video Consultation</h1>
           <p className="text-navy-600 font-sans mt-2">Book a 1-on-1 session with our NRI legal experts.</p>
         </div>
-        <div className="flex flex-col sm:flex-row gap-2">
+        <div className="flex flex-col sm:flex-row gap-3">
           <a
             href="https://wa.me/919999999999?text=Hi%20Eazy%20Sevai%20team,%20I%20would%20like%20to%20book%20a%201-on-1%20consultation%20session"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button className="bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl">
-              Chat on WhatsApp first
+            <Button className="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-green-500 hover:opacity-90 shadow-lg shadow-green-500/20 text-white font-semibold rounded-xl h-11 px-6 transition-all hover:scale-[1.02]">
+              Chat on WhatsApp First
             </Button>
           </a>
           <Link href="/dashboard">
-            <Button variant="outline" className="border-[#0066b3]/50 text-[#0066b3] hover:bg-blue-50 rounded-xl">
-              Back to Dashboard
+            <Button variant="outline" className="w-full sm:w-auto border-[#0066b3]/30 text-[#0066b3] hover:bg-blue-50 hover:border-[#0066b3]/60 rounded-xl font-semibold h-11 px-6 shadow-sm transition-all">
+              Back to Secure Vault
             </Button>
           </Link>
         </div>

@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { nriServices } from "@/lib/nri-services";
 import { useCurrency } from "@/components/providers/CurrencyProvider";
@@ -12,7 +11,8 @@ export default function NRIServicesDirectory() {
   const { formatPrice, currency, setCurrency } = useCurrency();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-10">
+
       {/* Header & Currency Switcher */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-white/10 pb-8">
         <div className="space-y-4 max-w-2xl">
@@ -29,7 +29,7 @@ export default function NRIServicesDirectory() {
         </div>
 
         {/* Currency Switcher */}
-        <div className="bg-white/5 border border-white/10 p-1.5 rounded-xl flex gap-1 backdrop-blur-sm">
+        <div className="bg-white/5 border border-white/10 p-1.5 rounded-xl flex gap-1 backdrop-blur-sm flex-shrink-0">
           {(["USD", "GBP", "AED", "INR"] as const).map((c) => (
             <button
               key={c}
@@ -45,7 +45,6 @@ export default function NRIServicesDirectory() {
           ))}
         </div>
       </div>
-
 
       {/* Trust Badges */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -78,7 +77,7 @@ export default function NRIServicesDirectory() {
         </div>
       </div>
 
-      {/* Services Grid */}
+      {/* Services Grid — all services, no search filter */}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
         {nriServices.map((service) => (
           <Card key={service.id} className="group shadow-xl shadow-navy-900/5 hover:shadow-2xl hover:shadow-navy-900/10 border-none bg-white flex flex-col h-full overflow-hidden rounded-2xl cursor-pointer">
@@ -101,7 +100,7 @@ export default function NRIServicesDirectory() {
             </CardHeader>
             <CardContent className="flex-grow px-8">
               <ul className="space-y-3">
-                {service.benefits.slice(0, 3).map((benefit, idx) => (
+                {service.benefits.slice(0, 3).map((benefit: string, idx: number) => (
                   <li key={idx} className="flex items-start gap-2 text-sm text-navy-700">
                     <ShieldCheck className="w-4 h-4 text-[#14b8a6] mt-0.5 shrink-0" />
                     <span>{benefit}</span>
@@ -110,8 +109,8 @@ export default function NRIServicesDirectory() {
               </ul>
             </CardContent>
             <CardFooter className="p-8 pt-6 border-t border-navy-50">
-              <Link 
-                href={`/nri-services/${service.slug}`} 
+              <Link
+                href={`/nri-services/${service.slug}`}
                 className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white py-3 md:py-4 rounded-xl font-medium transition-colors"
               >
                 View Details & Apply <ArrowRight className="w-4 h-4" />
@@ -121,8 +120,8 @@ export default function NRIServicesDirectory() {
         ))}
       </div>
 
-      {/* CTA: All Services for NRIs */}
-      <div className="mt-16 bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl p-12 text-center shadow-lg">
+      {/* CTA */}
+      <div className="mt-6 bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl p-12 text-center shadow-lg">
         <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">
           Want to Explore All Government Services?
         </h2>

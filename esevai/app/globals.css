@@ -176,9 +176,21 @@ body {
    FOCUS STYLES
    ================================ */
 
-*:focus-visible {
+/* Inputs handle their own focus styles — exclude from wildcard */
+*:focus-visible:not(input):not(textarea):not(select) {
   outline: 2px solid #0066b3;
   outline-offset: 2px;
+}
+
+/* Inputs: no browser outline, rely on component-level box-shadow */
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible,
+select:focus,
+select:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 button:focus-visible,

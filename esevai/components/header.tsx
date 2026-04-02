@@ -90,10 +90,6 @@ function NRIHeader() {
                   className="px-4 py-2 text-sm font-semibold text-white/80 hover:text-white border border-white/20 rounded-lg hover:bg-white/10 transition-all">
                   Login
                 </Link>
-                <Link href="/register"
-                  className="px-4 py-2 text-sm font-semibold text-white rounded-lg bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 hover:scale-[1.02] transition-all shadow-lg shadow-[#0066b3]/30">
-                  Register
-                </Link>
               </div>
             ) : null}
 
@@ -134,7 +130,6 @@ function NRIHeader() {
           {status === 'unauthenticated' && (
             <div className="flex flex-col gap-2 pt-2">
               <Link href="/login" onClick={() => setMobileOpen(false)} className="block text-center px-4 py-3 text-sm font-semibold text-white border border-white/20 rounded-lg">Login</Link>
-              <Link href="/register" onClick={() => setMobileOpen(false)} className="block text-center px-4 py-3 text-sm font-semibold text-white bg-gradient-to-r from-[#0066b3] to-[#14b8a6] rounded-lg">Register</Link>
             </div>
           )}
           <div className="h-px bg-white/10 my-2" />

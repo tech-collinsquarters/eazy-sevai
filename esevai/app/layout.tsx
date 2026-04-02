@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${bodoni.variable} font-sans antialiased text-navy-900 bg-white`}>
+      <body suppressHydrationWarning className={`${bodoni.variable} font-sans antialiased text-navy-900 bg-white`}>
         <NextAuthProvider>
           <Header />
           <main>

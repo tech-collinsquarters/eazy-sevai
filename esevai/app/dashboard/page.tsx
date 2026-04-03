@@ -97,7 +97,7 @@ export default async function DashboardPage() {
               </p>
               <div className="grid grid-cols-1 gap-3">
                 <a
-                  href="https://wa.me/919999999999?text=Hi%20Eazy%20Sevai%20team,%20I%20want%20a%201-on-1%20NRI%20consultation"
+                  href="https://wa.me/919944633029?text=Hi%20Eazy%20Sevai%20team,%20I%20want%20a%201-on-1%20NRI%20consultation"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

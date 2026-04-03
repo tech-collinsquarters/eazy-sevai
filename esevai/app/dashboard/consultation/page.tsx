@@ -58,7 +58,7 @@ export default function ConsultationPage() {
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
           <a
-            href="https://wa.me/919999999999?text=Hi%20Eazy%20Sevai%20team,%20I%20would%20like%20to%20book%20a%201-on-1%20consultation%20session"
+            href="https://wa.me/919944633029?text=Hi%20Eazy%20Sevai%20team,%20I%20would%20like%20to%20book%20a%201-on-1%20consultation%20session"
             target="_blank"
             rel="noopener noreferrer"
           >

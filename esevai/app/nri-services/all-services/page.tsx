@@ -234,28 +234,31 @@ function ServiceCard({ service, currency, formatPrice, convertToNRIPrice }: {
   convertToNRIPrice: (price: number, currency: "USD" | "GBP" | "AED" | "INR") => number;
 }) {
   return (
-    <Card className="group shadow-xl shadow-navy-900/5 hover:shadow-2xl hover:shadow-navy-900/10 border-none bg-white flex flex-col h-full overflow-hidden rounded-2xl cursor-pointer">
+    <Card 
+      className="group shadow-xl shadow-navy-900/20 hover:shadow-2xl border-none flex flex-col h-full overflow-hidden rounded-2xl cursor-pointer"
+      style={{ background: "linear-gradient(135deg, #0a1628 0%, #0d2240 100%)" }}
+    >
       <div className="h-1.5 w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
       <CardHeader className="p-8">
         <div className="flex justify-between items-start mb-3 gap-2">
-          <Badge variant="outline" className="border-navy-100 text-navy-600 bg-navy-50 hover:bg-navy-50 flex-shrink-0">
+          <Badge variant="outline" className="border-white/20 text-white/70 bg-white/10 hover:bg-white/20 flex-shrink-0">
             {service.processingTime}
           </Badge>
           {service.popular && (
             <Badge className="bg-[#14b8a6] text-white flex-shrink-0">HOT</Badge>
           )}
         </div>
-        <CardTitle className="font-serif text-2xl text-navy-900 leading-tight">
+        <CardTitle className="font-serif text-2xl text-white leading-tight">
           {service.name}
         </CardTitle>
-        <CardDescription className="text-navy-600 text-sm mt-2 line-clamp-2">
+        <CardDescription className="text-white/60 text-sm mt-2 line-clamp-2">
           {service.description}
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-grow px-8">
         <div className="mb-4">
-          <p className="text-xs text-navy-400 uppercase tracking-wider mb-1">NRI Price</p>
-          <div className="text-3xl font-serif font-semibold text-navy-900">
+          <p className="text-xs text-navy-300 uppercase tracking-wider mb-1">NRI Price</p>
+          <div className="text-3xl font-serif font-semibold text-[#14b8a6]">
             {currency === "INR" && "₹"}
             {currency === "USD" && "$"}
             {currency === "GBP" && "£"}
@@ -267,10 +270,10 @@ function ServiceCard({ service, currency, formatPrice, convertToNRIPrice }: {
               INR: service.nriTotalPayable || convertToNRIPrice(service.totalPayable, "INR"),
             })}
           </div>
-          <p className="text-xs text-navy-400 mt-1">Includes international support</p>
+          <p className="text-xs text-white/40 mt-1">Includes international support</p>
         </div>
       </CardContent>
-      <CardFooter className="p-8 pt-6 border-t border-[#0066b3]/10">
+      <CardFooter className="p-8 pt-6 border-t border-white/10">
         <Link href={`/nri-services/all-services/${service.slug}`} className="w-full">
           <button className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white py-3 md:py-4 rounded-xl font-medium transition-colors text-sm">
             View & Apply <ArrowRight className="w-4 h-4" />
@@ -280,3 +283,4 @@ function ServiceCard({ service, currency, formatPrice, convertToNRIPrice }: {
     </Card>
   );
 }
+

@@ -157,7 +157,8 @@ export default function ApplyForm({
         return (
           <>
             <div className="space-y-2">
-              <Label>Document Type</Label>
+              <Label className="text-white/80">
+Document Type</Label>
               <Select onValueChange={(v) => setServiceData({ ...serviceData, docType: v })}>
                 <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger>
                 <SelectContent className="bg-white z-50">
@@ -168,11 +169,13 @@ export default function ApplyForm({
               </Select>
             </div>
             <div className="space-y-2">
-              <Label>Issuing State / Authority</Label>
+              <Label className="text-white/80">
+Issuing State / Authority</Label>
               <Input placeholder="e.g. Tamil Nadu Board" onChange={(e) => setServiceData({ ...serviceData, issuingAuthority: e.target.value })} />
             </div>
             <div className="space-y-2">
-              <Label>Destination Country</Label>
+              <Label className="text-white/80">
+Destination Country</Label>
               <Input placeholder="Country where document will be used" onChange={(e) => setServiceData({ ...serviceData, destinationCountry: e.target.value })} />
             </div>
           </>
@@ -181,25 +184,30 @@ export default function ApplyForm({
         return (
           <>
             <div className="space-y-2">
-              <Label>Full Name of Person</Label>
+              <Label className="text-white/80">
+Full Name of Person</Label>
               <Input placeholder="Name as per existing records" onChange={(e) => setServiceData({ ...serviceData, personName: e.target.value })} />
             </div>
             <div className="space-y-2">
-              <Label>Date of Birth</Label>
+              <Label className="text-white/80">
+Date of Birth</Label>
               <Input type="date" onChange={(e) => setServiceData({ ...serviceData, dob: e.target.value })} />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label>Father's Name</Label>
+                <Label className="text-white/80">
+Father's Name</Label>
                 <Input onChange={(e) => setServiceData({ ...serviceData, fatherName: e.target.value })} />
               </div>
               <div className="space-y-2">
-                <Label>Mother's Name</Label>
+                <Label className="text-white/80">
+Mother's Name</Label>
                 <Input onChange={(e) => setServiceData({ ...serviceData, motherName: e.target.value })} />
               </div>
             </div>
             <div className="space-y-2">
-              <Label>Place of Birth (City / Hospital)</Label>
+              <Label className="text-white/80">
+Place of Birth (City / Hospital)</Label>
               <Input onChange={(e) => setServiceData({ ...serviceData, pob: e.target.value })} />
             </div>
           </>
@@ -208,15 +216,18 @@ export default function ApplyForm({
         return (
           <>
             <div className="space-y-2">
-              <Label>Property Full Address</Label>
+              <Label className="text-white/80">
+Property Full Address</Label>
               <Textarea placeholder="Include street, city, pin code" onChange={(e) => setServiceData({ ...serviceData, propertyAddress: e.target.value })} />
             </div>
             <div className="space-y-2">
-              <Label>Survey / Plot Number</Label>
+              <Label className="text-white/80">
+Survey / Plot Number</Label>
               <Input onChange={(e) => setServiceData({ ...serviceData, surveyNumber: e.target.value })} />
             </div>
             <div className="space-y-2">
-              <Label>Registration District / Sub-Registrar</Label>
+              <Label className="text-white/80">
+Registration District / Sub-Registrar</Label>
               <Input onChange={(e) => setServiceData({ ...serviceData, registrarOffice: e.target.value })} />
             </div>
           </>
@@ -225,19 +236,23 @@ export default function ApplyForm({
         return (
           <>
             <div className="space-y-2">
-              <Label>Deceased Person's Full Name</Label>
+              <Label className="text-white/80">
+Deceased Person's Full Name</Label>
               <Input onChange={(e) => setServiceData({ ...serviceData, deceasedName: e.target.value })} />
             </div>
             <div className="space-y-2">
-              <Label>Date of Death</Label>
+              <Label className="text-white/80">
+Date of Death</Label>
               <Input type="date" onChange={(e) => setServiceData({ ...serviceData, dateOfDeath: e.target.value })} />
             </div>
             <div className="space-y-2">
-              <Label>Address at time of death</Label>
+              <Label className="text-white/80">
+Address at time of death</Label>
               <Textarea onChange={(e) => setServiceData({ ...serviceData, deathAddress: e.target.value })} />
             </div>
             <div className="space-y-2">
-              <Label>Surviving Members List</Label>
+              <Label className="text-white/80">
+Surviving Members List</Label>
               <Textarea placeholder="Please list names and relations" onChange={(e) => setServiceData({ ...serviceData, survivingMembers: e.target.value })} />
             </div>
           </>
@@ -246,20 +261,24 @@ export default function ApplyForm({
         return (
           <>
             <div className="space-y-2">
-              <Label>Date of Marriage</Label>
+              <Label className="text-white/80">
+Date of Marriage</Label>
               <Input type="date" onChange={(e) => setServiceData({ ...serviceData, dateOfMarriage: e.target.value })} />
             </div>
             <div className="space-y-2">
-              <Label>Place / Hall of Marriage</Label>
+              <Label className="text-white/80">
+Place / Hall of Marriage</Label>
               <Input onChange={(e) => setServiceData({ ...serviceData, placeOfMarriage: e.target.value })} />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label>Groom's Name</Label>
+                <Label className="text-white/80">
+Groom's Name</Label>
                 <Input onChange={(e) => setServiceData({ ...serviceData, groomName: e.target.value })} />
               </div>
               <div className="space-y-2">
-                <Label>Bride's Name</Label>
+                <Label className="text-white/80">
+Bride's Name</Label>
                 <Input onChange={(e) => setServiceData({ ...serviceData, brideName: e.target.value })} />
               </div>
             </div>
@@ -268,7 +287,8 @@ export default function ApplyForm({
       default:
         return (
           <div className="space-y-2">
-            <Label>Additional Details & Specific Requirements</Label>
+            <Label className="text-white/80">
+Additional Details & Specific Requirements</Label>
             <Textarea 
               placeholder="Any specific requests, file numbers, or previous application details?"
               rows={4}
@@ -285,18 +305,19 @@ export default function ApplyForm({
       
       {/* Progress Steps */}
       <div className="flex items-center justify-between mb-8 px-2 relative">
-        <div className="absolute left-[15%] right-[15%] top-1/2 h-0.5 bg-gray-200 -z-10 transform -translate-y-1/2"></div>
+        <div className="absolute left-[15%] right-[15%] top-1/2 h-0.5 bg-white/10 -z-10 transform -translate-y-1/2"></div>
         <div className="absolute left-[15%] right-[15%] top-1/2 h-0.5 bg-gradient-to-r from-[#0066b3] to-[#14b8a6] -z-10 transform -translate-y-1/2" style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%', transition: 'width 0.3s' }}></div>
         
         {[1, 2, 3].map((s) => (
-          <div key={s} className={`flex flex-col items-center gap-2 ${step >= s ? 'text-[#0066b3]' : 'text-gray-400'}`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${step >= s ? 'bg-gradient-to-r from-[#0066b3] to-[#14b8a6] text-white shadow-md shadow-teal-200' : 'bg-gray-100'}`}>
+          <div key={s} className={`flex flex-col items-center gap-2 ${step >= s ? 'text-[#14b8a6]' : 'text-white/30'}`}>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${step >= s ? 'bg-gradient-to-r from-[#0066b3] to-[#14b8a6] text-white shadow-md shadow-teal-900/50' : 'bg-white/5 border border-white/10'}`}>
               {step > s ? <CheckCircle2 className="w-5 h-5 text-white" /> : s}
             </div>
             <span className="text-xs font-medium uppercase tracking-wider">{s === 1 ? 'Applicant' : s === 2 ? 'Service details' : 'Review'}</span>
           </div>
         ))}
       </div>
+
 
       {error && (
         <div className="p-4 mb-6 bg-red-50 text-red-700 border border-red-200 rounded-lg text-sm">
@@ -309,57 +330,67 @@ export default function ApplyForm({
         <form onSubmit={handleSubmit(onNextStep1)} className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label>First Name <span className="text-red-500">*</span></Label>
+              <Label className="text-white/80">First Name <span className="text-red-500">*</span></Label>
+
               <Input {...register('firstName')} className={errors.firstName ? 'border-red-500' : ''} />
               {errors.firstName && <span className="text-xs text-red-500">{errors.firstName.message}</span>}
             </div>
             <div className="space-y-2">
-              <Label>Last Name <span className="text-red-500">*</span></Label>
+              <Label className="text-white/80">Last Name <span className="text-red-500">*</span></Label>
+
               <Input {...register('lastName')} className={errors.lastName ? 'border-red-500' : ''} />
               {errors.lastName && <span className="text-xs text-red-500">{errors.lastName.message}</span>}
             </div>
           </div>
           
           <div className="space-y-2">
-            <Label>Email <span className="text-red-500">*</span></Label>
+            <Label className="text-white/80">Email <span className="text-red-500">*</span></Label>
+
             <Input type="email" {...register('email')} className={errors.email ? 'border-red-500' : ''} />
             {errors.email && <span className="text-xs text-red-500">{errors.email.message}</span>}
           </div>
 
           <div className="space-y-2">
-            <Label>Mobile Number (WhatsApp) <span className="text-red-500">*</span></Label>
+            <Label className="text-white/80">Mobile Number (WhatsApp) <span className="text-red-500">*</span></Label>
+
             <Input type="tel" {...register('phone')} className={errors.phone ? 'border-red-500' : ''} />
             {errors.phone && <span className="text-xs text-red-500">{errors.phone.message}</span>}
           </div>
 
           <div className="space-y-2">
-            <Label>Passport / Aadhaar / Identity Number <span className="text-gray-400 font-normal text-xs ml-1">(Optional for now)</span></Label>
+            <Label className="text-white/80">Passport / Aadhaar / Identity Number <span className="text-white/40 font-normal text-xs ml-1">(Optional for now)</span></Label>
+
             <Input {...register('identityNumber')} />
           </div>
 
           <div className="pt-4 flex justify-end">
-            <Button type="submit" className="bg-navy-900 hover:bg-navy-800 text-white px-8">
+            <Button type="submit" className="bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white px-8 h-12">
               Proceed <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
+
         </form>
       )}
 
       {/* Step 2: Service Specific Details */}
       {step === 2 && (
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
-          <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-navy-900/5 border-none space-y-6">
-            <h3 className="font-semibold font-serif text-xl border-none text-navy-900 pb-2">Information required for {serviceName}</h3>
-            {renderDynamicFields()}
+          <div className="bg-white/5 border border-white/10 backdrop-blur-md p-8 md:p-10 rounded-3xl space-y-6">
+            <h3 className="font-semibold font-serif text-xl text-white pb-2">Information required for {serviceName}</h3>
+            <div className="text-white">
+              {renderDynamicFields()}
+            </div>
           </div>
+
 
           <div className="pt-4 flex justify-between">
             <Button variant="outline" onClick={() => setStep(1)} className="border-gray-200">
               <ArrowLeft className="w-4 h-4 mr-2" /> Back
             </Button>
-            <Button onClick={() => setStep(3)} className="bg-navy-900 hover:bg-navy-800 text-white px-8">
+            <Button onClick={() => setStep(3)} className="bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white px-8 h-12">
               Save & Review <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
+
           </div>
         </div>
       )}
@@ -367,37 +398,39 @@ export default function ApplyForm({
       {/* Step 3: Review & Payment */}
       {step === 3 && (
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
-          <div className="bg-white shadow-xl shadow-navy-900/5 border-none rounded-3xl p-8 md:p-12">
-            <h3 className="font-semibold font-serif text-2xl text-navy-900 border-none pb-2 mb-6">Application Summary</h3>
+          <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12">
+            <h3 className="font-semibold font-serif text-2xl text-white pb-2 mb-6">Application Summary</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 text-sm mt-4">
               <div>
-                <span className="text-gray-500 block text-xs uppercase tracking-wider mb-1">Service</span>
-                <span className="font-medium font-serif text-lg text-navy-900">{serviceName}</span>
+                <span className="text-white/40 block text-xs uppercase tracking-wider mb-1">Service</span>
+                <span className="font-medium font-serif text-lg text-white">{serviceName}</span>
               </div>
               <div>
-                <span className="text-gray-500 block text-xs uppercase tracking-wider mb-1">Applicant</span>
-                <span className="font-medium font-serif text-lg text-navy-900">{applicantData?.firstName} {applicantData?.lastName}</span>
+                <span className="text-white/40 block text-xs uppercase tracking-wider mb-1">Applicant</span>
+                <span className="font-medium font-serif text-lg text-white">{applicantData?.firstName} {applicantData?.lastName}</span>
               </div>
               <div>
-                <span className="text-gray-500 block text-xs uppercase tracking-wider mb-1">Email</span>
-                <span className="font-medium text-base text-navy-900">{applicantData?.email}</span>
+                <span className="text-white/40 block text-xs uppercase tracking-wider mb-1">Email</span>
+                <span className="font-medium text-base text-white">{applicantData?.email}</span>
               </div>
               <div>
-                <span className="text-gray-500 block text-xs uppercase tracking-wider mb-1">Phone</span>
-                <span className="font-medium text-base text-navy-900">{applicantData?.phone}</span>
+                <span className="text-white/40 block text-xs uppercase tracking-wider mb-1">Phone</span>
+                <span className="font-medium text-base text-white">{applicantData?.phone}</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-white border-none shadow-xl shadow-navy-900/5 rounded-3xl p-10 flex flex-col items-center justify-center text-center space-y-4">
-            <span className="text-navy-500 font-medium uppercase tracking-widest text-sm">Total Professional Fee</span>
-            <div className="text-5xl md:text-6xl font-serif text-navy-900">
+
+          <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-10 flex flex-col items-center justify-center text-center space-y-4">
+            <span className="text-white/40 font-medium uppercase tracking-widest text-sm">Total Professional Fee</span>
+            <div className="text-5xl md:text-6xl font-serif text-[#14b8a6]">
               {formatPrice({ USD: getAmount(), GBP: getAmount(), AED: getAmount(), INR: getAmount() })}
             </div>
-            <p className="text-xs text-navy-400 max-w-md pt-2">
+            <p className="text-xs text-white/40 max-w-md pt-2">
               Includes all secure transaction charges. After payment, you'll be redirected to upload any mandatory documents in your vault.
             </p>
+
 
             <Button 
               onClick={handleCheckout} 
@@ -413,10 +446,11 @@ export default function ApplyForm({
           </div>
 
           <div className="flex justify-start pt-2">
-            <Button variant="ghost" onClick={() => setStep(2)} className="text-navy-600" disabled={isLoading}>
+            <Button variant="ghost" onClick={() => setStep(2)} className="text-white/60 hover:text-white" disabled={isLoading}>
               <ArrowLeft className="w-4 h-4 mr-2" /> Modify details
             </Button>
           </div>
+
         </div>
       )}
     </>

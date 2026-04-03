@@ -52,15 +52,16 @@ export default async function ApplyPage({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-teal-50 py-12">
+    <div className="py-12">
       <div className="container mx-auto px-4 max-w-4xl">
-        <Link href={isNRI ? `/nri-services/${slug}` : `/services/${slug}`} className="inline-flex items-center text-navy-500 hover:text-navy-900 mb-8 transition-colors">
+        <Link href={isNRI ? `/nri-services/${slug}` : `/services/${slug}`} className="inline-flex items-center text-navy-300 hover:text-white mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to {serviceData.name} details
         </Link>
-        <div className="bg-white rounded-3xl shadow-2xl shadow-navy-900/10 border-none overflow-hidden">
+        <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl shadow-2xl shadow-navy-900/40 overflow-hidden">
           <div className="p-10 md:p-16">
-            <h1 className="text-3xl md:text-4xl font-serif text-navy-900 mb-2">Apply for {serviceData.name}</h1>
-            <p className="text-navy-600 mb-8">Please provide the details below to start your application securely.</p>
+            <h1 className="text-3xl md:text-4xl font-serif text-white mb-2">Apply for {serviceData.name}</h1>
+            <p className="text-white/60 mb-8">Please provide the details below to start your application securely.</p>
+
             
             <ApplyForm 
               serviceSlug={slug}

@@ -25,7 +25,7 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
   const [hasChatted, setHasChatted] = React.useState(false);
 
   const whatsappMessage = encodeURIComponent(`Hello Eazy Sevai team, I am interested in ${service?.name} (NRI service). Please assist me with next steps.`);
-  const whatsappUrl = `https://wa.me/919999999999?text=${whatsappMessage}`;
+  const whatsappUrl = `https://wa.me/919944633029?text=${whatsappMessage}`;
 
   const handleChat = () => {
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
@@ -59,12 +59,14 @@ export default function NRIServiceDetailPage({ params }: PageProps) {
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-800 border border-navy-700 text-sm text-[#14b8a6] font-medium">
                 NRI Premium Service
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight text-white">
                 {service.name}
               </h1>
-              <p className="text-lg md:text-xl text-navy-200 font-sans max-w-xl leading-relaxed">
+
+              <p className="text-lg md:text-xl text-white/70 font-sans max-w-xl leading-relaxed">
                 {service.longDescription}
               </p>
+
               
               <div className="flex flex-wrap gap-4 pt-4">
                 <div className="flex items-center gap-2 bg-navy-800/50 rounded-lg px-4 py-3 border border-navy-700/50">

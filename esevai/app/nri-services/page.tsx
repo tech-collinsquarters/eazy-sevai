@@ -79,36 +79,43 @@ export default function NRIServicesDirectory() {
 
       {/* Services Grid — all services, no search filter */}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-        {nriServices.map((service) => (
-          <Card key={service.id} className="group shadow-xl shadow-navy-900/5 hover:shadow-2xl hover:shadow-navy-900/10 border-none bg-white flex flex-col h-full overflow-hidden rounded-2xl cursor-pointer">
+        {nriServices.map((service) => {
+          return (
+          <Card
+            key={service.id}
+            className="group shadow-xl hover:shadow-2xl border-none flex flex-col h-full overflow-hidden rounded-2xl cursor-pointer shadow-navy-900/20"
+            style={{ background: "linear-gradient(135deg, #0a1628 0%, #0d2240 100%)" }}
+          >
             <div className="h-1.5 w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
             <CardHeader className="p-8">
               <div className="flex justify-between items-start mb-4">
-                <Badge variant="outline" className="border-navy-100 text-navy-600 bg-navy-50 hover:bg-navy-50">
+                <Badge variant="outline" className="border-white/20 text-white/70 bg-white/10 hover:bg-white/20">
                   {service.processingTime}
                 </Badge>
-                <div className="text-2xl font-semibold font-serif text-navy-900">
+                <div className="text-2xl font-semibold font-serif text-[#14b8a6]">
                   {formatPrice(service.prices)}
                 </div>
               </div>
-              <CardTitle className="font-serif text-2xl text-navy-900 leading-tight">
+              <CardTitle className="font-serif text-2xl leading-tight text-white">
                 {service.name}
               </CardTitle>
-              <CardDescription className="text-navy-600 text-base mt-2 line-clamp-2">
+              <CardDescription className="text-base mt-2 line-clamp-2 text-white/60">
                 {service.shortDescription}
               </CardDescription>
             </CardHeader>
             <CardContent className="flex-grow px-8">
               <ul className="space-y-3">
                 {service.benefits.slice(0, 3).map((benefit: string, idx: number) => (
-                  <li key={idx} className="flex items-start gap-2 text-sm text-navy-700">
+                  <li key={idx} className="flex items-start gap-2 text-sm text-white/70">
                     <ShieldCheck className="w-4 h-4 text-[#14b8a6] mt-0.5 shrink-0" />
                     <span>{benefit}</span>
                   </li>
                 ))}
               </ul>
             </CardContent>
-            <CardFooter className="p-8 pt-6 border-t border-navy-50">
+
+            <CardFooter className="p-8 pt-6 border-t border-white/10">
+
               <Link
                 href={`/nri-services/${service.slug}`}
                 className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white py-3 md:py-4 rounded-xl font-medium transition-colors"
@@ -117,7 +124,8 @@ export default function NRIServicesDirectory() {
               </Link>
             </CardFooter>
           </Card>
-        ))}
+          );
+        })}
       </div>
 
       {/* CTA */}

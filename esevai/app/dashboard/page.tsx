@@ -85,14 +85,14 @@ export default async function DashboardPage() {
 
         {/* Side Panel: Consultations & Security */}
         <div className="space-y-6 md:col-span-1">
-          <Card className="border-none shadow-xl shadow-navy-900/5 bg-white rounded-3xl overflow-hidden hover:shadow-2xl transition-all">
-            <CardHeader className="bg-blue-50/50 py-5">
-              <CardTitle className="text-2xl font-serif text-navy-900 flex items-center gap-2.5">
+          <Card className="border border-white/10 shadow-xl shadow-navy-900/20 rounded-3xl overflow-hidden hover:shadow-navy-900/40 transition-all" style={{ background: "rgba(255,255,255,0.04)", backdropFilter: "blur(8px)" }}>
+            <CardHeader className="bg-white/5 border-b border-white/10 py-5">
+              <CardTitle className="text-2xl font-serif text-white flex items-center gap-2.5">
                 <CalendarDays className="w-6 h-6 text-[#14b8a6]" strokeWidth={2.5} /> Consultations
               </CardTitle>
             </CardHeader>
-            <CardContent className="pt-4 space-y-4">
-              <p className="text-navy-600 font-sans text-sm">
+            <CardContent className="pt-6 space-y-4">
+              <p className="text-white/70 font-sans text-sm">
                 Need expert advice? Schedule a 1-on-1 video call with our NRI legal specialists.
               </p>
               <div className="grid grid-cols-1 gap-3">
@@ -106,7 +106,7 @@ export default async function DashboardPage() {
                   </Button>
                 </a>
                 <Link href="/dashboard/consultation">
-                  <Button className="w-full bg-gradient-to-r from-[#1e3a5f] to-[#0066b3] border border-[#14b8a6]/50 shadow-lg shadow-[#0066b3]/20 hover:scale-[1.01] text-white font-semibold rounded-xl h-12 transition-all hover:opacity-90">
+                  <Button className="w-full bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white font-semibold rounded-xl h-12 shadow-lg shadow-[#0066b3]/20 hover:scale-[1.01] transition-all">
                     Book Video Session
                   </Button>
                 </Link>
@@ -114,9 +114,9 @@ export default async function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-none shadow-xl shadow-navy-900/5 bg-white rounded-3xl overflow-hidden hover:shadow-2xl transition-all">
-            <CardHeader className="bg-blue-50/50 py-5">
-              <CardTitle className="text-2xl font-serif text-navy-900">Explore Services</CardTitle>
+          <Card className="border border-white/10 shadow-xl shadow-navy-900/20 rounded-3xl overflow-hidden hover:shadow-navy-900/40 transition-all" style={{ background: "rgba(255,255,255,0.04)", backdropFilter: "blur(8px)" }}>
+            <CardHeader className="bg-white/5 border-b border-white/10 py-5">
+              <CardTitle className="text-2xl font-serif text-white">Explore Services</CardTitle>
             </CardHeader>
             <CardContent className="pt-6 flex flex-col gap-4">
               <Link href="/nri-services">
@@ -125,11 +125,11 @@ export default async function DashboardPage() {
                 </Button>
               </Link>
               <Link href="/nri-services/all-services">
-                <Button className="w-full bg-white border-2 border-[#0066b3]/80 text-[#0066b3] hover:bg-blue-50 font-bold rounded-xl h-12 shadow-sm hover:scale-[1.01] transition-all mt-1">
+                <Button className="w-full bg-transparent border-2 border-white/20 text-white hover:bg-white/10 font-bold rounded-xl h-12 shadow-sm hover:scale-[1.01] transition-all mt-1">
                   Browse All Services (NRI)
                 </Button>
               </Link>
-              <p className="text-xs text-navy-500">
+              <p className="text-xs text-white/40">
                 Before applying for an NRI service, please connect with us on WhatsApp (click the green button in service pages).
               </p>
             </CardContent>
@@ -155,3 +155,4 @@ export default async function DashboardPage() {
     </div>
   );
 }
+

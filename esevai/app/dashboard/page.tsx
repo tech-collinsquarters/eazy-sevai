@@ -58,27 +58,28 @@ export default async function DashboardPage() {
                 </Link>
               </div>
             ) : (
-              <ul className="divide-y divide-[#0066b3]/5">
+              <ul className="divide-y divide-white/10">
                 {documents.map((doc: { id: string; fileName: string; createdAt: Date; fileSize: number; status: string }) => (
-                  <li key={doc.id} className="p-4 flex items-center justify-between hover:bg-blue-50/50 transition-colors">
+                  <li key={doc.id} className="p-4 flex items-center justify-between hover:bg-white/5 transition-colors">
                     <div className="flex items-center gap-4 min-w-0 flex-1">
-                      <div className="bg-blue-50 p-2 rounded-xl text-[#0066b3] shrink-0 border border-blue-100/50">
+                      <div className="bg-white/5 p-2 rounded-xl text-[#14b8a6] shrink-0 border border-white/10">
                         <FileText className="w-6 h-6" />
                       </div>
                       <div className="min-w-0 flex-1 pr-4">
-                        <p className="font-semibold text-navy-900 truncate">{doc.fileName}</p>
-                        <p className="text-xs text-navy-500 font-medium mt-0.5">{new Date(doc.createdAt).toLocaleDateString()} &bull; {Math.round(doc.fileSize / 1024)} KB &bull; <span className="uppercase text-[#14b8a6]">{doc.status}</span></p>
+                        <p className="font-semibold text-white truncate">{doc.fileName}</p>
+                        <p className="text-xs text-white/50 font-medium mt-0.5">{new Date(doc.createdAt).toLocaleDateString()} &bull; {Math.round(doc.fileSize / 1024)} KB &bull; <span className="uppercase text-[#14b8a6]">{doc.status}</span></p>
                       </div>
                     </div>
                     {/* The download link needs an API route to generate a presigned download URL */}
                     <a href={`/api/documents/download?id=${doc.id}`} target="_blank" rel="noopener noreferrer">
-                      <Button variant="ghost" size="icon" className="text-[#0066b3] hover:bg-blue-100 hover:text-[#004d87]">
+                      <Button variant="ghost" size="icon" className="text-[#14b8a6] hover:bg-white/10 hover:text-white">
                         <Download className="w-4 h-4" />
                       </Button>
                     </a>
                   </li>
                 ))}
               </ul>
+
             )}
           </CardContent>
         </Card>

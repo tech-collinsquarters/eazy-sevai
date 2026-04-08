@@ -152,146 +152,129 @@ export default function ApplyForm({
 
   // Dynamic Fields Render
   const renderDynamicFields = () => {
+    const inputClasses = "bg-[#0f1f3d]/50 border-white/10 text-white placeholder:text-white/30 h-12 focus-visible:ring-[#14b8a6]";
+    
     switch (serviceSlug) {
       case 'document-apostille':
         return (
           <>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Document Type</Label>
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Document Type</Label>
               <Select onValueChange={(v) => setServiceData({ ...serviceData, docType: v })}>
-                <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger>
-                <SelectContent className="bg-white z-50">
-                  <SelectItem value="educational">Educational Document</SelectItem>
-                  <SelectItem value="non-educational">Non-Educational / Personal</SelectItem>
-                  <SelectItem value="commercial">Commercial Document</SelectItem>
+                <SelectTrigger className={inputClasses}><SelectValue placeholder="Select type" /></SelectTrigger>
+                <SelectContent className="bg-[#0f1f3d] border-white/10 text-white z-50">
+                  <SelectItem value="educational" className="hover:bg-white/10 cursor-pointer">Educational Document</SelectItem>
+                  <SelectItem value="non-educational" className="hover:bg-white/10 cursor-pointer">Non-Educational / Personal</SelectItem>
+                  <SelectItem value="commercial" className="hover:bg-white/10 cursor-pointer">Commercial Document</SelectItem>
                 </SelectContent>
               </Select>
             </div>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Issuing State / Authority</Label>
-              <Input placeholder="e.g. Tamil Nadu Board" onChange={(e) => setServiceData({ ...serviceData, issuingAuthority: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Issuing State / Authority</Label>
+              <Input placeholder="e.g. Tamil Nadu Board" className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, issuingAuthority: e.target.value })} />
             </div>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Destination Country</Label>
-              <Input placeholder="Country where document will be used" onChange={(e) => setServiceData({ ...serviceData, destinationCountry: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Destination Country</Label>
+              <Input placeholder="Country where document will be used" className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, destinationCountry: e.target.value })} />
             </div>
           </>
         );
       case 'non-availability-birth-certificate':
         return (
           <>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Full Name of Person</Label>
-              <Input placeholder="Name as per existing records" onChange={(e) => setServiceData({ ...serviceData, personName: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Full Name of Person</Label>
+              <Input placeholder="Name as per existing records" className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, personName: e.target.value })} />
             </div>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Date of Birth</Label>
-              <Input type="date" onChange={(e) => setServiceData({ ...serviceData, dob: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Date of Birth</Label>
+              <Input type="date" className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, dob: e.target.value })} />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label className="text-white/80">
-Father's Name</Label>
-                <Input onChange={(e) => setServiceData({ ...serviceData, fatherName: e.target.value })} />
+            <div className="grid grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <Label className="text-white text-sm font-medium">Father's Name</Label>
+                <Input className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, fatherName: e.target.value })} />
               </div>
-              <div className="space-y-2">
-                <Label className="text-white/80">
-Mother's Name</Label>
-                <Input onChange={(e) => setServiceData({ ...serviceData, motherName: e.target.value })} />
+              <div className="space-y-3">
+                <Label className="text-white text-sm font-medium">Mother's Name</Label>
+                <Input className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, motherName: e.target.value })} />
               </div>
             </div>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Place of Birth (City / Hospital)</Label>
-              <Input onChange={(e) => setServiceData({ ...serviceData, pob: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Place of Birth (City / Hospital)</Label>
+              <Input className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, pob: e.target.value })} />
             </div>
           </>
         );
       case 'property-title-search-khata':
         return (
           <>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Property Full Address</Label>
-              <Textarea placeholder="Include street, city, pin code" onChange={(e) => setServiceData({ ...serviceData, propertyAddress: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Property Full Address</Label>
+              <Textarea placeholder="Include street, city, pin code" className={`${inputClasses} min-h-[100px]`} onChange={(e) => setServiceData({ ...serviceData, propertyAddress: e.target.value })} />
             </div>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Survey / Plot Number</Label>
-              <Input onChange={(e) => setServiceData({ ...serviceData, surveyNumber: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Survey / Plot Number</Label>
+              <Input className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, surveyNumber: e.target.value })} />
             </div>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Registration District / Sub-Registrar</Label>
-              <Input onChange={(e) => setServiceData({ ...serviceData, registrarOffice: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Registration District / Sub-Registrar</Label>
+              <Input className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, registrarOffice: e.target.value })} />
             </div>
           </>
         );
       case 'legal-heir-certificate':
         return (
           <>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Deceased Person's Full Name</Label>
-              <Input onChange={(e) => setServiceData({ ...serviceData, deceasedName: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Deceased Person's Full Name</Label>
+              <Input className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, deceasedName: e.target.value })} />
             </div>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Date of Death</Label>
-              <Input type="date" onChange={(e) => setServiceData({ ...serviceData, dateOfDeath: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Date of Death</Label>
+              <Input type="date" className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, dateOfDeath: e.target.value })} />
             </div>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Address at time of death</Label>
-              <Textarea onChange={(e) => setServiceData({ ...serviceData, deathAddress: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Address at time of death</Label>
+              <Textarea className={`${inputClasses} min-h-[100px]`} onChange={(e) => setServiceData({ ...serviceData, deathAddress: e.target.value })} />
             </div>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Surviving Members List</Label>
-              <Textarea placeholder="Please list names and relations" onChange={(e) => setServiceData({ ...serviceData, survivingMembers: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Surviving Members List</Label>
+              <Textarea placeholder="Please list names and relations" className={`${inputClasses} min-h-[100px]`} onChange={(e) => setServiceData({ ...serviceData, survivingMembers: e.target.value })} />
             </div>
           </>
         );
       case 'marriage-certificate-registration':
         return (
           <>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Date of Marriage</Label>
-              <Input type="date" onChange={(e) => setServiceData({ ...serviceData, dateOfMarriage: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Date of Marriage</Label>
+              <Input type="date" className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, dateOfMarriage: e.target.value })} />
             </div>
-            <div className="space-y-2">
-              <Label className="text-white/80">
-Place / Hall of Marriage</Label>
-              <Input onChange={(e) => setServiceData({ ...serviceData, placeOfMarriage: e.target.value })} />
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Place / Hall of Marriage</Label>
+              <Input className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, placeOfMarriage: e.target.value })} />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label className="text-white/80">
-Groom's Name</Label>
-                <Input onChange={(e) => setServiceData({ ...serviceData, groomName: e.target.value })} />
+            <div className="grid grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <Label className="text-white text-sm font-medium">Groom's Name</Label>
+                <Input className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, groomName: e.target.value })} />
               </div>
-              <div className="space-y-2">
-                <Label className="text-white/80">
-Bride's Name</Label>
-                <Input onChange={(e) => setServiceData({ ...serviceData, brideName: e.target.value })} />
+              <div className="space-y-3">
+                <Label className="text-white text-sm font-medium">Bride's Name</Label>
+                <Input className={inputClasses} onChange={(e) => setServiceData({ ...serviceData, brideName: e.target.value })} />
               </div>
             </div>
           </>
         );
       default:
         return (
-          <div className="space-y-2">
-            <Label className="text-white/80">
-Additional Details & Specific Requirements</Label>
+          <div className="space-y-3">
+            <Label className="text-white text-sm font-medium">Additional Details & Specific Requirements</Label>
             <Textarea 
               placeholder="Any specific requests, file numbers, or previous application details?"
               rows={4}
+              className={`${inputClasses} min-h-[120px]`}
               onChange={(e) => setServiceData({ ...serviceData, notes: e.target.value })}
             />
           </div>
@@ -304,18 +287,20 @@ Additional Details & Specific Requirements</Label>
       <Script src="https://checkout.razorpay.com/v1/checkout.js" />
       
       {/* Progress Steps */}
-      <div className="flex items-center justify-between mb-8 px-2 relative">
-        <div className="absolute left-[15%] right-[15%] top-1/2 h-0.5 bg-white/10 -z-10 transform -translate-y-1/2"></div>
-        <div className="absolute left-[15%] right-[15%] top-1/2 h-0.5 bg-gradient-to-r from-[#0066b3] to-[#14b8a6] -z-10 transform -translate-y-1/2" style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%', transition: 'width 0.3s' }}></div>
+      <div className="relative mb-12 mt-4 px-2 sm:px-8 max-w-3xl mx-auto">
+        <div className="absolute left-[10%] right-[10%] top-4 h-0.5 bg-white/10 -z-10"></div>
+        <div className="absolute left-[10%] top-4 h-0.5 bg-gradient-to-r from-[#0066b3] to-[#14b8a6] -z-10 transition-all duration-300" style={{ width: step === 1 ? '0%' : step === 2 ? '40%' : '80%' }}></div>
         
-        {[1, 2, 3].map((s) => (
-          <div key={s} className={`flex flex-col items-center gap-2 ${step >= s ? 'text-[#14b8a6]' : 'text-white/30'}`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${step >= s ? 'bg-gradient-to-r from-[#0066b3] to-[#14b8a6] text-white shadow-md shadow-teal-900/50' : 'bg-white/5 border border-white/10'}`}>
-              {step > s ? <CheckCircle2 className="w-5 h-5 text-white" /> : s}
+        <div className="flex justify-between relative z-10 w-full">
+          {[1, 2, 3].map((s) => (
+            <div key={s} className={`flex flex-col items-center gap-3 ${step >= s ? 'text-[#14b8a6]' : 'text-white/30'} flex-1`}>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${step >= s ? 'bg-gradient-to-r from-[#0066b3] to-[#14b8a6] text-white shadow-md shadow-teal-900/50' : 'bg-[#0f1f3d] border-2 border-white/10 text-white/40'}`}>
+                {step > s ? <CheckCircle2 className="w-5 h-5 text-white" /> : s}
+              </div>
+              <span className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-center">{s === 1 ? 'Applicant' : s === 2 ? 'Service details' : 'Review'}</span>
             </div>
-            <span className="text-xs font-medium uppercase tracking-wider">{s === 1 ? 'Applicant' : s === 2 ? 'Service details' : 'Review'}</span>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
 
@@ -327,43 +312,43 @@ Additional Details & Specific Requirements</Label>
 
       {/* Step 1: Applicant Details */}
       {step === 1 && (
-        <form onSubmit={handleSubmit(onNextStep1)} className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
+        <form onSubmit={handleSubmit(onNextStep1)} className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500 bg-white/5 border border-white/10 backdrop-blur-md p-8 md:p-10 rounded-3xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label className="text-white/80">First Name <span className="text-red-500">*</span></Label>
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">First Name <span className="text-red-400">*</span></Label>
 
-              <Input {...register('firstName')} className={errors.firstName ? 'border-red-500' : ''} />
-              {errors.firstName && <span className="text-xs text-red-500">{errors.firstName.message}</span>}
+              <Input {...register('firstName')} className={`bg-[#0f1f3d]/50 border-white/10 text-white placeholder:text-white/30 h-12 focus-visible:ring-[#14b8a6] ${errors.firstName ? 'border-red-500' : ''}`} />
+              {errors.firstName && <span className="text-xs text-red-400">{errors.firstName.message}</span>}
             </div>
-            <div className="space-y-2">
-              <Label className="text-white/80">Last Name <span className="text-red-500">*</span></Label>
+            <div className="space-y-3">
+              <Label className="text-white text-sm font-medium">Last Name <span className="text-red-400">*</span></Label>
 
-              <Input {...register('lastName')} className={errors.lastName ? 'border-red-500' : ''} />
-              {errors.lastName && <span className="text-xs text-red-500">{errors.lastName.message}</span>}
+              <Input {...register('lastName')} className={`bg-[#0f1f3d]/50 border-white/10 text-white placeholder:text-white/30 h-12 focus-visible:ring-[#14b8a6] ${errors.lastName ? 'border-red-500' : ''}`} />
+              {errors.lastName && <span className="text-xs text-red-400">{errors.lastName.message}</span>}
             </div>
           </div>
           
-          <div className="space-y-2">
-            <Label className="text-white/80">Email <span className="text-red-500">*</span></Label>
+          <div className="space-y-3">
+            <Label className="text-white text-sm font-medium">Email <span className="text-red-400">*</span></Label>
 
-            <Input type="email" {...register('email')} className={errors.email ? 'border-red-500' : ''} />
-            {errors.email && <span className="text-xs text-red-500">{errors.email.message}</span>}
+            <Input type="email" {...register('email')} className={`bg-[#0f1f3d]/50 border-white/10 text-white placeholder:text-white/30 h-12 focus-visible:ring-[#14b8a6] ${errors.email ? 'border-red-500' : ''}`} />
+            {errors.email && <span className="text-xs text-red-400">{errors.email.message}</span>}
           </div>
 
-          <div className="space-y-2">
-            <Label className="text-white/80">Mobile Number (WhatsApp) <span className="text-red-500">*</span></Label>
+          <div className="space-y-3">
+            <Label className="text-white text-sm font-medium">Mobile Number (WhatsApp) <span className="text-red-400">*</span></Label>
 
-            <Input type="tel" {...register('phone')} className={errors.phone ? 'border-red-500' : ''} />
-            {errors.phone && <span className="text-xs text-red-500">{errors.phone.message}</span>}
+            <Input type="tel" {...register('phone')} className={`bg-[#0f1f3d]/50 border-white/10 text-white placeholder:text-white/30 h-12 focus-visible:ring-[#14b8a6] ${errors.phone ? 'border-red-500' : ''}`} />
+            {errors.phone && <span className="text-xs text-red-400">{errors.phone.message}</span>}
           </div>
 
-          <div className="space-y-2">
-            <Label className="text-white/80">Passport / Aadhaar / Identity Number <span className="text-white/40 font-normal text-xs ml-1">(Optional for now)</span></Label>
+          <div className="space-y-3">
+            <Label className="text-white text-sm font-medium">Passport / Aadhaar / Identity Number <span className="text-white/40 font-normal text-xs ml-1">(Optional for now)</span></Label>
 
-            <Input {...register('identityNumber')} />
+            <Input {...register('identityNumber')} className="bg-[#0f1f3d]/50 border-white/10 text-white placeholder:text-white/30 h-12 focus-visible:ring-[#14b8a6]" />
           </div>
 
-          <div className="pt-4 flex justify-end">
+          <div className="pt-6 flex justify-end">
             <Button type="submit" className="bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white px-8 h-12">
               Proceed <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
@@ -375,16 +360,16 @@ Additional Details & Specific Requirements</Label>
       {/* Step 2: Service Specific Details */}
       {step === 2 && (
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
-          <div className="bg-white/5 border border-white/10 backdrop-blur-md p-8 md:p-10 rounded-3xl space-y-6">
-            <h3 className="font-semibold font-serif text-xl text-white pb-2">Information required for {serviceName}</h3>
-            <div className="text-white">
+          <div className="bg-white/5 border border-white/10 backdrop-blur-md p-8 md:p-10 rounded-3xl space-y-8">
+            <h3 className="font-semibold font-serif text-xl text-white pb-2 border-b border-white/10">Information required for {serviceName}</h3>
+            <div className="text-white space-y-6">
               {renderDynamicFields()}
             </div>
           </div>
 
 
           <div className="pt-4 flex justify-between">
-            <Button variant="outline" onClick={() => setStep(1)} className="border-gray-200">
+            <Button variant="outline" onClick={() => setStep(1)} className="border-white/20 text-white bg-transparent hover:bg-white/10 hover:text-white h-12 px-6">
               <ArrowLeft className="w-4 h-4 mr-2" /> Back
             </Button>
             <Button onClick={() => setStep(3)} className="bg-gradient-to-r from-[#0066b3] to-[#14b8a6] hover:opacity-90 text-white px-8 h-12">

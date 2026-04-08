@@ -203,7 +203,7 @@ function StandardHeader() {
 // ─── Root Export ─────────────────────────────────────────────
 export default function Header() {
   const pathname = usePathname()
-  const isNRIZone = pathname?.startsWith('/nri-services') || pathname?.startsWith('/dashboard') || pathname === '/login' || pathname === '/register'
+  const isNRIZone = pathname?.startsWith('/nri-services') || pathname?.startsWith('/dashboard') || pathname === '/login' || pathname === '/register' || pathname === '/apply'
 
   if (isNRIZone) return <NRIHeader />
   return <StandardHeader />

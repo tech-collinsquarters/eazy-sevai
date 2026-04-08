@@ -37,7 +37,6 @@ export default async function ApplyPage({
   const genericService = services.find((s) => s.slug === slug);
 
   const serviceData = nriService || genericService;
-  const isNRI = !!nriService;
 
   if (!serviceData) {
     return (
@@ -51,10 +50,22 @@ export default async function ApplyPage({
     );
   }
 
+  let prices = null;
+  if (nriService) {
+    prices = nriService.prices;
+  } else if (genericService) {
+    prices = {
+      INR: genericService.nriTotalPayable,
+      USD: genericService.priceUSD,
+      GBP: genericService.priceGBP,
+      AED: genericService.priceAED,
+    };
+  }
+
   return (
     <div className="py-12">
       <div className="container mx-auto px-4 max-w-4xl">
-        <Link href={isNRI ? `/nri-services/${slug}` : `/services/${slug}`} className="inline-flex items-center text-navy-300 hover:text-white mb-8 transition-colors">
+        <Link href={nriService ? `/nri-services/${slug}` : `/nri-services/all-services/${slug}`} className="inline-flex items-center text-navy-300 hover:text-white mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to {serviceData.name} details
         </Link>
         <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl shadow-2xl shadow-navy-900/40 overflow-hidden">
@@ -67,9 +78,9 @@ export default async function ApplyPage({
               serviceSlug={slug}
               serviceName={serviceData.name}
               user={session.user}
-              isNRI={isNRI}
-              prices={isNRI ? (serviceData as any).prices : null}
-              baseAmount={!isNRI ? (serviceData as any).totalPayable : null}
+              isNRI={true}
+              prices={prices}
+              baseAmount={null}
             />
           </div>
         </div>

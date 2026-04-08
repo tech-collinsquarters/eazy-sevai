@@ -259,10 +259,6 @@ function ServiceCard({ service, currency, formatPrice, convertToNRIPrice }: {
         <div className="mb-4">
           <p className="text-xs text-navy-300 uppercase tracking-wider mb-1">NRI Price</p>
           <div className="text-3xl font-serif font-semibold text-[#14b8a6]">
-            {currency === "INR" && "₹"}
-            {currency === "USD" && "$"}
-            {currency === "GBP" && "£"}
-            {currency === "AED" && "د.إ "}
             {formatPrice({
               USD: service.priceUSD || convertToNRIPrice(service.totalPayable, "USD"),
               GBP: service.priceGBP || convertToNRIPrice(service.totalPayable, "GBP"),

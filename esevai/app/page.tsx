@@ -11,14 +11,14 @@ const ALL_SERVICES = [
   { icon: "💰", title: "Income Certificate", description: "Proof of income for scholarships, loans and subsidies", href: "/services/income-certificate", tags: ["income", "certificate"] },
   { icon: "👶", title: "Birth Certificate", description: "Essential identity document for passports and school", href: "/services/birth-certificate", tags: ["birth", "certificate"] },
   { icon: "💳", title: "PAN Card", description: "Permanent Account Number for all financial transactions", href: "/services/pan-card", tags: ["pan", "card", "income tax"] },
-  { icon: "🪪", title: "Aadhaar Services", description: "Aadhaar update, correction and mobile number linking", href: "/services/aadhaar", tags: ["aadhaar", "uid", "identity"] },
-  { icon: "🛂", title: "Passport Services", description: "New passport application, renewal and Tatkaal processing", href: "/services/passport", tags: ["passport", "travel"] },
-  { icon: "📊", title: "Income Tax Filing", description: "ITR filing for individuals, HUF and small businesses", href: "/services/income-tax", tags: ["income", "tax", "itr", "filing"] },
-  { icon: "🚗", title: "Driving Licence", description: "New DL application, renewal and address change", href: "/services/driving-licence", tags: ["driving", "licence", "dl"] },
-  { icon: "🏠", title: "Patta Transfer", description: "Land patta transfer and mutation services", href: "/services/patta-transfer", tags: ["patta", "land", "property"] },
-  { icon: "📋", title: "Legal Heir Certificate", description: "Succession and legal heir certification for property claims", href: "/services/legal-heir", tags: ["legal", "heir", "succession"] },
+  { icon: "🪪", title: "Aadhaar Services", description: "Aadhaar update, correction and mobile number linking", href: "/services/aadhaar-update", tags: ["aadhaar", "uid", "identity"] },
+  { icon: "🗳️", title: "Voter ID Card", description: "Voter ID enrollment, corrections, and updates", href: "/services/voter-id-card", tags: ["voter", "election", "identity"] },
+  { icon: "📄", title: "Encumbrance Certificate", description: "Property legal status verification certificate", href: "/services/encumbrance-certificate", tags: ["property", "ec", "land"] },
+  { icon: "🚗", title: "Driving License", description: "New DL application, renewal and address change", href: "/services/driving-license", tags: ["driving", "license", "dl"] },
+  { icon: "🏠", title: "Patta Services", description: "Land patta transfer and mutation services", href: "/services/patta-services", tags: ["patta", "land", "property"] },
+  { icon: "📋", title: "Legal Heir Certificate", description: "Succession and legal heir certification for property claims", href: "/services/legal-heir-certificate", tags: ["legal", "heir", "succession"] },
   { icon: "🎓", title: "Nativity Certificate", description: "Prove your state of origin for admissions and employment", href: "/services/nativity-certificate", tags: ["nativity", "certificate"] },
-  { icon: "💼", title: "Trade Licence", description: "Business trade licence registration and renewal", href: "/services/trade-licence", tags: ["trade", "licence", "business"] },
+  { icon: "🏫", title: "First Graduate Certificate", description: "Certificate for first in family to pursue higher education", href: "/services/first-graduate-certificate", tags: ["education", "graduate", "college"] },
 ];
 
 export default function HomePage() {
